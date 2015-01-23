@@ -91,14 +91,14 @@ class NSKApiTests: XCTestCase {
     
     func testApiShowByHardwareId() {
         var apiExpectation = self.expectationWithDescription("API: showByHardwareId")
-        
-        api.showTagByHardwareId("04C77542F32180", requestCompleted: { (succeeded, tag) -> () in
+
+        api.showTagByHardwareId(hardwareIdentifier: "F7826DA64FA24E988024BC5B71E0893E", beaconMajorId: "62306", beaconMinorId: "5988") { (succeeded, tag) -> () in
             XCTAssert(succeeded, "API: showByHardwareId failed")
             
             self.checkTag(tag)
             
             apiExpectation.fulfill()
-        })
+        }
         
         self.waitForExpectationsWithTimeout(self.maxBlockWaitTime, handler: nil)
     }

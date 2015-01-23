@@ -191,9 +191,14 @@ class NSKApi: NSObject {
         })
     }
     
-    func showTagByHardwareId(hardwareIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+    func showTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
-        let apiUrl = NSURL(string: apiServerURL +  "tags/showByHardwareId?id=" + hardwareIdentifier + "&lang=" + currentLocale)!
+        let apiUrl = NSURL(string:
+                    apiServerURL +  "tags/showByHardwareId?id=" + hardwareIdentifier +
+                        "&major=" + beaconMajorId +
+                        "&minor=" + beaconMinorId +
+                        "&lang=" + currentLocale +
+                        "&type=" + NSKTagHardwareType.BLE.rawValue)!
         
         apiCall(apiUrl, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
             if succeeded {

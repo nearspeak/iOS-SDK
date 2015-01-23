@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
+		CD32A4571A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
 		CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
 		CD6511EE1A6F9DAA00815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
 		CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F11A6FA02F00815433 /* NSKApi.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD32A4551A726DB600E30135 /* NSKTagHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTagHardware.swift; sourceTree = "<group>"; };
 		CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLinkedTag.swift; sourceTree = "<group>"; };
 		CD6511F11A6FA02F00815433 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
 		CD6511F41A6FA38C00815433 /* NSKApiParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiParser.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 				CDFAF5E01A6F988A005E5304 /* NSKApiUtils.swift */,
 				CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */,
 				CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */,
+				CD32A4551A726DB600E30135 /* NSKTagHardware.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -264,6 +268,7 @@
 				CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */,
 				CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */,
 				CDFAF5E41A6F9BC5005E5304 /* NSKTag.swift in Sources */,
+				CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */,
 				CDFAF5E11A6F988A005E5304 /* NSKApiUtils.swift in Sources */,
 				CD6B25FA1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */,
 				CD6511F51A6FA38C00815433 /* NSKApiParser.swift in Sources */,
@@ -279,6 +284,7 @@
 				CDFAF5D71A6F980A005E5304 /* NSKApiTests.swift in Sources */,
 				CD6B25FB1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */,
 				CDFAF5E21A6F988A005E5304 /* NSKApiUtils.swift in Sources */,
+				CD32A4571A726DB600E30135 /* NSKTagHardware.swift in Sources */,
 				CD6511F61A6FA38C00815433 /* NSKApiParser.swift in Sources */,
 				CD6511F31A6FA02F00815433 /* NSKApi.swift in Sources */,
 			);
