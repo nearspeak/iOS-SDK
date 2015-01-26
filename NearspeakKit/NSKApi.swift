@@ -13,7 +13,7 @@ enum HTTPMethod: String {
     case GET = "GET"
 }
 
-class NSKApi: NSObject {
+public class NSKApi: NSObject {
     //MARK: Properties
     private var developmentMode: Bool = true
     
@@ -34,7 +34,7 @@ class NSKApi: NSObject {
     
     var apiParser = NSKApiParser()
     
-    init(devMode: Bool) {
+    public init(devMode: Bool) {
         super.init()
         
         if (devMode) {
@@ -47,12 +47,12 @@ class NSKApi: NSObject {
         self.loadCredentials()
     }
     
-    func logout() {
+    public func logout() {
         auth_token = nil
         saveCredentials()
     }
     
-    func saveCredentials() {
+    public func saveCredentials() {
         if (developmentMode) {
             NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: kAuthTokenStagingKey)
         } else {
@@ -62,7 +62,7 @@ class NSKApi: NSObject {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    func loadCredentials() {
+    public func loadCredentials() {
         if (developmentMode) {
             auth_token = NSUserDefaults.standardUserDefaults().stringForKey(kAuthTokenStagingKey)
         } else {
@@ -70,7 +70,7 @@ class NSKApi: NSObject {
         }
     }
     
-    func isLoggedIn() -> Bool {
+    public func isLoggedIn() -> Bool {
         if auth_token != nil {
             // TODO: implemented a better check
             return true

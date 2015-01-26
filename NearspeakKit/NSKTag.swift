@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NSKTag: NSObject {
+public class NSKTag: NSObject {
     var id: NSNumber?
     var tagDescription: String?
     var tagCategoryId: NSNumber?
@@ -23,12 +23,8 @@ class NSKTag: NSObject {
     var textURL: NSURL?
     var gender: String?
     var name: String?
-    
-    override var description: String {
-        return "ID: \(id) - Identifier: \(tagIdentifier)"
-    }
 
-    init(id: NSNumber) {
+    public init(id: NSNumber) {
         super.init()
         
         self.id = id
@@ -44,7 +40,7 @@ class NSKTag: NSObject {
     
     :returns: An array of ancestries.
     */
-    class func parseAncestry(jsoninput: String?) -> [String] {
+    public class func parseAncestry(jsoninput: String?) -> [String] {
         if let input = jsoninput {
             return input.componentsSeparatedByString("/")
         }
