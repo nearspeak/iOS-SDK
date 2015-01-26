@@ -241,6 +241,7 @@
 					};
 					CDFAF5C31A6F980A005E5304 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = HL2T65D733;
 					};
 					CDFAF5CE1A6F980A005E5304 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -446,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -463,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
