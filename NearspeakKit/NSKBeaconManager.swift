@@ -24,7 +24,7 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     let nearspeakID = "Nearspeak iBeacon"
     let locationManager = CLLocationManager()
     var beaconRegion: CLBeaconRegion! = nil
-    var delegate:NSKBeaconManagerDelegate! = nil
+    public var delegate:NSKBeaconManagerDelegate! = nil
     var currentBeacon: CLBeacon! = nil
     
     public override init() {
