@@ -116,7 +116,7 @@ public class NSKApi: NSObject {
         task.resume()
     }
     
-    func getAuthToken(#username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String) -> ()) {
+    public func getAuthToken(#username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String) -> ()) {
         let apiURL = NSURL(string: apiServerURL +  "login/getAuthToken")!
         let params = ["email" : username, "password" : password] as Dictionary<String, String>
         
@@ -137,7 +137,7 @@ public class NSKApi: NSObject {
         })
     }
     
-    func showMyTags(requestCompleted: (succeeded: Bool, tags: [NSKTag]) ->()) {
+    public func showMyTags(requestCompleted: (succeeded: Bool, tags: [NSKTag]) ->()) {
         if let token = self.auth_token {
             let apiUrl = NSURL(string: apiServerURL + "tags/showMyTags?auth_token=" + token)!
             
@@ -164,7 +164,7 @@ public class NSKApi: NSObject {
         }
     }
     
-    func showTag(#tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+    public func showTag(#tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
         let apiUrl = NSURL(string: apiServerURL +  "tags/show?id=" + tagIdentifier + "&lang=" + currentLocale)!
         
@@ -191,7 +191,7 @@ public class NSKApi: NSObject {
         })
     }
     
-    func showTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+    public func showTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
         let apiUrl = NSURL(string:
                     apiServerURL +  "tags/showByHardwareId?id=" + hardwareIdentifier +
