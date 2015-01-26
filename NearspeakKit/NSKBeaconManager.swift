@@ -14,20 +14,20 @@
 import UIKit
 import CoreLocation
 
-protocol BeaconManagerDelegate {
-    func beaconManager(manager: BeaconManager!, foundBeaconWithUUID uuid: NSUUID!, withMajor major: NSNumber, andMinor minor: NSNumber)
+public protocol NSKBeaconManagerDelegate {
+     func beaconManager(manager: NSKBeaconManager!, foundBeaconWithUUID uuid: NSUUID!, withMajor major: NSNumber, andMinor minor: NSNumber)
 }
 
-class BeaconManager: NSObject, CLLocationManagerDelegate {
+public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // nearspeak iBeacon UUID
     let nearspeakUUIDString = "F7826DA6-4FA2-4E98-8024-BC5B71E0893E"
     let nearspeakID = "Nearspeak iBeacon"
     let locationManager = CLLocationManager()
     var beaconRegion: CLBeaconRegion! = nil
-    var delegate:BeaconManagerDelegate! = nil
+    var delegate:NSKBeaconManagerDelegate! = nil
     var currentBeacon: CLBeacon! = nil
     
-    override init() {
+    public override init() {
         super.init()
         
         let beaconUUID = NSUUID(UUIDString: nearspeakUUIDString)
@@ -44,20 +44,20 @@ class BeaconManager: NSObject, CLLocationManagerDelegate {
         //locationManager.pausesLocationUpdatesAutomatically = false
     }
 
-    func startMonitoringForNearspeakBeacons() {
+    public func startMonitoringForNearspeakBeacons() {
         locationManager.startMonitoringForRegion(beaconRegion)
     }
     
-    func stopMonitoringForNearspeakBeacons() {
+    public func stopMonitoringForNearspeakBeacons() {
         locationManager.stopRangingBeaconsInRegion(beaconRegion)
         locationManager.stopMonitoringForRegion(beaconRegion)
     }
     
-    func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
+    public func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         locationManager.requestStateForRegion(beaconRegion)
     }
     
-    func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
+    public func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
         switch state {
         case CLRegionState.Inside:
             locationManager.startRangingBeaconsInRegion(beaconRegion)
@@ -66,19 +66,19 @@ class BeaconManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+    public func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         //NSLog("DBG: %@", __FUNCTION__)
         locationManager.startRangingBeaconsInRegion(beaconRegion)
     }
     
-    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+    public func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         //NSLog("DBG: %@", __FUNCTION__)
         locationManager.stopRangingBeaconsInRegion(beaconRegion)
         // reset current beacon
         currentBeacon = nil
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+    public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         if (beacons.count > 0) {
             let nearestBeacon = beacons.first as CLBeacon
             
@@ -92,7 +92,7 @@ class BeaconManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func isCurrentBeacon(newBeacon: CLBeacon) -> Bool {
+    private func isCurrentBeacon(newBeacon: CLBeacon) -> Bool {
         if(currentBeacon == nil) {
             return false
         }

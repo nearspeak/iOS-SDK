@@ -9,20 +9,20 @@
 import Foundation
 
 public class NSKTag: NSObject {
-    var id: NSNumber?
-    var tagDescription: String?
-    var tagCategoryId: NSNumber?
-    var translation: String?
-    var tagIdentifier: String?
-    var imageURL: NSURL?
-    var buttonText: String?
-    var linkedTags: [NSKLinkedTag]?
-    var parentId: NSNumber?
-    var parentName: String?
-    var parentIdentifier: String?
-    var textURL: NSURL?
-    var gender: String?
-    var name: String?
+    public var id: NSNumber?
+    public var tagDescription: String?
+    public var tagCategoryId: NSNumber?
+    public var translation: String?
+    public var tagIdentifier: String?
+    public var imageURL: NSURL?
+    public var buttonText: String?
+    public var linkedTags: [NSKLinkedTag]?
+    public var parentId: NSNumber?
+    public var parentName: String?
+    public var parentIdentifier: String?
+    public var textURL: NSURL?
+    public var gender: String?
+    public var name: String?
 
     public init(id: NSNumber) {
         super.init()

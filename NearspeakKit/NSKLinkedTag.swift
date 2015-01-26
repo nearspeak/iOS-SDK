@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct NSKLinkedTag {
-    var id: NSNumber
-    var name: String
-    var identifier: String
+public struct NSKLinkedTag {
+    public var id: NSNumber
+    public var name: String
+    public var identifier: String
 }

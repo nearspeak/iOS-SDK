@@ -17,8 +17,8 @@ public class NSKApi: NSObject {
     //MARK: Properties
     private var developmentMode: Bool = true
     
-    let kAuthTokenStagingKey = "nsk_auth_token_staging"
-    let kAuthTokenKey = "nsk_auth_token"
+    private let kAuthTokenStagingKey = "nsk_auth_token_staging"
+    private let kAuthTokenKey = "nsk_auth_token"
     
     var apiServerURL: String {
         get {
@@ -30,9 +30,9 @@ public class NSKApi: NSObject {
         }
     }
     
-    var auth_token: String?
+    public var auth_token: String?
     
-    var apiParser = NSKApiParser()
+    private var apiParser = NSKApiParser()
     
     public init(devMode: Bool) {
         super.init()
