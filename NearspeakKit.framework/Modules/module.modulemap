@@ -1,0 +1,10 @@
+framework module NearspeakKit {
+  umbrella header "NearspeakKit.h"
+
+  export *
+  module * { export * }
+}
+
+module NearspeakKit.Swift {
+    header "NearspeakKit-Swift.h"
+}
