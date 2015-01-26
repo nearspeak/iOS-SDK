@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
 		CD32A4571A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
+		CD4248901A763333002246A0 /* BeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42488F1A763333002246A0 /* BeaconManager.swift */; };
+		CD4248921A76335B002246A0 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4248911A76335B002246A0 /* DateParser.swift */; };
 		CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
 		CD6511EE1A6F9DAA00815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
 		CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F11A6FA02F00815433 /* NSKApi.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		CD32A4551A726DB600E30135 /* NSKTagHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTagHardware.swift; sourceTree = "<group>"; };
+		CD42488F1A763333002246A0 /* BeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconManager.swift; sourceTree = "<group>"; };
+		CD4248911A76335B002246A0 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLinkedTag.swift; sourceTree = "<group>"; };
 		CD6511F11A6FA02F00815433 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
 		CD6511F41A6FA38C00815433 /* NSKApiParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiParser.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 				CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */,
 				CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */,
 				CD32A4551A726DB600E30135 /* NSKTagHardware.swift */,
+				CD4248911A76335B002246A0 /* DateParser.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 		CD6511F01A6F9F4100815433 /* iBeacon */ = {
 			isa = PBXGroup;
 			children = (
+				CD42488F1A763333002246A0 /* BeaconManager.swift */,
 			);
 			name = iBeacon;
 			sourceTree = "<group>";
@@ -266,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */,
+				CD4248901A763333002246A0 /* BeaconManager.swift in Sources */,
 				CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */,
+				CD4248921A76335B002246A0 /* DateParser.swift in Sources */,
 				CDFAF5E41A6F9BC5005E5304 /* NSKTag.swift in Sources */,
 				CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */,
 				CDFAF5E11A6F988A005E5304 /* NSKApiUtils.swift in Sources */,
