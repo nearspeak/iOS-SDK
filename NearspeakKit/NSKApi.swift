@@ -194,7 +194,7 @@ public class NSKApi: NSObject {
     public func showTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
         let apiUrl = NSURL(string:
-                    apiServerURL +  "tags/showByHardwareId?id=" + hardwareIdentifier +
+                    apiServerURL +  "tags/showByHardwareId?id=" + formatHardwareId(hardwareIdentifier) +
                         "&major=" + beaconMajorId +
                         "&minor=" + beaconMinorId +
                         "&lang=" + currentLocale +
@@ -221,5 +221,9 @@ public class NSKApi: NSObject {
                 requestCompleted(succeeded: false, tag: nil)
             }
         })
+    }
+    
+    private func formatHardwareId(hardwareId: String) -> String {
+        return hardwareId.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
     }
 }
