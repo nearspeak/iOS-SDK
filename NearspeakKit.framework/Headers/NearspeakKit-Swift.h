@@ -85,17 +85,19 @@ SWIFT_CLASS("_TtC12NearspeakKit6NSKApi")
 - (void)loadCredentials;
 - (BOOL)isLoggedIn;
 - (void)getAuthTokenWithUsername:(NSString *)username password:(NSString *)password requestCompleted:(void (^)(BOOL, NSString *))requestCompleted;
-- (void)showMyTags:(void (^)(BOOL, NSArray *))requestCompleted;
-- (void)showTagWithTagIdentifier:(NSString *)tagIdentifier requestCompleted:(void (^)(BOOL, NSKTag *))requestCompleted;
-- (void)showTagByHardwareIdWithHardwareIdentifier:(NSString *)hardwareIdentifier beaconMajorId:(NSString *)beaconMajorId beaconMinorId:(NSString *)beaconMinorId requestCompleted:(void (^)(BOOL, NSKTag *))requestCompleted;
+- (void)getMyTags:(void (^)(BOOL, NSArray *))requestCompleted;
+- (void)getTagByIdWithTagIdentifier:(NSString *)tagIdentifier requestCompleted:(void (^)(BOOL, NSKTag *))requestCompleted;
+- (void)getTagByHardwareIdWithHardwareIdentifier:(NSString *)hardwareIdentifier beaconMajorId:(NSString *)beaconMajorId beaconMinorId:(NSString *)beaconMinorId requestCompleted:(void (^)(BOOL, NSKTag *))requestCompleted;
 @end
 
+@class CLBeacon;
 @class CLLocationManager;
 @class CLRegion;
 @class CLBeaconRegion;
 
 SWIFT_CLASS("_TtC12NearspeakKit16NSKBeaconManager")
 @interface NSKBeaconManager : NSObject <CLLocationManagerDelegate>
+@property (nonatomic, copy) NSArray * currentBeacons;
 - (instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)startMonitoringForNearspeakBeacons;
 - (void)stopMonitoringForNearspeakBeacons;
@@ -124,6 +126,7 @@ SWIFT_CLASS("_TtC12NearspeakKit6NSKTag")
 @property (nonatomic) NSURL * textURL;
 @property (nonatomic, copy) NSString * gender;
 @property (nonatomic, copy) NSString * name;
+@property (nonatomic) CLBeacon * hardwareBeacon;
 - (instancetype)initWithId:(NSNumber *)id OBJC_DESIGNATED_INITIALIZER;
 
 /// Parse a ancestry json string into a array of strings.

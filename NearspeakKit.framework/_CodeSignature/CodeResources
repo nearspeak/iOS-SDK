@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/NearspeakKit-Swift.h</key>
 		<data>
-		7MYw5nucmuV6a0hX68/xhTkQQ/o=
+		5bK3BHu4DpiZU9rY4p+GAgZ0/DU=
 		</data>
 		<key>Headers/NearspeakKit.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YAUB64aAi+Zd/RcfBOBChkQlPXs=
+		J2JlxAQi7YNrIxRzqG+fW8R3vaw=
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm.swiftmodule</key>
 		<data>
-		LA3ix4fB/MUCUyv1tCYhRE9D/TU=
+		BOMY6QVfPbRlrIqYSGtmazy5eBg=
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		mwfGz/7HiZv9wWZY/aXmqAB7DEQ=
+		nSH/R9pWlClgTjqbuC/3chnspQY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/NearspeakKit-Swift.h</key>
 		<data>
-		7MYw5nucmuV6a0hX68/xhTkQQ/o=
+		5bK3BHu4DpiZU9rY4p+GAgZ0/DU=
 		</data>
 		<key>Headers/NearspeakKit.h</key>
 		<data>
@@ -53,7 +53,7 @@
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm.swiftmodule</key>
 		<data>
-		LA3ix4fB/MUCUyv1tCYhRE9D/TU=
+		BOMY6QVfPbRlrIqYSGtmazy5eBg=
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -61,7 +61,7 @@
 		</data>
 		<key>Modules/NearspeakKit.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		mwfGz/7HiZv9wWZY/aXmqAB7DEQ=
+		nSH/R9pWlClgTjqbuC/3chnspQY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

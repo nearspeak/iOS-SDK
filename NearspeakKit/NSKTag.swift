@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import CoreLocation
 
 public class NSKTag: NSObject {
-    public var id: NSNumber?
+    public var id: NSNumber = 0
     public var tagDescription: String?
     public var tagCategoryId: NSNumber?
     public var translation: String?
@@ -23,6 +24,7 @@ public class NSKTag: NSObject {
     public var textURL: NSURL?
     public var gender: String?
     public var name: String?
+    public var hardwareBeacon: CLBeacon?
 
     public init(id: NSNumber) {
         super.init()
