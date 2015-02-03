@@ -47,7 +47,7 @@ class NSKApiParser: NSObject {
                 tag.parentIdentifier = tagDict["parent_tag"]["identifier"].stringValue
                 
                 // linked tags
-                var linkedTags = [NSKLinkedTag]()
+                var linkedTags: NSMutableArray = NSMutableArray()
                 
                 if let linkedTagsArray = tagDict["linked_tags"].array {
                     for linkedTagDict in linkedTagsArray {                        
@@ -57,11 +57,11 @@ class NSKApiParser: NSObject {
                         
                         let newLinkedTag = NSKLinkedTag(id: id, name: name, identifier: identifier)
                         
-                        linkedTags.append(newLinkedTag)
+                        linkedTags.addObject(newLinkedTag)
                     }
                 }
                 
-                tag.linkedTags = linkedTags
+                tag.linkedTags = linkedTags as NSMutableArray
                 
                 tags.append(tag)
             }

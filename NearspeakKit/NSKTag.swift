@@ -34,7 +34,7 @@ public class NSKTag: NSObject, NSCoding {
     public var tagIdentifier: String?
     public var imageURL: NSURL?
     public var buttonText: String?
-    public var linkedTags: [NSKLinkedTag]?
+    public var linkedTags: NSMutableArray = NSMutableArray()
     public var parentId: NSNumber?
     public var parentName: String?
     public var parentIdentifier: String?
@@ -58,7 +58,7 @@ public class NSKTag: NSObject, NSCoding {
         self.tagIdentifier = aDecoder.decodeObjectForKey(keyNSKTagTagIdentifier) as? String
         self.imageURL = aDecoder.decodeObjectForKey(keyNSKTagImageURL) as? NSURL
         self.buttonText = aDecoder.decodeObjectForKey(keyNSKTagButtonText) as? String
-        //self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags)
+        self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags) as NSMutableArray
         self.parentId = aDecoder.decodeIntegerForKey(keyNSKTagParentId)
         self.parentName = aDecoder.decodeObjectForKey(keyNSKTagParentName) as? String
         self.parentIdentifier = aDecoder.decodeObjectForKey(keyNSKTagParentIdentifier) as? String
@@ -80,7 +80,7 @@ public class NSKTag: NSObject, NSCoding {
         aCoder.encodeObject(self.tagIdentifier, forKey: keyNSKTagTagIdentifier)
         aCoder.encodeObject(self.imageURL, forKey: keyNSKTagImageURL)
         aCoder.encodeObject(self.buttonText, forKey: keyNSKTagButtonText)
-        //aCoder.encodeObject(self.linkedTags, forKey: keyNSKTagLinkedTags)
+        aCoder.encodeObject(self.linkedTags, forKey: keyNSKTagLinkedTags)
         
         if let pId = self.parentId {
             aCoder.encodeInt(pId.intValue, forKey: keyNSKTagParentId)
