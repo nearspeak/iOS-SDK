@@ -10,20 +10,21 @@ import Foundation
 import CoreLocation
 
 /// NSCoding Keys
-let keyId = "id"
-let keyTagDescription = "tagDescription"
-let keyTagCategoryId = "tagCategoryId"
-let keyTranslation = "translation"
-let keyTagIdentifier = "tagIdentifier"
-let keyImageURL = "imageURL"
-let keyButtonText = "buttonText"
-let keyLinkedTags = "linkedTags"
-let keyParentId = "parentId"
-let keyParentName = "parentName"
-let keyParentIdentifier = "parentIdentifier"
-let keyTextURL = "textURL"
-let keyGender = "gender"
-let keyName = "name"
+let keyNSKTagId = "tag_id"
+let keyNSKTagTagDescription = "tag_Description"
+let keyNSKTagTagCategoryId = "tag_tagCategoryId"
+let keyNSKTagTranslation = "tag_translation"
+let keyNSKTagTagIdentifier = "tag_tagIdentifier"
+let keyNSKTagImageURL = "tag_imageURL"
+let keyNSKTagButtonText = "tag_buttonText"
+let keyNSKTagLinkedTags = "tag_linkedTags"
+let keyNSKTagParentId = "tag_parentId"
+let keyNSKTagParentName = "tag_parentName"
+let keyNSKTagParentIdentifier = "tag_parentIdentifier"
+let keyNSKTagTextURL = "tag_textURL"
+let keyNSKTagGender = "tag_gender"
+let keyNSKTagName = "tag_name"
+let keyNSKTagFavorite = "tag_favorite"
 
 public class NSKTag: NSObject, NSCoding {
     public var id: NSNumber = 0
@@ -41,6 +42,7 @@ public class NSKTag: NSObject, NSCoding {
     public var gender: String?
     public var name: String?
     public var hardwareBeacon: CLBeacon?
+    public var favorite: Bool = false
 
     public init(id: NSNumber) {
         super.init()
@@ -49,45 +51,47 @@ public class NSKTag: NSObject, NSCoding {
     }
     
     required public init(coder aDecoder: NSCoder) {
-        self.id = aDecoder.decodeIntegerForKey(keyId)
-        self.tagDescription = aDecoder.decodeObjectForKey(keyTagDescription) as? String
-        self.tagCategoryId = aDecoder.decodeIntegerForKey(keyTagCategoryId)
-        self.translation = aDecoder.decodeObjectForKey(keyTranslation) as? String
-        self.tagIdentifier = aDecoder.decodeObjectForKey(keyTagIdentifier) as? String
-        self.imageURL = aDecoder.decodeObjectForKey(keyImageURL) as? NSURL
-        self.buttonText = aDecoder.decodeObjectForKey(keyButtonText) as? String
-        //self.linkedTags = aDecoder.decodeObjectForKey(keyLinkedTags)
-        self.parentId = aDecoder.decodeIntegerForKey(keyParentId)
-        self.parentName = aDecoder.decodeObjectForKey(keyParentName) as? String
-        self.parentIdentifier = aDecoder.decodeObjectForKey(keyParentIdentifier) as? String
-        self.textURL = aDecoder.decodeObjectForKey(keyTextURL) as? NSURL
-        self.gender = aDecoder.decodeObjectForKey(keyGender) as? String
-        self.name = aDecoder.decodeObjectForKey(keyName) as? String
+        self.id = aDecoder.decodeIntegerForKey(keyNSKTagId)
+        self.tagDescription = aDecoder.decodeObjectForKey(keyNSKTagTagDescription) as? String
+        self.tagCategoryId = aDecoder.decodeIntegerForKey(keyNSKTagTagCategoryId)
+        self.translation = aDecoder.decodeObjectForKey(keyNSKTagTranslation) as? String
+        self.tagIdentifier = aDecoder.decodeObjectForKey(keyNSKTagTagIdentifier) as? String
+        self.imageURL = aDecoder.decodeObjectForKey(keyNSKTagImageURL) as? NSURL
+        self.buttonText = aDecoder.decodeObjectForKey(keyNSKTagButtonText) as? String
+        //self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags)
+        self.parentId = aDecoder.decodeIntegerForKey(keyNSKTagParentId)
+        self.parentName = aDecoder.decodeObjectForKey(keyNSKTagParentName) as? String
+        self.parentIdentifier = aDecoder.decodeObjectForKey(keyNSKTagParentIdentifier) as? String
+        self.textURL = aDecoder.decodeObjectForKey(keyNSKTagTextURL) as? NSURL
+        self.gender = aDecoder.decodeObjectForKey(keyNSKTagGender) as? String
+        self.name = aDecoder.decodeObjectForKey(keyNSKTagName) as? String
+        self.favorite = aDecoder.decodeBoolForKey(keyNSKTagFavorite)
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInt(self.id.intValue, forKey: keyId)
-        aCoder.encodeObject(self.tagDescription, forKey: keyTagDescription)
+        aCoder.encodeInt(self.id.intValue, forKey: keyNSKTagId)
+        aCoder.encodeObject(self.tagDescription, forKey: keyNSKTagTagDescription)
         
         if let catId = self.tagCategoryId {
-            aCoder.encodeInt(catId.intValue, forKey: keyTagCategoryId)
+            aCoder.encodeInt(catId.intValue, forKey: keyNSKTagTagCategoryId)
         }
         
-        aCoder.encodeObject(self.translation, forKey: keyTranslation)
-        aCoder.encodeObject(self.tagIdentifier, forKey: keyTagIdentifier)
-        aCoder.encodeObject(self.imageURL, forKey: keyImageURL)
-        aCoder.encodeObject(self.buttonText, forKey: keyButtonText)
-        //aCoder.encodeObject(self.linkedTags, forKey: keyLinkedTags)
+        aCoder.encodeObject(self.translation, forKey: keyNSKTagTranslation)
+        aCoder.encodeObject(self.tagIdentifier, forKey: keyNSKTagTagIdentifier)
+        aCoder.encodeObject(self.imageURL, forKey: keyNSKTagImageURL)
+        aCoder.encodeObject(self.buttonText, forKey: keyNSKTagButtonText)
+        //aCoder.encodeObject(self.linkedTags, forKey: keyNSKTagLinkedTags)
         
         if let pId = self.parentId {
-            aCoder.encodeInt(pId.intValue, forKey: keyParentId)
+            aCoder.encodeInt(pId.intValue, forKey: keyNSKTagParentId)
         }
         
-        aCoder.encodeObject(self.parentName, forKey: keyParentName)
-        aCoder.encodeObject(self.parentIdentifier, forKey: keyParentIdentifier)
-        aCoder.encodeObject(self.textURL, forKey: keyTextURL)
-        aCoder.encodeObject(self.gender, forKey: keyGender)
-        aCoder.encodeObject(self.name, forKey:keyName)
+        aCoder.encodeObject(self.parentName, forKey: keyNSKTagParentName)
+        aCoder.encodeObject(self.parentIdentifier, forKey: keyNSKTagParentIdentifier)
+        aCoder.encodeObject(self.textURL, forKey: keyNSKTagTextURL)
+        aCoder.encodeObject(self.gender, forKey: keyNSKTagGender)
+        aCoder.encodeObject(self.name, forKey:keyNSKTagName)
+        aCoder.encodeBool(self.favorite, forKey: keyNSKTagFavorite)
     }
     
     // MARK: - Helper methods
