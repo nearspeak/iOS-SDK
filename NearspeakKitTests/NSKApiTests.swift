@@ -110,14 +110,10 @@ class NSKApiTests: XCTestCase {
         if let currentTag = tag {
             XCTAssertEqual(currentTag.id.integerValue, 127, "API: show id is different")
             
-            if let currentLinkedTags = currentTag.linkedTags {
-                XCTAssertEqual(currentLinkedTags.count, 3, "API: show linked tag amount is different")
-                
-                for linkedTag in currentLinkedTags {
-                    checkLinkedTag(linkedTag)
-                }
-            } else {
-                XCTFail("API: show linkedTags array is nil")
+            XCTAssertEqual(currentTag.linkedTags.count, 3, "API: show linked tag amount is different")
+            
+            for linkedTag in currentTag.linkedTags {
+                checkLinkedTag(linkedTag as NSKLinkedTag)
             }
         } else {
             XCTFail("API: show tag is nil")
@@ -128,7 +124,17 @@ class NSKApiTests: XCTestCase {
      * Test the linked tag.
      */
     func checkLinkedTag(linkedTag: NSKLinkedTag) {
-        XCTAssertGreaterThan(countElements(linkedTag.name), 0, "API: linked tag name is too short")
-        XCTAssertGreaterThan(countElements(linkedTag.identifier), 0, "API: linked tag identifier is too short")
+        if let name = linkedTag.name {
+            XCTAssertGreaterThan(countElements(name), 0, "API: linked tag name is too short")
+        } else {
+            XCTFail("API: linked tag name is nil")
+        }
+        
+        if let identifier = linkedTag.identifier {
+            XCTAssertGreaterThan(countElements(identifier), 0, "API: linked tag identifier is too short")
+        } else {
+            XCTFail("API: linked tag identifier is nil")
+        }
+        
     }
 }
