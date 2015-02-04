@@ -20,79 +20,61 @@ public protocol NSKBeaconManagerDelegate {
 
 public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // nearspeak iBeacon UUID
-    private let nearspeakUUIDString = "F7826DA6-4FA2-4E98-8024-BC5B71E0893E"
-    private let nearspeakID = "Nearspeak iBeacon"
+    // Kontakt.io : F7826DA6-4FA2-4E98-8024-BC5B71E0893E
+    // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
+    // only 20 different UUIDs are supported by iOS
+    private let nearspeakProximityUUIDs = [NSUUID(UUIDString:"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"), NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")]
+    private var rangedRegions: NSMutableDictionary = NSMutableDictionary()
+    
     private let locationManager = CLLocationManager()
-    private var beaconRegion: CLBeaconRegion! = nil
     
     public var delegate: NSKBeaconManagerDelegate! = nil
-    public var currentBeacons: [CLBeacon] = []
     
     public override init() {
         super.init()
         
-        let beaconUUID = NSUUID(UUIDString: nearspeakUUIDString)
-        beaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, identifier: nearspeakID)
-        
-        // notify only if the display is on
-        beaconRegion.notifyEntryStateOnDisplay = true
-        beaconRegion.notifyOnEntry = false
-        beaconRegion.notifyOnExit = true
+        for uuid in nearspeakProximityUUIDs {
+            if let currentUUID = uuid {
+                var beaconRegion = CLBeaconRegion(proximityUUID: currentUUID, identifier: currentUUID.UUIDString)
+                
+                // notify only if the display is on
+                beaconRegion.notifyEntryStateOnDisplay = true
+                beaconRegion.notifyOnEntry = false
+                beaconRegion.notifyOnExit = true
+                
+                self.rangedRegions[beaconRegion] = NSArray()
+            }
+        }
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        
-        //locationManager.pausesLocationUpdatesAutomatically = false
     }
 
-    public func startMonitoringForNearspeakBeacons() {
-        locationManager.startMonitoringForRegion(beaconRegion)
-    }
-    
-    public func stopMonitoringForNearspeakBeacons() {
-        locationManager.stopRangingBeaconsInRegion(beaconRegion)
-        locationManager.stopMonitoringForRegion(beaconRegion)
-    }
-    
-    public func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
-        locationManager.requestStateForRegion(beaconRegion)
-    }
-    
-    public func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
-        switch state {
-        case CLRegionState.Inside:
-            locationManager.startRangingBeaconsInRegion(beaconRegion)
-        default:
-            locationManager.stopRangingBeaconsInRegion(beaconRegion)
+    public func startRangingForNearspeakBeacons() {
+        for beaconRegion in self.rangedRegions {
+            locationManager.startRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
         }
     }
     
-    public func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
-        NSLog("DBG: %@", __FUNCTION__)
-        locationManager.startRangingBeaconsInRegion(beaconRegion)
+    public func stopRangingForNearspeakBeacons() {
+        for beaconRegion in self.rangedRegions {
+            locationManager.stopRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
+        }
     }
-    
-    public func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
-        NSLog("DBG: %@", __FUNCTION__)
-        locationManager.stopRangingBeaconsInRegion(beaconRegion)
-        // reset current beacon
-        currentBeacons = []
-    }
-    
+
     public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         //NSLog("DBG: %@", __FUNCTION__)
+
+        self.rangedRegions[region] = beacons
+
+        var allBeacons = NSMutableArray()
         
-        if let beaconObjects = beacons as? [CLBeacon] {
-            // empty the current array
-            currentBeacons = []
-            
-            for beacon in beaconObjects {
-                currentBeacons.append(beacon)
-            }
-            
-            if let mydelegate = delegate {
-                mydelegate.beaconManager(self, foundBeacons: currentBeacons)
-            }
+        for beaconsArray in self.rangedRegions.allValues {
+            allBeacons.addObjectsFromArray(beaconsArray as NSArray)
+        }
+        
+        if let mydelegate = delegate {
+            mydelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as [CLBeacon])
         }
     }
 }
