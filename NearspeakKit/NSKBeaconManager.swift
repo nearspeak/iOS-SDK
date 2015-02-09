@@ -22,8 +22,11 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // nearspeak iBeacon UUID
     // Kontakt.io : F7826DA6-4FA2-4E98-8024-BC5B71E0893E
     // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
-    // only 20 different UUIDs are supported by iOS
-    private let nearspeakProximityUUIDs = [NSUUID(UUIDString:"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"), NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")]
+    // only 20 different UUIDs per App are supported by iOS
+    private let nearspeakProximityUUIDs = [
+        NSUUID(UUIDString:"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"),
+        NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")]
+    
     private var rangedRegions: NSMutableDictionary = NSMutableDictionary()
     
     private let locationManager = CLLocationManager()
@@ -63,8 +66,6 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     }
 
     public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        //NSLog("DBG: %@", __FUNCTION__)
-
         self.rangedRegions[region] = beacons
 
         var allBeacons = NSMutableArray()
