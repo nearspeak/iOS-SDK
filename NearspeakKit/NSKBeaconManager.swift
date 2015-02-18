@@ -20,12 +20,12 @@ public protocol NSKBeaconManagerDelegate {
 
 public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // nearspeak iBeacon UUID
-    // Kontakt.io : F7826DA6-4FA2-4E98-8024-BC5B71E0893E
-    // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
+    // Kontakt.io: F7826DA6-4FA2-4E98-8024-BC5B71E0893E
+    // Estimote:   B9407F30-F5F8-466E-AFF9-25556B57FE6D
+    // Nearspeak:  CEFCC021-E45F-4520-A3AB-9D1EA22873AD
     // only 20 different UUIDs per App are supported by iOS
     private let nearspeakProximityUUIDs = [
-        NSUUID(UUIDString:"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"),
-        NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")]
+        NSUUID(UUIDString:"CEFCC021-E45F-4520-A3AB-9D1EA22873AD")]
     
     private var rangedRegions: NSMutableDictionary = NSMutableDictionary()
     
