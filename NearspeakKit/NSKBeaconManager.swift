@@ -27,7 +27,7 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     private let nearspeakProximityUUIDs = [
         NSUUID(UUIDString:"CEFCC021-E45F-4520-A3AB-9D1EA22873AD")]
     
-    private var rangedRegions: NSMutableDictionary = NSMutableDictionary()
+    private var nearspeakRegions: NSMutableDictionary = NSMutableDictionary()
     
     private let locationManager = CLLocationManager()
     
@@ -45,32 +45,44 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
                 beaconRegion.notifyOnEntry = false
                 beaconRegion.notifyOnExit = true
                 
-                self.rangedRegions[beaconRegion] = NSArray()
+                self.nearspeakRegions[beaconRegion] = NSArray()
             }
         }
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
     }
+    
+    public func startMonitoringForNearspeakBeacons() {
+        for beaconRegion in self.nearspeakRegions {
+            locationManager.startMonitoringForRegion(beaconRegion.key as CLBeaconRegion)
+        }
+    }
+    
+    public func stopMonitoringForNearspeakBeacons() {
+        for beaconRegion in self.nearspeakRegions {
+            locationManager.stopMonitoringForRegion(beaconRegion.key as CLBeaconRegion)
+        }
+    }
 
     public func startRangingForNearspeakBeacons() {
-        for beaconRegion in self.rangedRegions {
+        for beaconRegion in self.nearspeakRegions {
             locationManager.startRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
         }
     }
     
     public func stopRangingForNearspeakBeacons() {
-        for beaconRegion in self.rangedRegions {
+        for beaconRegion in self.nearspeakRegions {
             locationManager.stopRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
         }
     }
 
     public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        self.rangedRegions[region] = beacons
-
+        self.nearspeakRegions[region] = beacons
+        
         var allBeacons = NSMutableArray()
         
-        for beaconsArray in self.rangedRegions.allValues {
+        for beaconsArray in self.nearspeakRegions.allValues {
             allBeacons.addObjectsFromArray(beaconsArray as NSArray)
         }
         
