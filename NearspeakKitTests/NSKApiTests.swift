@@ -78,7 +78,7 @@ class NSKApiTests: XCTestCase {
     func testApiShow() {
         var apiExpectation = self.expectationWithDescription("API: show")
         
-        api.getTagById(tagIdentifier: "3596da33dbf1") { (succeeded, tag) -> () in
+        api.getTagById(tagIdentifier: "ab1b78cd26a8") { (succeeded, tag) -> () in
             XCTAssert(succeeded, "API: show failed")
             
             self.checkTag(tag)
@@ -92,7 +92,7 @@ class NSKApiTests: XCTestCase {
     func testApiShowByHardwareId() {
         var apiExpectation = self.expectationWithDescription("API: showByHardwareId")
 
-        api.getTagByHardwareId(hardwareIdentifier: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", beaconMajorId: "62306", beaconMinorId: "5988") { (succeeded, tag) -> () in
+        api.getTagByHardwareId(hardwareIdentifier: "CEFCC021E45F4520A3AB9D1EA22873AD", beaconMajorId: "62306", beaconMinorId: "5988") { (succeeded, tag) -> () in
             XCTAssert(succeeded, "API: showByHardwareId failed")
             
             self.checkTag(tag)
@@ -108,7 +108,7 @@ class NSKApiTests: XCTestCase {
      */
     func checkTag(tag: NSKTag?) {
         if let currentTag = tag {
-            XCTAssertEqual(currentTag.id.integerValue, 127, "API: show id is different")
+            XCTAssertEqual(currentTag.id.integerValue, 147, "API: show id is different")
             
             XCTAssertEqual(currentTag.linkedTags.count, 3, "API: show linked tag amount is different")
             
