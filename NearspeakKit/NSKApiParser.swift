@@ -20,6 +20,20 @@ class NSKApiParser: NSObject {
         }
     }
     
+    func parseUUIDsArray(data: NSData, parsingCompleted: (succeeded: Bool, uuids: [String]) -> ()) {
+        let json = JSON(data: data)
+        
+        if let uuidsData = json["uuids"].array {
+            
+            let uuids = uuidsData.map { $0.stringValue }
+            
+            
+            parsingCompleted(succeeded: true, uuids: uuids)
+        } else {
+            parsingCompleted(succeeded: false, uuids: [])
+        }
+    }
+    
     func parseTagsArray(data: NSData, parsingCompleted: (succeeded: Bool, tags: [NSKTag]) -> ()) {
         let json = JSON(data: data)
         

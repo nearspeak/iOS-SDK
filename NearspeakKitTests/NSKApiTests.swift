@@ -103,6 +103,19 @@ class NSKApiTests: XCTestCase {
         self.waitForExpectationsWithTimeout(self.maxBlockWaitTime, handler: nil)
     }
     
+    func testApiSupportedBeaconUUIDs() {
+        var apiExpectation = self.expectationWithDescription("API: supportedBeaconUUIDs")
+        
+        api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
+            XCTAssert(succeeded, "API: supportedBeaconUUIDs failed")
+            if succeeded && uuids.count > 0 {
+                apiExpectation.fulfill()
+            }
+        }
+        
+        self.waitForExpectationsWithTimeout(self.maxBlockWaitTime, handler: nil)
+    }
+    
     /**
      * Test the tag.
      */
@@ -110,7 +123,7 @@ class NSKApiTests: XCTestCase {
         if let currentTag = tag {
             XCTAssertEqual(currentTag.id.integerValue, 147, "API: show id is different")
             
-            XCTAssertEqual(currentTag.linkedTags.count, 2, "API: show linked tag amount is different")
+            XCTAssertEqual(currentTag.linkedTags.count, 3, "API: show linked tag amount is different")
             
             for linkedTag in currentTag.linkedTags {
                 checkLinkedTag(linkedTag as NSKLinkedTag)

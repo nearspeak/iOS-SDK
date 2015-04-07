@@ -223,6 +223,31 @@ public class NSKApi: NSObject {
         })
     }
     
+    public func getSupportedBeaconsUUIDs(requestCompleted: (succeeded: Bool, uuids: [String]) ->()) {
+        let apiUrl = NSURL(string: apiServerURL + "tags/supportedBeaconUUIDs")!
+        
+        apiCall(apiUrl, httpMethod: .GET, params: nil) { (succeeded, data) -> () in
+            if succeeded {
+                if let jsonData = data {
+                    self.apiParser.parseUUIDsArray(jsonData, parsingCompleted: { (succeeded, uuids) -> () in
+                        if succeeded {
+                            requestCompleted(succeeded: true, uuids: uuids)
+                        } else {
+                            requestCompleted(succeeded: false, uuids: [])
+                        }
+                    })
+                } else {
+                    requestCompleted(succeeded: false, uuids: [])
+                }
+                
+            } else {
+                requestCompleted(succeeded: false, uuids: [])
+            }
+        }
+    }
+    
+    //MARK: Helper methods
+    
     private func formatHardwareId(hardwareId: String) -> String {
         return hardwareId.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
     }
