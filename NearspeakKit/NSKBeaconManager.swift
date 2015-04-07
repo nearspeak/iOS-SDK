@@ -25,6 +25,7 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // Nearspeak:   CEFCC021-E45F-4520-A3AB-9D1EA22873AD
     // Starnberger: 699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012
     // only 20 different UUIDs per App are supported by iOS
+    // TODO: get the UUIDS from the server
     private let nearspeakProximityUUIDs = [
         NSUUID(UUIDString:"CEFCC021-E45F-4520-A3AB-9D1EA22873AD"),
         NSUUID(UUIDString:"699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012")]

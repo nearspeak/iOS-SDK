@@ -192,6 +192,7 @@ public class NSKApi: NSObject {
     }
     
     public func getTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+        // TODO: also submit the current location
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
         let apiUrl = NSURL(string:
                     apiServerURL +  "tags/showByHardwareId?id=" + formatHardwareId(hardwareIdentifier) +
