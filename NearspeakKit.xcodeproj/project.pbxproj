@@ -6,199 +6,192 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		CDDF55111A7657A1002B5016 /* NearspeakKit-Universal */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = CDDF55141A7657A1002B5016 /* Build configuration list for PBXAggregateTarget "NearspeakKit-Universal" */;
-			buildPhases = (
-				CDDF55151A7657A8002B5016 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "NearspeakKit-Universal";
-			productName = "NearspeakKit-Universal";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
-		CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
-		CD32A4571A726DB600E30135 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32A4551A726DB600E30135 /* NSKTagHardware.swift */; };
-		CD4248901A763333002246A0 /* NSKBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42488F1A763333002246A0 /* NSKBeaconManager.swift */; };
-		CD4248921A76335B002246A0 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4248911A76335B002246A0 /* DateParser.swift */; };
-		CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
-		CD6511EE1A6F9DAA00815433 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */; };
-		CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F11A6FA02F00815433 /* NSKApi.swift */; };
-		CD6511F31A6FA02F00815433 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F11A6FA02F00815433 /* NSKApi.swift */; };
-		CD6511F51A6FA38C00815433 /* NSKApiParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F41A6FA38C00815433 /* NSKApiParser.swift */; };
-		CD6511F61A6FA38C00815433 /* NSKApiParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6511F41A6FA38C00815433 /* NSKApiParser.swift */; };
-		CD6B25FA1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6B25F91A6FBA740058A5A8 /* SwiftyJSON.swift */; };
-		CD6B25FB1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6B25F91A6FBA740058A5A8 /* SwiftyJSON.swift */; };
-		CD6B25FD1A6FD6080058A5A8 /* TestSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD6B25FC1A6FD6080058A5A8 /* TestSettings.plist */; };
-		CDFAF5CA1A6F980A005E5304 /* NearspeakKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CDFAF5C91A6F980A005E5304 /* NearspeakKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDFAF5D01A6F980A005E5304 /* NearspeakKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFAF5C41A6F980A005E5304 /* NearspeakKit.framework */; };
-		CDFAF5D71A6F980A005E5304 /* NSKApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF5D61A6F980A005E5304 /* NSKApiTests.swift */; };
-		CDFAF5E11A6F988A005E5304 /* NSKApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF5E01A6F988A005E5304 /* NSKApiUtils.swift */; };
-		CDFAF5E21A6F988A005E5304 /* NSKApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF5E01A6F988A005E5304 /* NSKApiUtils.swift */; };
-		CDFAF5E41A6F9BC5005E5304 /* NSKTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */; };
-		CDFAF5E51A6F9BC5005E5304 /* NSKTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */; };
+		5B9CEC2F0C86C7101BF20E6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CDB05E871AE800DA008DA398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB05E861AE800DA008DA398 /* AppDelegate.swift */; };
+		CDB05E891AE800DA008DA398 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB05E881AE800DA008DA398 /* ViewController.swift */; };
+		CDB05E8C1AE800DA008DA398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB05E8A1AE800DA008DA398 /* Main.storyboard */; };
+		CDB05E8E1AE800DA008DA398 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB05E8D1AE800DA008DA398 /* Images.xcassets */; };
+		CDB05E911AE800DA008DA398 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB05E8F1AE800DA008DA398 /* LaunchScreen.xib */; };
+		CDB05E9D1AE800DA008DA398 /* NearspeakKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB05E9C1AE800DA008DA398 /* NearspeakKitTests.swift */; };
+		CDEC2A9E1AE801B00041ACA7 /* NSKBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */; };
+		CDEC2AA71AE801EE0041ACA7 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */; };
+		CDEC2AA81AE801EE0041ACA7 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */; };
+		CDEC2AA91AE801EE0041ACA7 /* NSKApiParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA21AE801ED0041ACA7 /* NSKApiParser.swift */; };
+		CDEC2AAA1AE801EE0041ACA7 /* NSKApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA31AE801EE0041ACA7 /* NSKApiUtils.swift */; };
+		CDEC2AAB1AE801EE0041ACA7 /* NSKLinkedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA41AE801EE0041ACA7 /* NSKLinkedTag.swift */; };
+		CDEC2AAC1AE801EE0041ACA7 /* NSKTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA51AE801EE0041ACA7 /* NSKTag.swift */; };
+		CDEC2AAD1AE801EE0041ACA7 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA61AE801EE0041ACA7 /* NSKTagHardware.swift */; };
+		CDEC2AB11AE802940041ACA7 /* TestSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2AB01AE802940041ACA7 /* TestSettings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CDFAF5D11A6F980A005E5304 /* PBXContainerItemProxy */ = {
+		CDB05E971AE800DA008DA398 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CDFAF5BB1A6F980A005E5304 /* Project object */;
+			containerPortal = CDB05E791AE800DA008DA398 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CDFAF5C31A6F980A005E5304;
+			remoteGlobalIDString = CDB05E801AE800DA008DA398;
 			remoteInfo = NearspeakKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD32A4551A726DB600E30135 /* NSKTagHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTagHardware.swift; sourceTree = "<group>"; };
-		CD42488F1A763333002246A0 /* NSKBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKBeaconManager.swift; sourceTree = "<group>"; };
-		CD4248911A76335B002246A0 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
-		CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLinkedTag.swift; sourceTree = "<group>"; };
-		CD6511F11A6FA02F00815433 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
-		CD6511F41A6FA38C00815433 /* NSKApiParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiParser.swift; sourceTree = "<group>"; };
-		CD6B25F91A6FBA740058A5A8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = External/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
-		CD6B25FC1A6FD6080058A5A8 /* TestSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestSettings.plist; sourceTree = "<group>"; };
-		CDFAF5C41A6F980A005E5304 /* NearspeakKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NearspeakKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDFAF5C81A6F980A005E5304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDFAF5C91A6F980A005E5304 /* NearspeakKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearspeakKit.h; sourceTree = "<group>"; };
-		CDFAF5CF1A6F980A005E5304 /* NearspeakKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearspeakKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDFAF5D51A6F980A005E5304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDFAF5D61A6F980A005E5304 /* NSKApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSKApiTests.swift; sourceTree = "<group>"; };
-		CDFAF5E01A6F988A005E5304 /* NSKApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiUtils.swift; sourceTree = "<group>"; };
-		CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTag.swift; sourceTree = "<group>"; };
+		6068AE75F1276042CA108068 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CDB05E811AE800DA008DA398 /* NearspeakKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearspeakKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB05E851AE800DA008DA398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDB05E861AE800DA008DA398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CDB05E881AE800DA008DA398 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CDB05E8B1AE800DA008DA398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CDB05E8D1AE800DA008DA398 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CDB05E901AE800DA008DA398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CDB05E961AE800DA008DA398 /* NearspeakKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearspeakKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB05E9B1AE800DA008DA398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDB05E9C1AE800DA008DA398 /* NearspeakKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearspeakKitTests.swift; sourceTree = "<group>"; };
+		CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKBeaconManager.swift; sourceTree = "<group>"; };
+		CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
+		CDEC2AA21AE801ED0041ACA7 /* NSKApiParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiParser.swift; sourceTree = "<group>"; };
+		CDEC2AA31AE801EE0041ACA7 /* NSKApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApiUtils.swift; sourceTree = "<group>"; };
+		CDEC2AA41AE801EE0041ACA7 /* NSKLinkedTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLinkedTag.swift; sourceTree = "<group>"; };
+		CDEC2AA51AE801EE0041ACA7 /* NSKTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTag.swift; sourceTree = "<group>"; };
+		CDEC2AA61AE801EE0041ACA7 /* NSKTagHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKTagHardware.swift; sourceTree = "<group>"; };
+		CDEC2AB01AE802940041ACA7 /* TestSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestSettings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CDFAF5C01A6F980A005E5304 /* Frameworks */ = {
+		CDB05E7E1AE800DA008DA398 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9CEC2F0C86C7101BF20E6F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDFAF5CC1A6F980A005E5304 /* Frameworks */ = {
+		CDB05E931AE800DA008DA398 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDFAF5D01A6F980A005E5304 /* NearspeakKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CD6511EF1A6F9F3300815433 /* API */ = {
+		89BF80DA84ED9F3D96E61460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD6511F11A6FA02F00815433 /* NSKApi.swift */,
-				CD6511F41A6FA38C00815433 /* NSKApiParser.swift */,
-				CDFAF5E01A6F988A005E5304 /* NSKApiUtils.swift */,
-				CDFAF5E31A6F9BC5005E5304 /* NSKTag.swift */,
-				CD6511EC1A6F9D7300815433 /* NSKLinkedTag.swift */,
-				CD32A4551A726DB600E30135 /* NSKTagHardware.swift */,
-				CD4248911A76335B002246A0 /* DateParser.swift */,
+				6068AE75F1276042CA108068 /* Pods.framework */,
 			);
-			name = API;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CD6511F01A6F9F4100815433 /* iBeacon */ = {
+		B5113F3402A220C2A01B04C0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CD42488F1A763333002246A0 /* NSKBeaconManager.swift */,
+				A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */,
+				A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */,
 			);
-			name = iBeacon;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		CD6B25F51A6FB9B40058A5A8 /* External */ = {
+		CDB05E781AE800DA008DA398 = {
 			isa = PBXGroup;
 			children = (
-				CD6B25F91A6FBA740058A5A8 /* SwiftyJSON.swift */,
-			);
-			name = External;
-			sourceTree = "<group>";
-		};
-		CDFAF5BA1A6F9809005E5304 = {
-			isa = PBXGroup;
-			children = (
-				CDFAF5C61A6F980A005E5304 /* NearspeakKit */,
-				CDFAF5D31A6F980A005E5304 /* NearspeakKitTests */,
-				CDFAF5C51A6F980A005E5304 /* Products */,
+				CDB05E831AE800DA008DA398 /* NearspeakKit */,
+				CDB05E991AE800DA008DA398 /* NearspeakKitTests */,
+				CDB05E821AE800DA008DA398 /* Products */,
+				B5113F3402A220C2A01B04C0 /* Pods */,
+				89BF80DA84ED9F3D96E61460 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		CDFAF5C51A6F980A005E5304 /* Products */ = {
+		CDB05E821AE800DA008DA398 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDFAF5C41A6F980A005E5304 /* NearspeakKit.framework */,
-				CDFAF5CF1A6F980A005E5304 /* NearspeakKitTests.xctest */,
+				CDB05E811AE800DA008DA398 /* NearspeakKit.app */,
+				CDB05E961AE800DA008DA398 /* NearspeakKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CDFAF5C61A6F980A005E5304 /* NearspeakKit */ = {
+		CDB05E831AE800DA008DA398 /* NearspeakKit */ = {
 			isa = PBXGroup;
 			children = (
-				CD6B25F51A6FB9B40058A5A8 /* External */,
-				CD6511F01A6F9F4100815433 /* iBeacon */,
-				CD6511EF1A6F9F3300815433 /* API */,
-				CDFAF5C91A6F980A005E5304 /* NearspeakKit.h */,
-				CDFAF5C71A6F980A005E5304 /* Supporting Files */,
+				CDEC2A9F1AE801C00041ACA7 /* API */,
+				CDEC2A9C1AE801780041ACA7 /* iBeacon */,
+				CDB05E861AE800DA008DA398 /* AppDelegate.swift */,
+				CDB05E881AE800DA008DA398 /* ViewController.swift */,
+				CDB05E8A1AE800DA008DA398 /* Main.storyboard */,
+				CDB05E8D1AE800DA008DA398 /* Images.xcassets */,
+				CDB05E8F1AE800DA008DA398 /* LaunchScreen.xib */,
+				CDB05E841AE800DA008DA398 /* Supporting Files */,
 			);
 			path = NearspeakKit;
 			sourceTree = "<group>";
 		};
-		CDFAF5C71A6F980A005E5304 /* Supporting Files */ = {
+		CDB05E841AE800DA008DA398 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDFAF5C81A6F980A005E5304 /* Info.plist */,
+				CDB05E851AE800DA008DA398 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CDFAF5D31A6F980A005E5304 /* NearspeakKitTests */ = {
+		CDB05E991AE800DA008DA398 /* NearspeakKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				CDFAF5D61A6F980A005E5304 /* NSKApiTests.swift */,
-				CDFAF5D41A6F980A005E5304 /* Supporting Files */,
+				CDB05E9C1AE800DA008DA398 /* NearspeakKitTests.swift */,
+				CDB05E9A1AE800DA008DA398 /* Supporting Files */,
 			);
 			path = NearspeakKitTests;
 			sourceTree = "<group>";
 		};
-		CDFAF5D41A6F980A005E5304 /* Supporting Files */ = {
+		CDB05E9A1AE800DA008DA398 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDFAF5D51A6F980A005E5304 /* Info.plist */,
-				CD6B25FC1A6FD6080058A5A8 /* TestSettings.plist */,
+				CDEC2AB01AE802940041ACA7 /* TestSettings.plist */,
+				CDB05E9B1AE800DA008DA398 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CDEC2A9C1AE801780041ACA7 /* iBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */,
+			);
+			name = iBeacon;
+			sourceTree = "<group>";
+		};
+		CDEC2A9F1AE801C00041ACA7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */,
+				CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */,
+				CDEC2AA21AE801ED0041ACA7 /* NSKApiParser.swift */,
+				CDEC2AA31AE801EE0041ACA7 /* NSKApiUtils.swift */,
+				CDEC2AA41AE801EE0041ACA7 /* NSKLinkedTag.swift */,
+				CDEC2AA51AE801EE0041ACA7 /* NSKTag.swift */,
+				CDEC2AA61AE801EE0041ACA7 /* NSKTagHardware.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		CDFAF5C11A6F980A005E5304 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDFAF5CA1A6F980A005E5304 /* NearspeakKit.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		CDFAF5C31A6F980A005E5304 /* NearspeakKit */ = {
+		CDB05E801AE800DA008DA398 /* NearspeakKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDFAF5DA1A6F980A005E5304 /* Build configuration list for PBXNativeTarget "NearspeakKit" */;
+			buildConfigurationList = CDB05EA01AE800DA008DA398 /* Build configuration list for PBXNativeTarget "NearspeakKit" */;
 			buildPhases = (
-				CDFAF5BF1A6F980A005E5304 /* Sources */,
-				CDFAF5C01A6F980A005E5304 /* Frameworks */,
-				CDFAF5C11A6F980A005E5304 /* Headers */,
-				CDFAF5C21A6F980A005E5304 /* Resources */,
+				9DC4C406F8B8754F813B6299 /* Check Pods Manifest.lock */,
+				CDB05E7D1AE800DA008DA398 /* Sources */,
+				CDB05E7E1AE800DA008DA398 /* Frameworks */,
+				CDB05E7F1AE800DA008DA398 /* Resources */,
+				FECED1CCB5D7B7986CE5FA54 /* Embed Pods Frameworks */,
+				4D781F906A50ED7B6C809C0E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,159 +199,190 @@
 			);
 			name = NearspeakKit;
 			productName = NearspeakKit;
-			productReference = CDFAF5C41A6F980A005E5304 /* NearspeakKit.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = CDB05E811AE800DA008DA398 /* NearspeakKit.app */;
+			productType = "com.apple.product-type.application";
 		};
-		CDFAF5CE1A6F980A005E5304 /* NearspeakKitTests */ = {
+		CDB05E951AE800DA008DA398 /* NearspeakKitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDFAF5DD1A6F980A005E5304 /* Build configuration list for PBXNativeTarget "NearspeakKitTests" */;
+			buildConfigurationList = CDB05EA31AE800DA008DA398 /* Build configuration list for PBXNativeTarget "NearspeakKitTests" */;
 			buildPhases = (
-				CDFAF5CB1A6F980A005E5304 /* Sources */,
-				CDFAF5CC1A6F980A005E5304 /* Frameworks */,
-				CDFAF5CD1A6F980A005E5304 /* Resources */,
+				CDB05E921AE800DA008DA398 /* Sources */,
+				CDB05E931AE800DA008DA398 /* Frameworks */,
+				CDB05E941AE800DA008DA398 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CDFAF5D21A6F980A005E5304 /* PBXTargetDependency */,
+				CDB05E981AE800DA008DA398 /* PBXTargetDependency */,
 			);
 			name = NearspeakKitTests;
 			productName = NearspeakKitTests;
-			productReference = CDFAF5CF1A6F980A005E5304 /* NearspeakKitTests.xctest */;
+			productReference = CDB05E961AE800DA008DA398 /* NearspeakKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CDFAF5BB1A6F980A005E5304 /* Project object */ = {
+		CDB05E791AE800DA008DA398 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Mopius OG";
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Mopius;
 				TargetAttributes = {
-					CDDF55111A7657A1002B5016 = {
-						CreatedOnToolsVersion = 6.1.1;
+					CDB05E801AE800DA008DA398 = {
+						CreatedOnToolsVersion = 6.3.1;
 					};
-					CDFAF5C31A6F980A005E5304 = {
-						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = HL2T65D733;
-					};
-					CDFAF5CE1A6F980A005E5304 = {
-						CreatedOnToolsVersion = 6.1.1;
+					CDB05E951AE800DA008DA398 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = CDB05E801AE800DA008DA398;
 					};
 				};
 			};
-			buildConfigurationList = CDFAF5BE1A6F980A005E5304 /* Build configuration list for PBXProject "NearspeakKit" */;
+			buildConfigurationList = CDB05E7C1AE800DA008DA398 /* Build configuration list for PBXProject "NearspeakKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = CDFAF5BA1A6F9809005E5304;
-			productRefGroup = CDFAF5C51A6F980A005E5304 /* Products */;
+			mainGroup = CDB05E781AE800DA008DA398;
+			productRefGroup = CDB05E821AE800DA008DA398 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CDFAF5C31A6F980A005E5304 /* NearspeakKit */,
-				CDFAF5CE1A6F980A005E5304 /* NearspeakKitTests */,
-				CDDF55111A7657A1002B5016 /* NearspeakKit-Universal */,
+				CDB05E801AE800DA008DA398 /* NearspeakKit */,
+				CDB05E951AE800DA008DA398 /* NearspeakKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CDFAF5C21A6F980A005E5304 /* Resources */ = {
+		CDB05E7F1AE800DA008DA398 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB05E8C1AE800DA008DA398 /* Main.storyboard in Resources */,
+				CDB05E911AE800DA008DA398 /* LaunchScreen.xib in Resources */,
+				CDB05E8E1AE800DA008DA398 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDFAF5CD1A6F980A005E5304 /* Resources */ = {
+		CDB05E941AE800DA008DA398 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD6B25FD1A6FD6080058A5A8 /* TestSettings.plist in Resources */,
+				CDEC2AB11AE802940041ACA7 /* TestSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CDDF55151A7657A8002B5016 /* ShellScript */ = {
+		4D781F906A50ED7B6C809C0E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n#xcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules (from iphonesimulator build) to the copied framework directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DC4C406F8B8754F813B6299 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FECED1CCB5D7B7986CE5FA54 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CDFAF5BF1A6F980A005E5304 /* Sources */ = {
+		CDB05E7D1AE800DA008DA398 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD6511ED1A6F9D7300815433 /* NSKLinkedTag.swift in Sources */,
-				CD4248901A763333002246A0 /* NSKBeaconManager.swift in Sources */,
-				CD6511F21A6FA02F00815433 /* NSKApi.swift in Sources */,
-				CD4248921A76335B002246A0 /* DateParser.swift in Sources */,
-				CDFAF5E41A6F9BC5005E5304 /* NSKTag.swift in Sources */,
-				CD32A4561A726DB600E30135 /* NSKTagHardware.swift in Sources */,
-				CDFAF5E11A6F988A005E5304 /* NSKApiUtils.swift in Sources */,
-				CD6B25FA1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */,
-				CD6511F51A6FA38C00815433 /* NSKApiParser.swift in Sources */,
+				CDEC2AA91AE801EE0041ACA7 /* NSKApiParser.swift in Sources */,
+				CDB05E891AE800DA008DA398 /* ViewController.swift in Sources */,
+				CDB05E871AE800DA008DA398 /* AppDelegate.swift in Sources */,
+				CDEC2AA81AE801EE0041ACA7 /* NSKApi.swift in Sources */,
+				CDEC2AAB1AE801EE0041ACA7 /* NSKLinkedTag.swift in Sources */,
+				CDEC2AAD1AE801EE0041ACA7 /* NSKTagHardware.swift in Sources */,
+				CDEC2AA71AE801EE0041ACA7 /* DateParser.swift in Sources */,
+				CDEC2A9E1AE801B00041ACA7 /* NSKBeaconManager.swift in Sources */,
+				CDEC2AAA1AE801EE0041ACA7 /* NSKApiUtils.swift in Sources */,
+				CDEC2AAC1AE801EE0041ACA7 /* NSKTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDFAF5CB1A6F980A005E5304 /* Sources */ = {
+		CDB05E921AE800DA008DA398 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD6511EE1A6F9DAA00815433 /* NSKLinkedTag.swift in Sources */,
-				CDFAF5E51A6F9BC5005E5304 /* NSKTag.swift in Sources */,
-				CDFAF5D71A6F980A005E5304 /* NSKApiTests.swift in Sources */,
-				CD6B25FB1A6FBA740058A5A8 /* SwiftyJSON.swift in Sources */,
-				CDFAF5E21A6F988A005E5304 /* NSKApiUtils.swift in Sources */,
-				CD32A4571A726DB600E30135 /* NSKTagHardware.swift in Sources */,
-				CD6511F61A6FA38C00815433 /* NSKApiParser.swift in Sources */,
-				CD6511F31A6FA02F00815433 /* NSKApi.swift in Sources */,
+				CDB05E9D1AE800DA008DA398 /* NearspeakKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CDFAF5D21A6F980A005E5304 /* PBXTargetDependency */ = {
+		CDB05E981AE800DA008DA398 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CDFAF5C31A6F980A005E5304 /* NearspeakKit */;
-			targetProxy = CDFAF5D11A6F980A005E5304 /* PBXContainerItemProxy */;
+			target = CDB05E801AE800DA008DA398 /* NearspeakKit */;
+			targetProxy = CDB05E971AE800DA008DA398 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		CDB05E8A1AE800DA008DA398 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDB05E8B1AE800DA008DA398 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CDB05E8F1AE800DA008DA398 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDB05E901AE800DA008DA398 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		CDDF55121A7657A1002B5016 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		CDDF55131A7657A1002B5016 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		CDFAF5D81A6F980A005E5304 /* Debug */ = {
+		CDB05E9E1AE800DA008DA398 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -377,10 +401,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -393,18 +418,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		CDFAF5D91A6F980A005E5304 /* Release */ = {
+		CDB05E9F1AE800DA008DA398 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -422,65 +445,52 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		CDFAF5DB1A6F980A005E5304 /* Debug */ = {
+		CDB05EA11AE800DA008DA398 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NearspeakKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		CDFAF5DC1A6F980A005E5304 /* Release */ = {
+		CDB05EA21AE800DA008DA398 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NearspeakKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		CDFAF5DE1A6F980A005E5304 /* Debug */ = {
+		CDB05EA41AE800DA008DA398 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -492,12 +502,14 @@
 				INFOPLIST_FILE = NearspeakKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearspeakKit.app/NearspeakKit";
 			};
 			name = Debug;
 		};
-		CDFAF5DF1A6F980A005E5304 /* Release */ = {
+		CDB05EA51AE800DA008DA398 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -505,49 +517,41 @@
 				INFOPLIST_FILE = NearspeakKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearspeakKit.app/NearspeakKit";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CDDF55141A7657A1002B5016 /* Build configuration list for PBXAggregateTarget "NearspeakKit-Universal" */ = {
+		CDB05E7C1AE800DA008DA398 /* Build configuration list for PBXProject "NearspeakKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CDDF55121A7657A1002B5016 /* Debug */,
-				CDDF55131A7657A1002B5016 /* Release */,
+				CDB05E9E1AE800DA008DA398 /* Debug */,
+				CDB05E9F1AE800DA008DA398 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDFAF5BE1A6F980A005E5304 /* Build configuration list for PBXProject "NearspeakKit" */ = {
+		CDB05EA01AE800DA008DA398 /* Build configuration list for PBXNativeTarget "NearspeakKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CDFAF5D81A6F980A005E5304 /* Debug */,
-				CDFAF5D91A6F980A005E5304 /* Release */,
+				CDB05EA11AE800DA008DA398 /* Debug */,
+				CDB05EA21AE800DA008DA398 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDFAF5DA1A6F980A005E5304 /* Build configuration list for PBXNativeTarget "NearspeakKit" */ = {
+		CDB05EA31AE800DA008DA398 /* Build configuration list for PBXNativeTarget "NearspeakKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CDFAF5DB1A6F980A005E5304 /* Debug */,
-				CDFAF5DC1A6F980A005E5304 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CDFAF5DD1A6F980A005E5304 /* Build configuration list for PBXNativeTarget "NearspeakKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CDFAF5DE1A6F980A005E5304 /* Debug */,
-				CDFAF5DF1A6F980A005E5304 /* Release */,
+				CDB05EA41AE800DA008DA398 /* Debug */,
+				CDB05EA51AE800DA008DA398 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CDFAF5BB1A6F980A005E5304 /* Project object */;
+	rootObject = CDB05E791AE800DA008DA398 /* Project object */;
 }
