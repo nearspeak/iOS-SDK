@@ -58,7 +58,7 @@ public class NSKTag: NSObject, NSCoding {
         self.tagIdentifier = aDecoder.decodeObjectForKey(keyNSKTagTagIdentifier) as? String
         self.imageURL = aDecoder.decodeObjectForKey(keyNSKTagImageURL) as? NSURL
         self.buttonText = aDecoder.decodeObjectForKey(keyNSKTagButtonText) as? String
-        self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags) as NSMutableArray
+        self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags) as! NSMutableArray
         self.parentId = aDecoder.decodeIntegerForKey(keyNSKTagParentId)
         self.parentName = aDecoder.decodeObjectForKey(keyNSKTagParentName) as? String
         self.parentIdentifier = aDecoder.decodeObjectForKey(keyNSKTagParentIdentifier) as? String

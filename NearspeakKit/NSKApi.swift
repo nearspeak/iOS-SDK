@@ -165,8 +165,8 @@ public class NSKApi: NSObject {
     }
     
     public func getTagById(#tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
-        let apiUrl = NSURL(string: apiServerURL +  "tags/show?id=" + tagIdentifier + "&lang=" + currentLocale)!
+        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as! NSString
+        let apiUrl = NSURL(string: apiServerURL +  "tags/show?id=" + tagIdentifier + "&lang=" + (currentLocale as String))!
         
         apiCall(apiUrl, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
             if succeeded {
@@ -193,13 +193,15 @@ public class NSKApi: NSObject {
     
     public func getTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         // TODO: also submit the current location
-        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
-        let apiUrl = NSURL(string:
-                    apiServerURL +  "tags/showByHardwareId?id=" + formatHardwareId(hardwareIdentifier) +
-                        "&major=" + beaconMajorId +
-                        "&minor=" + beaconMinorId +
-                        "&lang=" + currentLocale +
-                        "&type=" + NSKTagHardwareType.BLE.rawValue)!
+        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as! NSString
+        let urlString = apiServerURL +
+            "tags/showByHardwareId?id=" + formatHardwareId(hardwareIdentifier) +
+            "&major=" + beaconMajorId +
+            "&minor=" + beaconMinorId +
+            "&lang=" + currentLocale +
+            "&type=" + NSKTagHardwareType.BLE.rawValue
+        
+        let apiUrl = NSURL(string: urlString)
         
         apiCall(apiUrl, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
             if succeeded {

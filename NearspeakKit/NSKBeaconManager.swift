@@ -58,25 +58,25 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     
     public func startMonitoringForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
-            locationManager.startMonitoringForRegion(beaconRegion.key as CLBeaconRegion)
+            locationManager.startMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
     
     public func stopMonitoringForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
-            locationManager.stopMonitoringForRegion(beaconRegion.key as CLBeaconRegion)
+            locationManager.stopMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
 
     public func startRangingForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
-            locationManager.startRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
+            locationManager.startRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
     
     public func stopRangingForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
-            locationManager.stopRangingBeaconsInRegion(beaconRegion.key as CLBeaconRegion)
+            locationManager.stopRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
 
@@ -86,11 +86,11 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
         var allBeacons = NSMutableArray()
         
         for beaconsArray in self.nearspeakRegions.allValues {
-            allBeacons.addObjectsFromArray(beaconsArray as NSArray)
+            allBeacons.addObjectsFromArray(beaconsArray as! NSArray as [AnyObject])
         }
         
         if let mydelegate = delegate {
-            mydelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as [CLBeacon])
+            mydelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as! [CLBeacon])
         }
     }
 }

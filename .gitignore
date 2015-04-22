@@ -34,3 +34,7 @@ Carthage/Build
 
 # Nearspeak
 TestSettings.plist
+
+# OS files
+.DS_Store
+.DS_Store?
