@@ -32,18 +32,16 @@ class DiscoveryTableViewController: UITableViewController {
     
     // MARK: - Notifications
     
-    private let notificationKey = "at.nearspeak.manager.nearbytags.updated"
-    
     private func setupNotifications() {
         // get notifications for if beacons updates appear
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "onNearbyTagsUpdatedNotification:",
-            name: notificationKey,
+            name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
     }
     
     private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(notificationKey)
+        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
     }
     
     func onNearbyTagsUpdatedNotification(notification: NSNotification) {

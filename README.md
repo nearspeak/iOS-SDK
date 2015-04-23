@@ -35,7 +35,7 @@ In your Swift Class `import NearspeakKit` to use the NearspeakKit
 
 ## Todo
 
-* Add Docu
+* Add Docu (Jazzy ?)
 * Better error handling
 * Get UnitTests working again
 * Switch to github repo

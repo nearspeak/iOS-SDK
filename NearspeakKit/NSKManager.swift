@@ -18,8 +18,6 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
         return _NSKManagerSharedInstance
     }
     
-    public let managerNotificationNearbyTagsUpdatedKey = "at.nearspeak.manager.nearbytags.updated"
-    
     private let tagQueue = dispatch_queue_create("at.nearspeak.manager.tagQueue", DISPATCH_QUEUE_CONCURRENT)
     
     private var _nearbyTags: [NSKTag] = []
@@ -230,7 +228,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     private func postContentUpdateNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(managerNotificationNearbyTagsUpdatedKey, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationNearbyTagsUpdatedKey, object: nil)
     }
     
     // MARK: - BeaconManager delegate methods

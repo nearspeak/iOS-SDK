@@ -28,6 +28,7 @@
 		CDEA46451AE91E9B00A8034A /* NearspeakKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; };
 		CDEA46461AE91E9B00A8034A /* NearspeakKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDEA464B1AE91F0900A8034A /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDEA464D1AE93C2200A8034A /* NSKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA464C1AE93C2200A8034A /* NSKConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		CDCB0BD21AE8C77E0006906E /* NearspeakKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearspeakKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEA463F1AE9152A00A8034A /* NSKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKManager.swift; sourceTree = "<group>"; };
 		CDEA46411AE9163300A8034A /* DiscoveryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryTableViewController.swift; sourceTree = "<group>"; };
+		CDEA464C1AE93C2200A8034A /* NSKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKConstants.swift; sourceTree = "<group>"; };
 		CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKBeaconManager.swift; sourceTree = "<group>"; };
 		CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				CDEC2A9F1AE801C00041ACA7 /* API */,
 				CDEC2A9C1AE801780041ACA7 /* iBeacon */,
 				CDEA463F1AE9152A00A8034A /* NSKManager.swift */,
+				CDEA464C1AE93C2200A8034A /* NSKConstants.swift */,
 				CDCB0BCC1AE8C77E0006906E /* NearspeakKit.h */,
 				CDCB0BCA1AE8C77E0006906E /* Supporting Files */,
 			);
@@ -450,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDEA464D1AE93C2200A8034A /* NSKConstants.swift in Sources */,
 				CD4CFE171AE8CF6100328C95 /* NSKBeaconManager.swift in Sources */,
 				CD4CFE121AE8CF5D00328C95 /* NSKApiParser.swift in Sources */,
 				CDEA46401AE9152A00A8034A /* NSKManager.swift in Sources */,
