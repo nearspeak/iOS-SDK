@@ -27,6 +27,9 @@ let keyNSKTagName = "tag_name"
 let keyNSKTagFavorite = "tag_favorite"
 
 public class NSKTag: NSObject, NSCoding {
+    /**
+     The id of the Tag
+    */
     public var id: NSNumber = 0
     public var tagDescription: String?
     public var tagCategoryId: NSNumber?
@@ -97,12 +100,12 @@ public class NSKTag: NSObject, NSCoding {
     // MARK: - Helper methods
     
     /**
-    Parse a ancestry json string into a array of strings.
-    Input looks like: 123/118/20
+     Parse a ancestry json string into a array of strings.
+     Input looks like: 123/118/20
     
-    :param: jsoninput The ancestry json input.
+     @param jsoninput The ancestry json input.
     
-    :returns: An array of ancestries.
+     @returns An array of ancestries.
     */
     public class func parseAncestry(jsoninput: String?) -> [String] {
         if let input = jsoninput {
