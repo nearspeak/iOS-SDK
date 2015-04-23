@@ -14,7 +14,7 @@ Using [CocoaPods](http://cocoapods.org)
 ```ruby
 use_frameworks!
 pod "NearspeakKit", :git => "http://intern.appaya.at/nearspeak/nearspeakkit-ios.git"
-
+```
 
 ## Requirements
 - iOS 8.0+
