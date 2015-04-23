@@ -15,19 +15,25 @@
 		CD4CFE151AE8CF5D00328C95 /* NSKTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA51AE801EE0041ACA7 /* NSKTag.swift */; };
 		CD4CFE161AE8CF5D00328C95 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA61AE801EE0041ACA7 /* NSKTagHardware.swift */; };
 		CD4CFE171AE8CF6100328C95 /* NSKBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */; };
+		CD4CFE1A1AE8D1AC00328C95 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; };
 		CDCB0BA61AE8C6C70006906E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB0BA51AE8C6C70006906E /* AppDelegate.swift */; };
 		CDCB0BA81AE8C6C70006906E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB0BA71AE8C6C70006906E /* ViewController.swift */; };
 		CDCB0BAB1AE8C6C70006906E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCB0BA91AE8C6C70006906E /* Main.storyboard */; };
 		CDCB0BAD1AE8C6C70006906E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDCB0BAC1AE8C6C70006906E /* Images.xcassets */; };
 		CDCB0BB01AE8C6C70006906E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCB0BAE1AE8C6C70006906E /* LaunchScreen.xib */; };
 		CDCB0BCD1AE8C77E0006906E /* NearspeakKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CDCB0BCC1AE8C77E0006906E /* NearspeakKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDCB0BD31AE8C77E0006906E /* NearspeakKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; };
 		CDCB0BDA1AE8C77E0006906E /* NearspeakKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB0BD91AE8C77E0006906E /* NearspeakKitTests.swift */; };
 		CDCB0BE11AE8C8EA0006906E /* NearspeakKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; };
-		CDCB0BE31AE8C94D0006906E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BE21AE8C94D0006906E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD4CFE1B1AE8D26D00328C95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDB05E791AE800DA008DA398 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDCB0BC71AE8C77E0006906E;
+			remoteInfo = NearspeakKit;
+		};
 		CDCB0BD41AE8C77E0006906E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CDB05E791AE800DA008DA398 /* Project object */;
@@ -57,7 +63,6 @@
 		CDCB0BD21AE8C77E0006906E /* NearspeakKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearspeakKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCB0BD81AE8C77E0006906E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDCB0BD91AE8C77E0006906E /* NearspeakKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearspeakKitTests.swift; sourceTree = "<group>"; };
-		CDCB0BE21AE8C94D0006906E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKBeaconManager.swift; sourceTree = "<group>"; };
 		CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKApi.swift; sourceTree = "<group>"; };
@@ -82,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDCB0BE31AE8C94D0006906E /* Pods.framework in Frameworks */,
+				CD4CFE1A1AE8D1AC00328C95 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDCB0BD31AE8C77E0006906E /* NearspeakKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				CD4CFE181AE8CFDB00328C95 /* SwiftyJSON.framework */,
-				CDCB0BE21AE8C94D0006906E /* Pods.framework */,
 				6068AE75F1276042CA108068 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -261,6 +264,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CD4CFE1C1AE8D26D00328C95 /* PBXTargetDependency */,
 			);
 			name = NearspeakDemo;
 			productName = NearspeakDemo;
@@ -406,6 +410,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD4CFE1C1AE8D26D00328C95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDCB0BC71AE8C77E0006906E /* NearspeakKit */;
+			targetProxy = CD4CFE1B1AE8D26D00328C95 /* PBXContainerItemProxy */;
+		};
 		CDCB0BD51AE8C77E0006906E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CDCB0BC71AE8C77E0006906E /* NearspeakKit */;
@@ -542,6 +551,7 @@
 		};
 		CDCB0BDC1AE8C77E0006906E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -565,6 +575,7 @@
 		};
 		CDCB0BDD1AE8C77E0006906E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
