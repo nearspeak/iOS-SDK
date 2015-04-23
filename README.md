@@ -4,21 +4,26 @@ The iOS SDK for Nearspeak.
 
 ## Features
 
-* Fetch Nearspeak Tag Informations from the Nearspeak server
+* Fetch Nearspeak tag informations from the Nearspeak server
 * Query for Nearspeak iBeacons
 
-## Installation
+## Requirements
+- iOS 8.0+
+- Xcode 6.3
 
-Using [CocoaPods](http://cocoapods.org)
+## Integration
 
+#### CocoaPods
+You can use [CocoaPods](http://cocoapods.org) to install `NearspeakKit` by adding it to your `Podfile`:
 ```ruby
 use_frameworks!
 pod "NearspeakKit", :git => "http://intern.appaya.at/nearspeak/nearspeakkit-ios.git"
 ```
 
-## Requirements
-- iOS 8.0+
-- Xcode 6.3
+Note that CocoaPods version >= 36 is required and iOS deployment target >= 8.0
+```bash
+[sudo] gem install cocoapods -v '>=0.36'
+```
 
 ## Usage
 
