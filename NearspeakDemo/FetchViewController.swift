@@ -9,13 +9,14 @@
 import UIKit
 import NearspeakKit
 
-class ViewController: UIViewController {
+class FetchViewController: UIViewController {
 
     @IBOutlet weak var tagIdentifierLabel: UITextField!
     @IBOutlet weak var fetchingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagDescriptionLabel: UILabel!
     
+    // Create a nearspeak api object
     private var api = NSKApi(devMode: false)
     
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
     private func queryNearspeak(#tagIdentifier: String) {
         fetchingActivityIndicator.startAnimating()
         
+        // query for a nearspeak tag with a given tag identifier
         api.getTagById(tagIdentifier: tagIdentifier) { (succeeded, tag) -> () in
             if succeeded {
                 if let tag = tag {
