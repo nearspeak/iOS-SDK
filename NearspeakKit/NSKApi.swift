@@ -13,13 +13,21 @@ enum HTTPMethod: String {
     case GET = "GET"
 }
 
+/**
+ * The NearspeakKit API communication class. 
+*/
 public class NSKApi: NSObject {
-    //MARK: Properties
-    private var developmentMode: Bool = true
     
+    /** Set to true if you want to connect to the staging server. */
+    private var developmentMode: Bool = false
+    
+    /** The staging authentication token NSDefaults key. */
     private let kAuthTokenStagingKey = "nsk_auth_token_staging"
+    
+    /** The production authentication token NSDefaults key. */
     private let kAuthTokenKey = "nsk_auth_token"
     
+    /** The URL of the API server. */
     var apiServerURL: String {
         get {
             if (developmentMode) {
@@ -30,28 +38,32 @@ public class NSKApi: NSObject {
         }
     }
     
+    /** The api authentication token. */
     public var auth_token: String?
     
     private var apiParser = NSKApiParser()
     
+    /**
+     Init the API object.
+
+     :param: devMode Connect to the staging oder production server.
+    */
     public init(devMode: Bool) {
         super.init()
         
-        if (devMode) {
-            developmentMode = true
-        } else {
-            developmentMode = false
-        }
+        developmentMode = devMode
         
         // load auth token from persistent storage
         self.loadCredentials()
     }
     
+    /** Remove the server credentials from the local device. */
     public func logout() {
         auth_token = nil
         saveCredentials()
     }
     
+    /** Save the server credentials to the local device. */
     public func saveCredentials() {
         if (developmentMode) {
             NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: kAuthTokenStagingKey)
@@ -62,6 +74,7 @@ public class NSKApi: NSObject {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
+    /** Load the server credentials from the local device. */
     public func loadCredentials() {
         if (developmentMode) {
             auth_token = NSUserDefaults.standardUserDefaults().stringForKey(kAuthTokenStagingKey)
@@ -70,6 +83,7 @@ public class NSKApi: NSObject {
         }
     }
     
+    /** Check if the current user is logged in. */
     public func isLoggedIn() -> Bool {
         if auth_token != nil {
             // TODO: implemented a better check
@@ -79,8 +93,16 @@ public class NSKApi: NSObject {
         return false
     }
     
-    //MARK: API calls
+    // MARK: API calls
     
+    /**
+     Make the api call to the server
+
+     :param: apiURL The URL of the api call.
+     :param: httpMethod The HTTP Method to use for the request.
+     :param: params The HTTP Header Parameters.
+     :param: requestCompleted The request completion block.
+    */
     private func apiCall(apiURL: NSURL, httpMethod: HTTPMethod, params: Dictionary<String, String>?, requestCompleted: (succeeded: Bool, data: NSData?) -> ()) {
         let request = NSMutableURLRequest(URL: apiURL)
         let session = NSURLSession.sharedSession()
@@ -116,6 +138,13 @@ public class NSKApi: NSObject {
         task.resume()
     }
     
+    /**
+     API call to get the authentication token from the API server.
+
+     :param: username: The username of the user.
+     :param: password: The password of the user.
+     :param: requestCompleted The request completion block.
+    */
     public func getAuthToken(#username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String) -> ()) {
         let apiURL = NSURL(string: apiServerURL +  "login/getAuthToken")!
         let params = ["email" : username, "password" : password] as Dictionary<String, String>
@@ -137,6 +166,11 @@ public class NSKApi: NSObject {
         })
     }
     
+    /**
+     API call to get all Nearspeak tag from the user.
+
+     :param: requestCompleted The request completion block.
+    */
     public func getMyTags(requestCompleted: (succeeded: Bool, tags: [NSKTag]) ->()) {
         if let token = self.auth_token {
             let apiUrl = NSURL(string: apiServerURL + "tags/showMyTags?auth_token=" + token)!
@@ -164,7 +198,14 @@ public class NSKApi: NSObject {
         }
     }
     
+    /**
+     API call to get a Nearspeak tag by its tag identifier.
+
+     :param: tagIdentifier The tag identifier of the tag.
+     :param: requestCompleted The request completion block.
+    */
     public func getTagById(#tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+        // TODO: also submit the current location
         let currentLocale: NSString = NSLocale.preferredLanguages()[0] as! NSString
         let apiUrl = NSURL(string: apiServerURL +  "tags/show?id=" + tagIdentifier + "&lang=" + (currentLocale as String))!
         
@@ -191,6 +232,14 @@ public class NSKApi: NSObject {
         })
     }
     
+    /**
+    API call to get a Nearspeak tag by its hardware identifier.
+    
+    :param: hardwareIdentifier The hardware identifier of the tag.
+    :param: beaconMajorId The iBeacon major id.
+    :param: beaconMinorId The iBeacon minor id.
+    :param: requestCompleted The request completion block.
+    */
     public func getTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         // TODO: also submit the current location
         let currentLocale: String = NSLocale.preferredLanguages().first as! String
@@ -226,7 +275,11 @@ public class NSKApi: NSObject {
             }
         })
     }
-    
+    /**
+     API call to get all supported iBeacon UUIDs.
+
+     :param: requestCompleted The request completion block.
+    */
     public func getSupportedBeaconsUUIDs(requestCompleted: (succeeded: Bool, uuids: [String]) ->()) {
         let apiUrl = NSURL(string: apiServerURL + "tags/supportedBeaconUUIDs")!
         
@@ -252,6 +305,9 @@ public class NSKApi: NSObject {
     
     //MARK: Helper methods
     
+    /**
+     Helper method to format the hardware id, which is in the most cases the iBeacon UUID, into the correct format.
+    */
     private func formatHardwareId(hardwareId: String) -> String {
         return hardwareId.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
     }

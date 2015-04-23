@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Date parsing extension.
+*/
 extension NSDate {
     convenience
     init(dateString: String) {
