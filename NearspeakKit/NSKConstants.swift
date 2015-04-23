@@ -8,10 +8,13 @@
 
 import Foundation
 
+/**
+ API constants.
+*/
 public struct NSKConstants {
     
     // Notification Keys
     
-    /** Nearby iBeacon Tag found */
+    /** Nearby iBeacon Tag found notification key. */
     public static let managerNotificationNearbyTagsUpdatedKey = "at.nearspeak.manager.nearbytags.updated"
 }
