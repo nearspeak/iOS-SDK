@@ -9,6 +9,9 @@
 import UIKit
 import SwiftyJSON
 
+/**
+ This class parses the API response objects.
+*/
 class NSKApiParser: NSObject {
     
     func parseGetAuthToken(data: NSData, parsingCompleted: (succeeded: Bool, authToken: String) -> ()) {

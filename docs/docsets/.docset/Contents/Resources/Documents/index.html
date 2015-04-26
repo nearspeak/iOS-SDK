@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (56% documented)</p>
+        <p class="header-right"><a href=""><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/NSKApi.html">NSKApi</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NSKBeaconManager.html">NSKBeaconManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NSKLinkedTag.html">NSKLinkedTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NSKManager.html">NSKManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NSKTag.html">NSKTag</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions.html#/c:objc(cs)NSDate">NSDate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/NSKBeaconManagerDelegate.html">NSKBeaconManagerDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/NSKConstants.html">NSKConstants</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#nearspeakkit_for_ios' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='nearspeakkit_for_ios'>NearspeakKit for iOS</h1>
+
+<p>The iOS SDK for Nearspeak.</p>
+<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+
+<ul>
+<li>Fetch Nearspeak tag informations from the Nearspeak server</li>
+<li>Query for Nearspeak iBeacons</li>
+</ul>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+
+<ul>
+<li>iOS 8.0+</li>
+<li>Xcode 6.3</li>
+</ul>
+<a href='#integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='integration'>Integration</h2>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='cocoapods'>CocoaPods</h4>
+
+<p>You can use <a href="http://cocoapods.org">CocoaPods</a> to install <code>NearspeakKit</code> by adding it to your <code>Podfile</code>:
+<code>ruby
+use_frameworks!
+pod &quot;NearspeakKit&quot;, :git =&gt; &quot;http://intern.appaya.at/nearspeak/nearspeakkit-ios.git&quot;
+</code></p>
+
+<p>Note that CocoaPods version &gt;= 36 is required and iOS deployment target &gt;= 8.0
+<code>bash
+[sudo] gem install cocoapods -v &#39;&gt;=0.36&#39;
+</code></p>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+
+<p>To discover iBeacon Nearspeak tags your app requires the following keys setup in your <code>Info.plist</code>:
+* NSLocationAlwaysUsageDescription
+* UIBackgroundModes: [bluetooth-central, location]</p>
+
+<p>In your Swift Class <code>import NearspeakKit</code> to use the NearspeakKit</p>
+<a href='#todo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='todo'>Todo</h2>
+
+<ul>
+<li>Add Docu (Jazzy ?)</li>
+<li>Better error handling</li>
+<li>Get UnitTests working again</li>
+<li>Switch to github repo</li>
+</ul>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-04-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

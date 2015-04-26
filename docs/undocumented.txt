@@ -1,0 +1,30 @@
+NSKBeaconManager.swift
+	public protocol NSKBeaconManagerDelegate
+	func beaconManager(manager: NSKBeaconManager!, foundBeacons:[CLBeacon])
+	public class NSKBeaconManager: NSObject, CLLocationManagerDelegate
+	public var delegate: NSKBeaconManagerDelegate! = nil
+	public override init()
+	public func startMonitoringForNearspeakBeacons()
+	public func stopMonitoringForNearspeakBeacons()
+	public func startRangingForNearspeakBeacons()
+	public func stopRangingForNearspeakBeacons()
+	public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!)
+NSKManager.swift
+	public class NSKManager: NSObject, NSKBeaconManagerDelegate
+	public class var sharedInstance: NSKManager
+	public var nearbyTags: [NSKTag]
+	public override init()
+	public func startBeaconDiscovery(showUnassingedBeacons: Bool)
+	public func stopBeaconDiscovery()
+	public func getTagAtIndex(index: Int) -> NSKTag?
+	public func showUnassingedTags(show: Bool)
+	public func beaconManager(manager: NSKBeaconManager!, foundBeacons: [CLBeacon])
+NSKLinkedTag.swift
+	public class NSKLinkedTag: NSObject, NSCoding
+	public var id: NSNumber = 0
+	public var name: String?
+	public var identifier: String?
+	public init(id: NSNumber)
+	public init(id: NSNumber, name: String, identifier: String)
+	required public init(coder aDecoder: NSCoder)
+	public func encodeWithCoder(aCoder: NSCoder)
