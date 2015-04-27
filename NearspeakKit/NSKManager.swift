@@ -12,8 +12,14 @@ import NearspeakKit
 
 private let _NSKManagerSharedInstance = NSKManager()
 
+/**
+ Nearspeak Manager class.
+*/
 public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     
+    /**
+     Get the singelton object of this class.
+    */
     public class var sharedInstance: NSKManager {
         return _NSKManagerSharedInstance
     }
@@ -22,6 +28,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     
     private var _nearbyTags: [NSKTag] = []
     
+    /**
+     Array of all currently nearby Nearspeak tags.
+    */
     public var nearbyTags: [NSKTag] {
         var nearbyTagsCopy: [NSKTag]!
         
@@ -40,6 +49,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     // Current beacons
     private var beacons: [CLBeacon] = []
     
+    /**
+     The standard constructor.
+    */
     public override init() {
         super.init()
         
@@ -48,6 +60,11 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     
     // MARK: - NearbyBeacons - public
     
+    /**
+     Start the Nearspeak beacon discovery.
+    
+     :param: showUnassingedBeacons True if unassinged Nearspeak beacons should also be shown.
+    */
     public func startBeaconDiscovery(showUnassingedBeacons: Bool) {
         beaconManager.startMonitoringForNearspeakBeacons()
         beaconManager.startRangingForNearspeakBeacons()
@@ -55,15 +72,28 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
         self.showUnassingedBeacons = showUnassingedBeacons
     }
     
+    /**
+     Stop the Nearspeak beacon discovery.
+    */
     public func stopBeaconDiscovery() {
         beaconManager.stopRangingForNearspeakBeacons()
     }
     
+    /**
+     Get a Nearspeak tag object from the nearby beacons array.
+    
+     :param: index The index of the Nearspeak tag object.
+    */
     public func getTagAtIndex(index: Int) -> NSKTag? {
         return _nearbyTags[index]
     }
     
-    public func showUnassingedTags(show: Bool) {
+    /**
+     Show or Hide unassigned Nearspeak tags.
+    
+     :param: show True if unassinged Nearspeak beacons should als be show.
+    */
+    public func showUnassingedBeacons(show: Bool) {
         if show != showUnassingedBeacons {
             showUnassingedBeacons = show
             self.removeAllTags()
@@ -233,6 +263,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     
     // MARK: - BeaconManager delegate methods
     
+    /**
+     Delegate method which gets called, when new beacons are found.
+    */
     public func beaconManager(manager: NSKBeaconManager!, foundBeacons: [CLBeacon]) {
         self.processFoundBeacons(foundBeacons)
     }

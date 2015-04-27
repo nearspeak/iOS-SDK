@@ -14,10 +14,22 @@
 import UIKit
 import CoreLocation
 
+/**
+ Delegate protocol for the Nearspeak beacon manager class.
+ */
 public protocol NSKBeaconManagerDelegate {
+    /** 
+     This method informs, that there are new found beacons available.
+
+     :param: manager The Nearspeak beacon manager object.
+     :param: foundBeacons An array with CLBeacon objects.
+     */
     func beaconManager(manager: NSKBeaconManager!, foundBeacons:[CLBeacon])
 }
 
+/**
+ The Nearspeak beacon manager class.
+*/
 public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // nearspeak iBeacon UUID
     // Kontakt.io:  F7826DA6-4FA2-4E98-8024-BC5B71E0893E
@@ -34,8 +46,12 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     
     private let locationManager = CLLocationManager()
     
+    /** The delegate object of this class. */
     public var delegate: NSKBeaconManagerDelegate! = nil
     
+    /**
+     Initializer for this class.
+    */
     public override init() {
         super.init()
         
@@ -56,30 +72,47 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
     }
     
+    /**
+     Start monitoring for Nearspeak beacons.
+    */
     public func startMonitoringForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
             locationManager.startMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
     
+    /**
+     Stop monitoring for Nearspeak beacons.
+    */
     public func stopMonitoringForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
 
+    /**
+     Start ranging for Nearspeak beacons.
+    */
     public func startRangingForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
             locationManager.startRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
     
+    /**
+     Stop ranging for Nearspeak beacons.
+    */
     public func stopRangingForNearspeakBeacons() {
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
 
+    // MARK: CoreLocationManager delegate methods
+   
+    /**
+     Delegate method, which gets called if you access a new beacon region.
+    */
     public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         self.nearspeakRegions[region] = beacons
         

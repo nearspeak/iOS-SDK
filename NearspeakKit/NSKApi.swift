@@ -14,8 +14,8 @@ enum HTTPMethod: String {
 }
 
 /**
- * The NearspeakKit API communication class. 
-*/
+ The NearspeakKit API communication class. 
+ */
 public class NSKApi: NSObject {
     
     /** Set to true if you want to connect to the staging server. */
