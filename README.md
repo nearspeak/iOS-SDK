@@ -17,7 +17,7 @@ The iOS SDK for Nearspeak.
 You can use [CocoaPods](http://cocoapods.org) to install `NearspeakKit` by adding it to your `Podfile`:
 ```ruby
 use_frameworks!
-pod "NearspeakKit", :git => "http://intern.appaya.at/nearspeak/nearspeakkit-ios.git"
+pod "NearspeakKit", :git => "https://github.com/nearspeak/iOS-SDK.git"
 ```
 
 Note that CocoaPods version >= 36 is required and iOS deployment target >= 8.0
@@ -32,10 +32,3 @@ To discover iBeacon Nearspeak tags your app requires the following keys setup in
 * UIBackgroundModes: [bluetooth-central, location]
 
 In your Swift Class `import NearspeakKit` to use the NearspeakKit
-
-## Todo
-
-* Add Docu (Jazzy ?)
-* Better error handling
-* Get UnitTests working again
-* Switch to github repo
