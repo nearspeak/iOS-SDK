@@ -22,7 +22,7 @@ pod "NearspeakKit", :git => "https://github.com/nearspeak/iOS-SDK.git"
 
 Note that CocoaPods version >= 36 is required and iOS deployment target >= 8.0
 ```bash
-[sudo] gem install cocoapods -v '>=0.36'
+[sudo] gem install cocoapods -v ">=0.36"
 ```
 
 ## Usage
