@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreBluetooth
 
 private let _NSKManagerSharedInstance = NSKManager()
 
@@ -267,5 +268,31 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     */
     public func beaconManager(manager: NSKBeaconManager!, foundBeacons: [CLBeacon]) {
         self.processFoundBeacons(foundBeacons)
+    }
+    
+    /**
+     Delegate method which gets called, when the bluetooth state changed.
+    */
+    public func beaconManager(manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState) {
+        switch bluetoothState {
+        case .PoweredOn:
+            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationBluetoothOkKey, object: nil)
+        default:
+            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationBluetoothErrorKey, object: nil)
+        }
+    }
+    
+    /**
+     Delegate method which gets called, when the location state changed.
+    */
+    public func beaconManager(manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus) {
+        switch locationState {
+        case .AuthorizedAlways:
+            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationAlwaysOnKey, object: nil)
+        case .AuthorizedWhenInUse:
+            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationWhenInUseOnKey, object: nil)
+        default:
+            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationErrorKey, object: nil)
+        }
     }
 }

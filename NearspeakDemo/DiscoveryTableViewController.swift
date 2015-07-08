@@ -38,6 +38,23 @@ class DiscoveryTableViewController: UITableViewController {
             selector: "onNearbyTagsUpdatedNotification:",
             name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
+        
+        // get notification if bluetooth state changes
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onBluetoothErrorNotification:",
+            name: NSKConstants.managerNotificationBluetoothErrorKey,
+            object: nil)
+        
+        // get notifications if location state changes
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onLocationErrorNotification:",
+            name: NSKConstants.managerNotificationLocationErrorKey,
+            object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onLocationOnlyWhenInUseNotification:",
+            name: NSKConstants.managerNotificationLocationWhenInUseOnKey,
+            object: nil)
     }
     
     private func removeNotifications() {
@@ -48,6 +65,36 @@ class DiscoveryTableViewController: UITableViewController {
         // refresh the table view
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()
+        })
+    }
+    
+    func onBluetoothErrorNotification(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let alertController = UIAlertController(title: "Bluetooth Error", message: "Turn on bluetooth", preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
+    }
+    
+    func onLocationErrorNotification(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let alertController = UIAlertController(title: "Location Error", message: "Turn on location for this app.", preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
+    }
+    
+    func onLocationOnlyWhenInUseNotification(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let alertController = UIAlertController(title: "Location Error", message: "Background scanning disabled.", preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
         })
     }
     

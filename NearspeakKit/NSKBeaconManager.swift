@@ -13,6 +13,7 @@
 
 import UIKit
 import CoreLocation
+import CoreBluetooth
 
 /**
  Delegate protocol for the Nearspeak beacon manager class.
@@ -25,12 +26,28 @@ public protocol NSKBeaconManagerDelegate {
      :param: foundBeacons An array with CLBeacon objects.
      */
     func beaconManager(manager: NSKBeaconManager!, foundBeacons:[CLBeacon])
+    
+    /**
+     This method informs, that there is bluetooth available or not.
+
+    :param: manager The Nearspeak beacon manager object.
+    :param: bluetoothState The CoreBluetoothManagerState object.
+    */
+    func beaconManager(manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState)
+    
+    /**
+     This method informs, if there is a location available or not.
+
+    :param: manager The Nearspeak beacon manager object.
+    :param: locationState The CoreLocation CLAuthorizationStatus object.
+    */
+    func beaconManager(manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus)
 }
 
 /**
  The Nearspeak beacon manager class.
 */
-public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
+public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralManagerDelegate {
     // nearspeak iBeacon UUID
     // Kontakt.io:  F7826DA6-4FA2-4E98-8024-BC5B71E0893E
     // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
@@ -40,11 +57,13 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     // TODO: get the UUIDS from the server
     private let nearspeakProximityUUIDs = [
         NSUUID(UUIDString:"CEFCC021-E45F-4520-A3AB-9D1EA22873AD"),
-        NSUUID(UUIDString:"699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012")]
+        NSUUID(UUIDString:"699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012")
+    ]
     
     private var nearspeakRegions: NSMutableDictionary = NSMutableDictionary()
     
     private let locationManager = CLLocationManager()
+    private var centralManager = CBCentralManager()
     
     /** The delegate object of this class. */
     public var delegate: NSKBeaconManagerDelegate! = nil
@@ -54,6 +73,9 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
     */
     public override init() {
         super.init()
+        
+        // init the bluetooth stuff
+        centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
         
         for uuid in nearspeakProximityUUIDs {
             if let currentUUID = uuid {
@@ -70,6 +92,8 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        
+        checkForBeaconSupport()
     }
     
     /**
@@ -107,6 +131,16 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
             locationManager.stopRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
+    
+    private func checkForBeaconSupport() {
+        if CLLocationManager.isRangingAvailable() {
+            #if DEBUG
+                println("Beacon support available")
+            #endif
+        } else {
+                println("ERROR: Beacon support not available")
+        }
+    }
 
     // MARK: CoreLocationManager delegate methods
    
@@ -122,8 +156,55 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate {
             allBeacons.addObjectsFromArray(beaconsArray as! NSArray as [AnyObject])
         }
         
-        if let mydelegate = delegate {
-            mydelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as! [CLBeacon])
+        if let myDelegate = delegate {
+            myDelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as! [CLBeacon])
+        }
+    }
+    
+    /**
+     Delegate method, which gets called if core location changes its authorization status.
+    */
+    public func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        #if DEBUG
+            switch status {
+            case .AuthorizedAlways:
+                println("DBG: CoreLocation - Location incl. background support.")
+            case .AuthorizedWhenInUse:
+                println("DBG: CoreLocation - Location without background support.")
+            case .Denied, .NotDetermined, .Restricted:
+                println("DBG: CoreLocation - No Location support.")
+            }
+        #endif
+        
+        if let myDelegate = delegate {
+            myDelegate.beaconManager(self, locationStateDidChange: status)
+        }
+    }
+    
+    public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("DBG: CoreLocation: didFailWithError: \(error.localizedDescription)")
+    }
+    
+    public func centralManagerDidUpdateState(central: CBCentralManager!) {
+        #if DEBUG
+            switch central.state {
+            case .PoweredOff:
+                println("DBG: Bluetooth - Powered off")
+            case .PoweredOn:
+                println("DBG: Bluetooth - Powered on")
+            case .Resetting:
+                println("DBG: Bluetooth - Resetting")
+            case .Unauthorized:
+                println("DBG: Bluetooth - Unauthorized")
+            case .Unknown:
+                println("DBG: Bluetooth - Unknown")
+            case .Unsupported:
+                println("DBG: Bluetooth - Unsupported")
+            }
+        #endif
+        
+        if let myDelegate = delegate {
+            myDelegate.beaconManager(self, bluetoothStateDidChange: central.state)
         }
     }
 }
