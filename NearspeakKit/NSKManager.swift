@@ -73,6 +73,15 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     /**
+     Check if the device has all necessary features enabled to support beacons.
+    
+     :return: True if all necessary features are enabled, else false.
+    */
+    public func checkForBeaconSupport() -> Bool {
+        return beaconManager.checkForBeaconSupport()
+    }
+    
+    /**
      Stop the Nearspeak beacon discovery.
     */
     public func stopBeaconDiscovery() {

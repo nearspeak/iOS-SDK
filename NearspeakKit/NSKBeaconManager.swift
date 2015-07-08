@@ -92,8 +92,6 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        
-        checkForBeaconSupport()
     }
     
     /**
@@ -132,14 +130,35 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         }
     }
     
-    private func checkForBeaconSupport() {
+    /**
+     Check if beacon support is enabled.
+    
+     :return: Return true if all necessary features are enabled, otherwise false.
+    */
+    public func checkForBeaconSupport() -> Bool {
         if CLLocationManager.isRangingAvailable() {
             #if DEBUG
                 println("Beacon support available")
             #endif
         } else {
-                println("ERROR: Beacon support not available")
+            println("ERROR: Beacon support not available")
+            
+            return false
         }
+        
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedAlways {
+            println("ERROR: Can't always get the location")
+            
+            return false
+        }
+        
+        if centralManager.state == CBCentralManagerState.PoweredOff {
+            println("ERROR: Problems with bluetooth")
+            
+            return false
+        }
+        
+        return true
     }
 
     // MARK: CoreLocationManager delegate methods
@@ -181,10 +200,16 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         }
     }
     
+    /**
+     Delegate method, which gets called if core location manager fails.
+    */
     public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("DBG: CoreLocation: didFailWithError: \(error.localizedDescription)")
     }
     
+    /**
+     Delegate method, which gets called if core bluetooth manager changes its state.
+    */
     public func centralManagerDidUpdateState(central: CBCentralManager!) {
         #if DEBUG
             switch central.state {

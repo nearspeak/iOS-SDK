@@ -20,8 +20,10 @@ class DiscoveryTableViewController: UITableViewController {
         
         setupNotifications()
         
-        // true: show all beacons, also if the beacon has not data set on the server
-        NSKManager.sharedInstance.startBeaconDiscovery(true)
+        if NSKManager.sharedInstance.checkForBeaconSupport() {
+            // true: show all beacons, also if the beacon has not data set on the server
+            NSKManager.sharedInstance.startBeaconDiscovery(true)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
