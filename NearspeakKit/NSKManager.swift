@@ -109,6 +109,18 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
             self.removeAllBeacons()
         }
     }
+    /**
+     Add a demo tag for the simualtor.
+    */
+    public func addDemoTag(hardwareIdentifier: String, majorId: String, minorId: String) {
+        self.api.getTagByHardwareId(hardwareIdentifier: hardwareIdentifier, beaconMajorId: majorId, beaconMinorId: minorId) { (succeeded, tag) -> () in
+            if succeeded {
+                if let tag = tag {
+                    self.addTag(tag)
+                }
+            }
+        }
+    }
     
     // MARK: - NearbyBeacons - private
     
