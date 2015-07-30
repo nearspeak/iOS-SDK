@@ -29,7 +29,6 @@ Note that CocoaPods version >= 36 is required and iOS deployment target >= 8.0
 
 To discover iBeacon Nearspeak tags your app requires the following keys setup in your `Info.plist`:
 * NSLocationAlwaysUsageDescription
-* UIBackgroundModes: [bluetooth-central, location]
 
 In your Swift Class `import NearspeakKit` to use the NearspeakKit
 
