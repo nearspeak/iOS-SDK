@@ -56,9 +56,21 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
         super.init()
         
         beaconManager.delegate = self
+        
+        // start the beacon monitoring
+        beaconManager.startMonitoringForNearspeakBeacons()
     }
     
     // MARK: - NearbyBeacons - public
+    
+    /**
+    Check if the device has all necessary features enabled to support beacons.
+    
+    :return: True if all necessary features are enabled, else false.
+    */
+    public func checkForBeaconSupport() -> Bool {
+        return beaconManager.checkForBeaconSupport()
+    }
     
     /**
      Start the Nearspeak beacon discovery.
@@ -66,19 +78,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
      :param: showUnassingedBeacons True if unassinged Nearspeak beacons should also be shown.
     */
     public func startBeaconDiscovery(showUnassingedBeacons: Bool) {
-        beaconManager.startMonitoringForNearspeakBeacons()
         beaconManager.startRangingForNearspeakBeacons()
         
         self.showUnassingedBeacons = showUnassingedBeacons
-    }
-    
-    /**
-     Check if the device has all necessary features enabled to support beacons.
-    
-     :return: True if all necessary features are enabled, else false.
-    */
-    public func checkForBeaconSupport() -> Bool {
-        return beaconManager.checkForBeaconSupport()
     }
     
     /**

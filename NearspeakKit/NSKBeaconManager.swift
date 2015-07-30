@@ -98,6 +98,10 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
      Start monitoring for Nearspeak beacons.
     */
     public func startMonitoringForNearspeakBeacons() {
+        #if DEBUG
+            println("DBG: start monitoring for beacons")
+        #endif
+        
         for beaconRegion in self.nearspeakRegions {
             locationManager.startMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
@@ -107,6 +111,10 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
      Stop monitoring for Nearspeak beacons.
     */
     public func stopMonitoringForNearspeakBeacons() {
+        #if DEBUG
+            println("DBG: stop monitoring for beacons")
+        #endif
+        
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
@@ -116,6 +124,10 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
      Start ranging for Nearspeak beacons.
     */
     public func startRangingForNearspeakBeacons() {
+        #if DEBUG
+            println("DBG: start ranging for beacons")
+        #endif
+        
         for beaconRegion in self.nearspeakRegions {
             locationManager.startRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
@@ -125,6 +137,10 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
      Stop ranging for Nearspeak beacons.
     */
     public func stopRangingForNearspeakBeacons() {
+        #if DEBUG
+            println("DBG: stop ranging for beacons")
+        #endif
+        
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
         }
@@ -138,10 +154,10 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
     public func checkForBeaconSupport() -> Bool {
         if CLLocationManager.isRangingAvailable() {
             #if DEBUG
-                println("Beacon support available")
+                println("Beacon ranging support available")
             #endif
         } else {
-            println("ERROR: Beacon support not available")
+            println("ERROR: Beacon ranging support not available")
             
             return false
         }
@@ -187,7 +203,7 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         #if DEBUG
             switch status {
             case .AuthorizedAlways:
-                println("DBG: CoreLocation - Location incl. background support.")
+                println("DBG: CoreLocation - Location including background support.")
             case .AuthorizedWhenInUse:
                 println("DBG: CoreLocation - Location without background support.")
             case .Denied, .NotDetermined, .Restricted:
@@ -231,5 +247,32 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         if let myDelegate = delegate {
             myDelegate.beaconManager(self, bluetoothStateDidChange: central.state)
         }
+    }
+    
+    /**
+     * Delegate method, which gets called if you enter a defined region.
+     */
+    public func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        #if DEBUG
+            println("DBG: didEnterRegion")
+        #endif
+    }
+    
+    /**
+     * Delegate method, which gets called if you exit a defined region.
+     */
+    public func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        #if DEBUG
+            println("DBG: didExitRegion")
+        #endif
+    }
+    
+    /**
+     * Delegate method, which gets called if monitoring failed for a region.
+     */
+    public func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
+        #if DEBUG
+            println("DBG: monitoring failed for region")
+        #endif
     }
 }
