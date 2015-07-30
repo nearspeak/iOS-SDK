@@ -209,7 +209,6 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     private func removeAllTags() {
-        
         dispatch_barrier_async(tagQueue, { () -> Void in
             self._nearbyTags = []
             

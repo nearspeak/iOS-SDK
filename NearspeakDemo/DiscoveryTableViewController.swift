@@ -13,6 +13,8 @@ class DiscoveryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Discovery"
     }
     
     override func viewWillAppear(animated: Bool) {
