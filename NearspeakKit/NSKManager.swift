@@ -255,7 +255,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     private func processFoundBeacons(beacons: [CLBeacon]) {
-        // Add or Update Tags
+        // add or update tags
         for beacon in beacons {
             self.addTagWithBeacon(beacon)
         }

@@ -11,6 +11,8 @@ import NearspeakKit
 
 class DiscoveryTableViewController: UITableViewController {
     
+    var nearbyTags = [NSKTag]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +70,8 @@ class DiscoveryTableViewController: UITableViewController {
     func onNearbyTagsUpdatedNotification(notification: NSNotification) {
         // refresh the table view
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            // copy the nearbyTags from the shared instance
+            self.nearbyTags = NSKManager.sharedInstance.nearbyTags
             self.tableView.reloadData()
         })
     }
@@ -109,14 +113,14 @@ class DiscoveryTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NSKManager.sharedInstance.nearbyTags.count
+        return nearbyTags.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) as! UITableViewCell
         
         // get the current NSKTag item
-        let tag = NSKManager.sharedInstance.nearbyTags[indexPath.row]
+        let tag = nearbyTags[indexPath.row]
         
         if let identifier = tag.tagIdentifier { // tag has data assigned
             cell.textLabel?.text = "Tag identifier: \(identifier)"
