@@ -47,7 +47,7 @@ public protocol NSKBeaconManagerDelegate {
 /**
  The Nearspeak beacon manager class.
 */
-public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralManagerDelegate {
+public class NSKBeaconManager: NSObject {
     // nearspeak iBeacon UUID
     // Kontakt.io:  F7826DA6-4FA2-4E98-8024-BC5B71E0893E
     // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
@@ -176,11 +176,13 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         
         return true
     }
+}
 
-    // MARK: CoreLocationManager delegate methods
-   
+// MARK: CLLocationManagerDelegate
+extension NSKBeaconManager: CLLocationManagerDelegate {
+    
     /**
-     Delegate method, which gets called if you access a new beacon region.
+    Delegate method, which gets called if you access a new beacon region.
     */
     public func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         self.nearspeakRegions[region] = beacons
@@ -197,7 +199,7 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
     }
     
     /**
-     Delegate method, which gets called if core location changes its authorization status.
+    Delegate method, which gets called if core location changes its authorization status.
     */
     public func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         #if DEBUG
@@ -217,14 +219,45 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
     }
     
     /**
-     Delegate method, which gets called if core location manager fails.
+    Delegate method, which gets called if core location manager fails.
     */
     public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("DBG: CoreLocation: didFailWithError: \(error.localizedDescription)")
     }
     
     /**
-     Delegate method, which gets called if core bluetooth manager changes its state.
+    * Delegate method, which gets called if you enter a defined region.
+    */
+    public func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        #if DEBUG
+            println("DBG: didEnterRegion")
+        #endif
+    }
+    
+    /**
+    * Delegate method, which gets called if you exit a defined region.
+    */
+    public func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        #if DEBUG
+            println("DBG: didExitRegion")
+        #endif
+    }
+    
+    /**
+    * Delegate method, which gets called if monitoring failed for a region.
+    */
+    public func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
+        #if DEBUG
+            println("DBG: monitoring failed for region")
+        #endif
+    }
+}
+
+// MARK: CBCentralManagerDelegate
+extension NSKBeaconManager: CBCentralManagerDelegate {
+    
+    /**
+    Delegate method, which gets called if core bluetooth manager changes its state.
     */
     public func centralManagerDidUpdateState(central: CBCentralManager!) {
         #if DEBUG
@@ -247,32 +280,5 @@ public class NSKBeaconManager: NSObject, CLLocationManagerDelegate, CBCentralMan
         if let myDelegate = delegate {
             myDelegate.beaconManager(self, bluetoothStateDidChange: central.state)
         }
-    }
-    
-    /**
-     * Delegate method, which gets called if you enter a defined region.
-     */
-    public func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
-        #if DEBUG
-            println("DBG: didEnterRegion")
-        #endif
-    }
-    
-    /**
-     * Delegate method, which gets called if you exit a defined region.
-     */
-    public func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
-        #if DEBUG
-            println("DBG: didExitRegion")
-        #endif
-    }
-    
-    /**
-     * Delegate method, which gets called if monitoring failed for a region.
-     */
-    public func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
-        #if DEBUG
-            println("DBG: monitoring failed for region")
-        #endif
     }
 }
