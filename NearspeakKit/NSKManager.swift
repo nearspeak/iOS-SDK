@@ -282,18 +282,19 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     private func postContentUpdateNotification() {
         NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationNearbyTagsUpdatedKey, object: nil)
     }
-    
-    // MARK: - BeaconManager delegate methods
-    
+}
+
+// MARK: - NSKBeaconManagerDelegate
+extension NSKManager: NSKBeaconManagerDelegate {
     /**
-     Delegate method which gets called, when new beacons are found.
+    Delegate method which gets called, when new beacons are found.
     */
     public func beaconManager(manager: NSKBeaconManager!, foundBeacons: [CLBeacon]) {
         self.processFoundBeacons(foundBeacons)
     }
     
     /**
-     Delegate method which gets called, when the bluetooth state changed.
+    Delegate method which gets called, when the bluetooth state changed.
     */
     public func beaconManager(manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState) {
         switch bluetoothState {
@@ -305,7 +306,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     /**
-     Delegate method which gets called, when the location state changed.
+    Delegate method which gets called, when the location state changed.
     */
     public func beaconManager(manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus) {
         switch locationState {

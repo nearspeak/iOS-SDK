@@ -178,7 +178,7 @@ public class NSKBeaconManager: NSObject {
     }
 }
 
-// MARK: CLLocationManagerDelegate
+// MARK: - CLLocationManagerDelegate
 extension NSKBeaconManager: CLLocationManagerDelegate {
     
     /**
@@ -253,7 +253,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     }
 }
 
-// MARK: CBCentralManagerDelegate
+// MARK: - CBCentralManagerDelegate
 extension NSKBeaconManager: CBCentralManagerDelegate {
     
     /**
