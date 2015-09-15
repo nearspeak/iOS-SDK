@@ -12,12 +12,29 @@ import Foundation
  NearspeakKit API Utils.
 */
 struct NSKApiUtils {
-    // Nearspeak server urls
-    private static let apiPath = "/api/v1/"
-  
-    /** The URL of the staging server. */
-    static let stagingServer = "http://localhost:3000" + apiPath
+    /** The API base url.
     
-    /** The URL of the production server. */
-    static let productionServer = "http://nearspeak.cloudapp.net" + apiPath
+    :param: development Choose between production and development server.
+    :param: path The URL path.
+    :param: queryItems The query items array.
+    */
+    static func apiURL(development: Bool, path: String, queryItems: [NSURLQueryItem]?) -> NSURLComponents {
+        var baseURL = NSURLComponents()
+        baseURL.scheme = "http"
+        
+        if development {
+            baseURL.host = "localhost"
+            baseURL.port = 3000
+        } else {
+            baseURL.host = "nearspeak.cloudapp.net"
+        }
+        
+        baseURL.path = "/api/v1/" + path
+        
+        if let queryItems = queryItems {
+            baseURL.queryItems = queryItems
+        }
+        
+        return baseURL
+    }
 }

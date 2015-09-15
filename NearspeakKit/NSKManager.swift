@@ -100,7 +100,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     }
     
     /**
-     Show or Hide unassigned Nearspeak tags.
+     Show or hide unassigned Nearspeak tags.
     
      :param: show True if unassinged Nearspeak beacons should als be show.
     */

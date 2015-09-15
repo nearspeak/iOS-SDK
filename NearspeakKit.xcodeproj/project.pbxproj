@@ -24,6 +24,7 @@
 		CD4CFE9A1AE8EB3A00328C95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4CFE981AE8EB3A00328C95 /* Main.storyboard */; };
 		CD4CFE9C1AE8EB3A00328C95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD4CFE9B1AE8EB3A00328C95 /* Images.xcassets */; };
 		CD4CFE9F1AE8EB3A00328C95 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CFE9D1AE8EB3A00328C95 /* LaunchScreen.xib */; };
+		CD61DBD21BA852890008A0E5 /* NSKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD61DBD11BA852890008A0E5 /* NSKLocationManager.swift */; };
 		CDCB0BCD1AE8C77E0006906E /* NearspeakKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CDCB0BCC1AE8C77E0006906E /* NearspeakKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDEA46401AE9152A00A8034A /* NSKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA463F1AE9152A00A8034A /* NSKManager.swift */; };
 		CDEA46421AE9163300A8034A /* DiscoveryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA46411AE9163300A8034A /* DiscoveryTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		CD4CFE991AE8EB3A00328C95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD4CFE9B1AE8EB3A00328C95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD4CFE9E1AE8EB3A00328C95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CD61DBD11BA852890008A0E5 /* NSKLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLocationManager.swift; sourceTree = "<group>"; };
 		CDB05E9B1AE800DA008DA398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB05E9C1AE800DA008DA398 /* NearspeakKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearspeakKitTests.swift; sourceTree = "<group>"; };
 		CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NearspeakKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				CDEC2A9F1AE801C00041ACA7 /* API */,
 				CDEC2A9C1AE801780041ACA7 /* iBeacon */,
 				CDEA463F1AE9152A00A8034A /* NSKManager.swift */,
+				CD61DBD11BA852890008A0E5 /* NSKLocationManager.swift */,
 				CDEA464C1AE93C2200A8034A /* NSKConstants.swift */,
 				CDCB0BCC1AE8C77E0006906E /* NearspeakKit.h */,
 				CDCB0BCA1AE8C77E0006906E /* Supporting Files */,
@@ -509,6 +512,7 @@
 				CD4CFE141AE8CF5D00328C95 /* NSKLinkedTag.swift in Sources */,
 				CD4CFE161AE8CF5D00328C95 /* NSKTagHardware.swift in Sources */,
 				CD4CFE111AE8CF5D00328C95 /* NSKApi.swift in Sources */,
+				CD61DBD21BA852890008A0E5 /* NSKLocationManager.swift in Sources */,
 				CD4CFE131AE8CF5D00328C95 /* NSKApiUtils.swift in Sources */,
 				CD4CFE151AE8CF5D00328C95 /* NSKTag.swift in Sources */,
 			);
