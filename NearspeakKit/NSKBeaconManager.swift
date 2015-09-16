@@ -7,37 +7,37 @@
 //
 
 /*
- * Ranging infos:
- * http://stackoverflow.com/questions/19246493/locationmanagerdidenterregion-not-called-when-a-beacon-is-detected
- */
+* Ranging infos:
+* http://stackoverflow.com/questions/19246493/locationmanagerdidenterregion-not-called-when-a-beacon-is-detected
+*/
 
 import UIKit
 import CoreLocation
 import CoreBluetooth
 
 /**
- Delegate protocol for the Nearspeak beacon manager class.
- */
+Delegate protocol for the Nearspeak beacon manager class.
+*/
 public protocol NSKBeaconManagerDelegate {
-    /** 
-     This method informs, that there are new found beacons available.
-
-     :param: manager The Nearspeak beacon manager object.
-     :param: foundBeacons An array with CLBeacon objects.
-     */
+    /**
+    This method informs, that there are new found beacons available.
+    
+    :param: manager The Nearspeak beacon manager object.
+    :param: foundBeacons An array with CLBeacon objects.
+    */
     func beaconManager(manager: NSKBeaconManager!, foundBeacons:[CLBeacon])
     
     /**
-     This method informs, that there is bluetooth available or not.
-
+    This method informs, that there is bluetooth available or not.
+    
     :param: manager The Nearspeak beacon manager object.
     :param: bluetoothState The CoreBluetoothManagerState object.
     */
     func beaconManager(manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState)
     
     /**
-     This method informs, if there is a location available or not.
-
+    This method informs, if there is a location available or not.
+    
     :param: manager The Nearspeak beacon manager object.
     :param: locationState The CoreLocation CLAuthorizationStatus object.
     */
@@ -45,21 +45,9 @@ public protocol NSKBeaconManagerDelegate {
 }
 
 /**
- The Nearspeak beacon manager class.
+The Nearspeak beacon manager class.
 */
 public class NSKBeaconManager: NSObject {
-    // nearspeak iBeacon UUID
-    // Kontakt.io:  F7826DA6-4FA2-4E98-8024-BC5B71E0893E
-    // Estimote:    B9407F30-F5F8-466E-AFF9-25556B57FE6D
-    // Nearspeak:   CEFCC021-E45F-4520-A3AB-9D1EA22873AD
-    // Starnberger: 699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012
-    // only 20 different UUIDs per App are supported by iOS
-    // TODO: get the UUIDS from the server
-    private let nearspeakProximityUUIDs = [
-        NSUUID(UUIDString:"CEFCC021-E45F-4520-A3AB-9D1EA22873AD"),
-        NSUUID(UUIDString:"699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012")
-    ]
-    
     private var nearspeakRegions: NSMutableDictionary = NSMutableDictionary()
     
     private let locationManager = CLLocationManager()
@@ -69,25 +57,24 @@ public class NSKBeaconManager: NSObject {
     public var delegate: NSKBeaconManagerDelegate! = nil
     
     /**
-     Initializer for this class.
+    Initializer for this class.
     */
-    public override init() {
+    public init(uuids: Set<NSUUID>) {
         super.init()
         
         // init the bluetooth stuff
         centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
         
-        for uuid in nearspeakProximityUUIDs {
-            if let currentUUID = uuid {
-                var beaconRegion = CLBeaconRegion(proximityUUID: currentUUID, identifier: currentUUID.UUIDString)
-                
-                // notify only if the display is on
-                beaconRegion.notifyEntryStateOnDisplay = true
-                beaconRegion.notifyOnEntry = false
-                beaconRegion.notifyOnExit = true
-                
-                self.nearspeakRegions[beaconRegion] = NSArray()
-            }
+        for uuid in uuids {
+            println("DBG: starting for uuid: \(uuid.UUIDString)")
+            var beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: uuid.UUIDString)
+            
+            // notify only if the display is on
+            beaconRegion.notifyEntryStateOnDisplay = true
+            beaconRegion.notifyOnEntry = false
+            beaconRegion.notifyOnExit = true
+            
+            self.nearspeakRegions[beaconRegion] = NSArray()
         }
         
         locationManager.delegate = self
@@ -95,7 +82,7 @@ public class NSKBeaconManager: NSObject {
     }
     
     /**
-     Start monitoring for Nearspeak beacons.
+    Start monitoring for Nearspeak beacons.
     */
     public func startMonitoringForNearspeakBeacons() {
         #if DEBUG
@@ -108,7 +95,7 @@ public class NSKBeaconManager: NSObject {
     }
     
     /**
-     Stop monitoring for Nearspeak beacons.
+    Stop monitoring for Nearspeak beacons.
     */
     public func stopMonitoringForNearspeakBeacons() {
         #if DEBUG
@@ -119,9 +106,9 @@ public class NSKBeaconManager: NSObject {
             locationManager.stopMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
         }
     }
-
+    
     /**
-     Start ranging for Nearspeak beacons.
+    Start ranging for Nearspeak beacons.
     */
     public func startRangingForNearspeakBeacons() {
         #if DEBUG
@@ -134,7 +121,7 @@ public class NSKBeaconManager: NSObject {
     }
     
     /**
-     Stop ranging for Nearspeak beacons.
+    Stop ranging for Nearspeak beacons.
     */
     public func stopRangingForNearspeakBeacons() {
         #if DEBUG
@@ -147,9 +134,9 @@ public class NSKBeaconManager: NSObject {
     }
     
     /**
-     Check if beacon support is enabled.
+    Check if beacon support is enabled.
     
-     :return: Return true if all necessary features are enabled, otherwise false.
+    :return: Return true if all necessary features are enabled, otherwise false.
     */
     public func checkForBeaconSupport() -> Bool {
         if CLLocationManager.isRangingAvailable() {
@@ -180,7 +167,6 @@ public class NSKBeaconManager: NSObject {
 
 // MARK: - CLLocationManagerDelegate
 extension NSKBeaconManager: CLLocationManagerDelegate {
-    
     /**
     Delegate method, which gets called if you access a new beacon region.
     */
@@ -255,7 +241,6 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
 
 // MARK: - CBCentralManagerDelegate
 extension NSKBeaconManager: CBCentralManagerDelegate {
-    
     /**
     Delegate method, which gets called if core bluetooth manager changes its state.
     */

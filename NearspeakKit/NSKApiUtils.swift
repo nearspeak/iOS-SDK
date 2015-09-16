@@ -12,6 +12,9 @@ import Foundation
  NearspeakKit API Utils.
 */
 struct NSKApiUtils {
+    /** Maximal available beacons UUIDS. */
+    static let maximalBeaconUUIDs = 20
+    
     /** The API base url.
     
     :param: development Choose between production and development server.
@@ -37,4 +40,37 @@ struct NSKApiUtils {
         
         return baseURL
     }
+    
+    //MARK: Helper methods
+    
+    /** Helper method to format the hardware id, which is in the most cases the iBeacon UUID, into the correct format. */
+    static func formatHardwareId(hardwareId: String) -> String {
+        return hardwareId.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
+    }
+    
+    /** Create a correct UUID string from the hardwareId. */
+    static func hardwareIdToUUID(hardwareId: String) -> NSUUID? {
+        // 36 chars 8-4-4-4-12
+        // CEFCC021-E45F-4520-A3AB-9D1EA22873AD
+        
+        // check if the string is 36 chars long
+        if count(hardwareId) == 36 {
+            return NSUUID(UUIDString: hardwareId)
+        }
+        
+        // if the string lang is 32 the - are missing
+        if count(hardwareId) == 32 {
+            var uuidString = NSMutableString(string: hardwareId)
+            
+            uuidString.insertString("-", atIndex: 8)
+            uuidString.insertString("-", atIndex: 13)
+            uuidString.insertString("-", atIndex: 18)
+            uuidString.insertString("-", atIndex: 23)
+            
+            return NSUUID(UUIDString: uuidString as String)
+        }
+        
+        return nil
+    }
+    
 }

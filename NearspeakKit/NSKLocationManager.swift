@@ -12,7 +12,7 @@ import CoreLocation
 public class NSKLocationManager: NSObject {
     
     private let locationManager = CLLocationManager()
-    var currentLocation = CLLocation()
+    public var currentLocation = CLLocation()
     
     /**
     Initializer for this class.
@@ -23,7 +23,16 @@ public class NSKLocationManager: NSObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestAlwaysAuthorization()
+        
+        startLocationUpdates()
+    }
+    
+    public func startLocationUpdates() {
         locationManager.startUpdatingLocation()
+    }
+    
+    public func stopLocationUpdates() {
+        locationManager.stopUpdatingLocation()
     }
 }
 

@@ -41,8 +41,8 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
         return nearbyTagsCopy
     }
     
-    private var beaconManager = NSKBeaconManager()
     private var api = NSKApi(devMode: false)
+    private var beaconManager: NSKBeaconManager?
     
     private var showUnassingedBeacons = false
     
@@ -55,10 +55,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     public override init() {
         super.init()
         
-        beaconManager.delegate = self
-        
-        // start the beacon monitoring
-        beaconManager.startMonitoringForNearspeakBeacons()
+        getActiveUUIDs()
     }
     
     // MARK: - NearbyBeacons - public
@@ -69,7 +66,11 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     :return: True if all necessary features are enabled, else false.
     */
     public func checkForBeaconSupport() -> Bool {
-        return beaconManager.checkForBeaconSupport()
+        if let bManager = beaconManager {
+            return bManager.checkForBeaconSupport()
+        }
+        
+        return false
     }
     
     /**
@@ -78,7 +79,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
      :param: showUnassingedBeacons True if unassinged Nearspeak beacons should also be shown.
     */
     public func startBeaconDiscovery(showUnassingedBeacons: Bool) {
-        beaconManager.startRangingForNearspeakBeacons()
+        if let bManager = beaconManager {
+            bManager.startRangingForNearspeakBeacons()
+        }
         
         self.showUnassingedBeacons = showUnassingedBeacons
     }
@@ -87,7 +90,9 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
      Stop the Nearspeak beacon discovery.
     */
     public func stopBeaconDiscovery() {
-        beaconManager.stopRangingForNearspeakBeacons()
+        if let bManager = beaconManager {
+            bManager.stopRangingForNearspeakBeacons()
+        }
     }
     
     /**
@@ -121,6 +126,53 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
                     self.addTag(tag)
                 }
             }
+        }
+    }
+    
+    // MARK: - private
+    private func getActiveUUIDs() {
+        var activeUUIDs = Set<NSUUID>()
+        
+        // add the standard UUIDS
+        // nearspeak iBeacon UUID
+        // Nearspeak:   CEFCC021-E45F-4520-A3AB-9D1EA22873AD
+        // Starnberger: 699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012
+        
+        if let uuid = NSUUID(UUIDString: "CEFCC021-E45F-4520-A3AB-9D1EA22873AD") {
+            activeUUIDs.insert(uuid)
+        }
+        
+        if let uuid = NSUUID(UUIDString: "699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012") {
+            activeUUIDs.insert(uuid)
+        }
+        
+        api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
+            if succeeded {
+                for uuid in uuids {
+                    if activeUUIDs.count < NSKApiUtils.maximalBeaconUUIDs {
+                        if let id = NSKApiUtils.hardwareIdToUUID(uuid) {
+                            activeUUIDs.insert(id)
+                        }
+                    }
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.beaconManager = NSKBeaconManager(uuids: activeUUIDs)
+                self.setupBeaconManager()
+            })
+        }
+    }
+    
+    private func setupBeaconManager() {
+        if let bManager = beaconManager {
+            bManager.delegate = self
+            
+            // start the beacon monitoring
+            bManager.startMonitoringForNearspeakBeacons()
+            
+            // start beacon ranging
+            bManager.startRangingForNearspeakBeacons()
         }
     }
     

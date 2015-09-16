@@ -245,7 +245,7 @@ public class NSKApi: NSObject {
     public func getTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
         let currentLocale: String = NSLocale.preferredLanguages().first as! String
         
-        let idQueryItem = NSURLQueryItem(name: "id", value: formatHardwareId(hardwareIdentifier))
+        let idQueryItem = NSURLQueryItem(name: "id", value: NSKApiUtils.formatHardwareId(hardwareIdentifier))
         let majorQueryItem = NSURLQueryItem(name: "major", value: beaconMajorId)
         let minorQueryItem = NSURLQueryItem(name: "minor", value: beaconMinorId)
         let langQueryItem = NSURLQueryItem(name: "lang", value: currentLocale)
@@ -309,14 +309,5 @@ public class NSKApi: NSObject {
                 }
             }
         }
-    }
-    
-    //MARK: Helper methods
-    
-    /**
-     Helper method to format the hardware id, which is in the most cases the iBeacon UUID, into the correct format.
-    */
-    private func formatHardwareId(hardwareId: String) -> String {
-        return hardwareId.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
     }
 }
