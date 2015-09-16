@@ -66,7 +66,6 @@ public class NSKBeaconManager: NSObject {
         centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
         
         for uuid in uuids {
-            println("DBG: starting for uuid: \(uuid.UUIDString)")
             var beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: uuid.UUIDString)
             
             // notify only if the display is on
