@@ -122,7 +122,7 @@ public class NSKApi: NSObject {
                 requestCompleted(succeeded: false, data: nil)
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    _ = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
+                    //_ = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
                     requestCompleted(succeeded: false, data: nil)
                 } else {
                     requestCompleted(succeeded: true, data: data)
