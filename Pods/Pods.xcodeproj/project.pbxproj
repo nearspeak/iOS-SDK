@@ -20,14 +20,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		12401CF5BBA29B267647ACC673AB9C22 /* PBXContainerItemProxy */ = {
+		1DBC6035D365A1CEAFB9BFE5C7A3F74D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B9A04D3C9B208813656510FDA8ADAE02;
 			remoteInfo = SwiftyJSON;
 		};
-		C086E3C7265FD9B066AD3572EED0A3E1 /* PBXContainerItemProxy */ = {
+		91FEC922A1EC735AA3417B79DB04FDB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -255,7 +255,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3CA0C2DD83D01A2B682C87767C11B019 /* PBXTargetDependency */,
+				280D682AC2C8537D1584185774E91061 /* PBXTargetDependency */,
 			);
 			name = "Pods-NearspeakDemo";
 			productName = "Pods-NearspeakDemo";
@@ -290,7 +290,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F5EA0D63EB9AA16A1F743C800E930160 /* PBXTargetDependency */,
+				7DBCB90D383B8B7913129C03ED755188 /* PBXTargetDependency */,
 			);
 			name = "Pods-NearspeakKit";
 			productName = "Pods-NearspeakKit";
@@ -354,17 +354,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3CA0C2DD83D01A2B682C87767C11B019 /* PBXTargetDependency */ = {
+		280D682AC2C8537D1584185774E91061 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
 			target = B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */;
-			targetProxy = 12401CF5BBA29B267647ACC673AB9C22 /* PBXContainerItemProxy */;
+			targetProxy = 91FEC922A1EC735AA3417B79DB04FDB6 /* PBXContainerItemProxy */;
 		};
-		F5EA0D63EB9AA16A1F743C800E930160 /* PBXTargetDependency */ = {
+		7DBCB90D383B8B7913129C03ED755188 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
 			target = B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */;
-			targetProxy = C086E3C7265FD9B066AD3572EED0A3E1 /* PBXContainerItemProxy */;
+			targetProxy = 1DBC6035D365A1CEAFB9BFE5C7A3F74D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

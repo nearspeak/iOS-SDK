@@ -2,16 +2,15 @@ PODS:
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   SwiftyJSON:
-    :branch: xcode7
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 6eb4cda062fa09c4658e4184f92d822058f226e3
+    :commit: 50583adf21de1f84a4a06f6dff1b2bb09fe0b03b
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
