@@ -1,6 +1,0 @@
-framework module Pods_NearspeakDemo {
-  umbrella header "Pods-NearspeakDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}

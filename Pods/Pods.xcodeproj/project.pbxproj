@@ -7,27 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BED2D87E49640A42CA00E4BAEDA5CD8 /* Pods-NearspeakDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE1F7DD1C0C8D136B17151F2C0A1186 /* Pods-NearspeakDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23F5940A08DB5F0B129F9DFF7CCC3452 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85E62DA073C367ACFC8C77B0B6180FD1 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3769B9433B301E32A9DC200E73038AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
 		39A8A7DB3537BDC61EF618B1737C1EB5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F861572AEF58AF8E8738463397C601 /* SwiftyJSON.swift */; };
-		717E2010E98EC6A46F4F5F3A40FD6656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		545ECAEFF7D2F21ED915F6E08FA3BE45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
+		6734F34542943C2A3E2DCFB2A9B003C2 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A9259DC8666FCAD674277EBB0E6EA3 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90EF20BB8DC0A183A97CEE5D4BE375EE /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3575B7F9DE11C652ED4F55D4D976B /* SwiftyJSON-dummy.m */; };
-		9E37CB0390BE92BCD7C1B7C9F2E31B8B /* Pods-NearspeakKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BABBDDB297DC0DF089C9CCFD2E0D5BB /* Pods-NearspeakKit-dummy.m */; };
-		C7365022605AF87DC6EB54660543C3FD /* Pods-NearspeakKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBB87E10BAAA73B07459E468F449AF7 /* Pods-NearspeakKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE694ED0F7130624EC45F95709E8175C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */; };
-		F030B53A50201DC4D94AECB10086CBE6 /* Pods-NearspeakDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09A4901E7FA27AF1ABB81FDB1BD423 /* Pods-NearspeakDemo-dummy.m */; };
+		9115A811C9182CA28ACAB493075151F8 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 260E16FB198EF1B285D727F1A882A598 /* Pods-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1DBC6035D365A1CEAFB9BFE5C7A3F74D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B9A04D3C9B208813656510FDA8ADAE02;
-			remoteInfo = SwiftyJSON;
-		};
-		91FEC922A1EC735AA3417B79DB04FDB6 /* PBXContainerItemProxy */ = {
+		6783A3D63CFF5BB607905E8253936F12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -37,55 +27,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04BE4D86022213FF7074868F59CE1548 /* Pods-NearspeakDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NearspeakDemo.modulemap"; sourceTree = "<group>"; };
 		1097DBC01829AA03986DD1B2D2E44FD0 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
-		1B09A4901E7FA27AF1ABB81FDB1BD423 /* Pods-NearspeakDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NearspeakDemo-dummy.m"; sourceTree = "<group>"; };
-		1CE1F7DD1C0C8D136B17151F2C0A1186 /* Pods-NearspeakDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NearspeakDemo-umbrella.h"; sourceTree = "<group>"; };
-		26B18DDAF6DC7E5E771EFD97BE313CAD /* Pods-NearspeakKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NearspeakKit.modulemap"; sourceTree = "<group>"; };
-		2A442D259516AFE7287D42B7EBEBB9A0 /* Pods-NearspeakDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearspeakDemo.release.xcconfig"; sourceTree = "<group>"; };
+		2214A39CB5E59F50C071EAD20D50AD3C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		260E16FB198EF1B285D727F1A882A598 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
 		31F861572AEF58AF8E8738463397C601 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
-		4BABBDDB297DC0DF089C9CCFD2E0D5BB /* Pods-NearspeakKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NearspeakKit-dummy.m"; sourceTree = "<group>"; };
-		4CD8DE0AB9B59B92C6FEA0C4F5CFEFA8 /* Pods-NearspeakDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearspeakDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		4E28714124650FF74590436520362D50 /* Pods-NearspeakDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NearspeakDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 		5C3565AD90BD4333EF52FAD041283528 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
-		71897C2D4ABC599446873A6FDCCF967E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77F5540DD374ACA5D095301F89DD16CA /* Pods-NearspeakKit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NearspeakKit-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7FED9787C395A82F17E86F64F66CEC8B /* Pods-NearspeakKit-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearspeakKit-frameworks.sh"; sourceTree = "<group>"; };
-		82C13FC12539E91CC62880EE1EBA5781 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7577F9FB20F55BC08D0792303F7338E4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
 		85E62DA073C367ACFC8C77B0B6180FD1 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		870EA08EBDC0BC925BAD3D380783DE7D /* Pods-NearspeakDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearspeakDemo-frameworks.sh"; sourceTree = "<group>"; };
-		915494EC1B8458CABA97EB77B07060D4 /* Pods_NearspeakDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearspeakDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F89DB0D6D645AA2B11DD2168E276BD6 /* Pods-NearspeakKit-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearspeakKit-resources.sh"; sourceTree = "<group>"; };
+		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		96A9259DC8666FCAD674277EBB0E6EA3 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
 		A0D3575B7F9DE11C652ED4F55D4D976B /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		A1EA796A892BA2EC84FF3A85D5E15CBE /* Pods-NearspeakKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearspeakKit.release.xcconfig"; sourceTree = "<group>"; };
-		A9E090DDF1AAB1E50B4B6CD289CD74BD /* Pods-NearspeakDemo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NearspeakDemo-resources.sh"; sourceTree = "<group>"; };
-		AEBB87E10BAAA73B07459E468F449AF7 /* Pods-NearspeakKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NearspeakKit-umbrella.h"; sourceTree = "<group>"; };
+		B26FF3DE916F9AE131DA1247EB912331 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BAE1985AC3E1BF96DB98433EF7D56F95 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		BDFD6BDED1543DF5F7EBD546120C5980 /* SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
 		C00A583D9EF4FB3E4B1DD2051558E9CF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C54F42944C89A9C8218A8325647BC88F /* Pods_NearspeakKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearspeakKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D09848862238B9089DD4D0DA30396A61 /* Pods-NearspeakDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NearspeakDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E27DE222D673B38535D2F41931879255 /* Pods-NearspeakKit-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NearspeakKit-acknowledgements.plist"; sourceTree = "<group>"; };
+		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E4EC4B75BAE91861986227C1BE7B931E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB78313E19498AA80772E29E0E102CB7 /* Pods-NearspeakKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NearspeakKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		034425A9179D38B2A24D05222E8FADBB /* Frameworks */ = {
+		749843799E65FEF178F8DFA6DD7A79C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE694ED0F7130624EC45F95709E8175C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1156C3ADD6E4EE61277AD73EC811D1D7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				717E2010E98EC6A46F4F5F3A40FD6656 /* Foundation.framework in Frameworks */,
+				545ECAEFF7D2F21ED915F6E08FA3BE45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +103,24 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
+				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
+				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
+				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
+				260E16FB198EF1B285D727F1A882A598 /* Pods-dummy.m */,
+				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
+				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
+				96A9259DC8666FCAD674277EBB0E6EA3 /* Pods-umbrella.h */,
+				2214A39CB5E59F50C071EAD20D50AD3C /* Pods.debug.xcconfig */,
+				7577F9FB20F55BC08D0792303F7338E4 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -139,35 +128,16 @@
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				BD1E3C710F12F4B4C092FC8E2AD22110 /* Pods */,
 				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
-				9F9201C40DD490260AF1920C1D20D6E8 /* Targets Support Files */,
+				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9F9201C40DD490260AF1920C1D20D6E8 /* Targets Support Files */ = {
+		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D80E095DF194930F2B8F99102F0F7CC5 /* Pods-NearspeakDemo */,
-				AAEBE2C0B449CC79E497DE75CF1C19D8 /* Pods-NearspeakKit */,
+				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		AAEBE2C0B449CC79E497DE75CF1C19D8 /* Pods-NearspeakKit */ = {
-			isa = PBXGroup;
-			children = (
-				82C13FC12539E91CC62880EE1EBA5781 /* Info.plist */,
-				26B18DDAF6DC7E5E771EFD97BE313CAD /* Pods-NearspeakKit.modulemap */,
-				77F5540DD374ACA5D095301F89DD16CA /* Pods-NearspeakKit-acknowledgements.markdown */,
-				E27DE222D673B38535D2F41931879255 /* Pods-NearspeakKit-acknowledgements.plist */,
-				4BABBDDB297DC0DF089C9CCFD2E0D5BB /* Pods-NearspeakKit-dummy.m */,
-				7FED9787C395A82F17E86F64F66CEC8B /* Pods-NearspeakKit-frameworks.sh */,
-				9F89DB0D6D645AA2B11DD2168E276BD6 /* Pods-NearspeakKit-resources.sh */,
-				AEBB87E10BAAA73B07459E468F449AF7 /* Pods-NearspeakKit-umbrella.h */,
-				FB78313E19498AA80772E29E0E102CB7 /* Pods-NearspeakKit.debug.xcconfig */,
-				A1EA796A892BA2EC84FF3A85D5E15CBE /* Pods-NearspeakKit.release.xcconfig */,
-			);
-			name = "Pods-NearspeakKit";
-			path = "Target Support Files/Pods-NearspeakKit";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -189,47 +159,20 @@
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				915494EC1B8458CABA97EB77B07060D4 /* Pods_NearspeakDemo.framework */,
-				C54F42944C89A9C8218A8325647BC88F /* Pods_NearspeakKit.framework */,
+				B26FF3DE916F9AE131DA1247EB912331 /* Pods.framework */,
 				EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D80E095DF194930F2B8F99102F0F7CC5 /* Pods-NearspeakDemo */ = {
-			isa = PBXGroup;
-			children = (
-				71897C2D4ABC599446873A6FDCCF967E /* Info.plist */,
-				04BE4D86022213FF7074868F59CE1548 /* Pods-NearspeakDemo.modulemap */,
-				D09848862238B9089DD4D0DA30396A61 /* Pods-NearspeakDemo-acknowledgements.markdown */,
-				4E28714124650FF74590436520362D50 /* Pods-NearspeakDemo-acknowledgements.plist */,
-				1B09A4901E7FA27AF1ABB81FDB1BD423 /* Pods-NearspeakDemo-dummy.m */,
-				870EA08EBDC0BC925BAD3D380783DE7D /* Pods-NearspeakDemo-frameworks.sh */,
-				A9E090DDF1AAB1E50B4B6CD289CD74BD /* Pods-NearspeakDemo-resources.sh */,
-				1CE1F7DD1C0C8D136B17151F2C0A1186 /* Pods-NearspeakDemo-umbrella.h */,
-				4CD8DE0AB9B59B92C6FEA0C4F5CFEFA8 /* Pods-NearspeakDemo.debug.xcconfig */,
-				2A442D259516AFE7287D42B7EBEBB9A0 /* Pods-NearspeakDemo.release.xcconfig */,
-			);
-			name = "Pods-NearspeakDemo";
-			path = "Target Support Files/Pods-NearspeakDemo";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5E21E88FEAE3721E5557C2BF8EDF2DB9 /* Headers */ = {
+		5C1B89B5E0D86F549D7688F0DA62E22D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7365022605AF87DC6EB54660543C3FD /* Pods-NearspeakKit-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B669AD60CF95DD19DB83E3584FB0A38D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BED2D87E49640A42CA00E4BAEDA5CD8 /* Pods-NearspeakDemo-umbrella.h in Headers */,
+				6734F34542943C2A3E2DCFB2A9B003C2 /* Pods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,22 +187,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9E4F4F8E6AD9C3CF2B5937E6D86A1466 /* Pods-NearspeakDemo */ = {
+		47C038C5C760D96C7F0790B1AD01C216 /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE07BFE95BD0269A2C867F4A4124BF49 /* Build configuration list for PBXNativeTarget "Pods-NearspeakDemo" */;
+			buildConfigurationList = 26B11D9604124339845F4EADA72FDEF5 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				067F366F1A73A9289889112EF137C77D /* Sources */,
-				034425A9179D38B2A24D05222E8FADBB /* Frameworks */,
-				B669AD60CF95DD19DB83E3584FB0A38D /* Headers */,
+				E60806DF5478D86515496EDF95E0A8E6 /* Sources */,
+				749843799E65FEF178F8DFA6DD7A79C8 /* Frameworks */,
+				5C1B89B5E0D86F549D7688F0DA62E22D /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				280D682AC2C8537D1584185774E91061 /* PBXTargetDependency */,
+				A1D9170F80EC8C23289ABDC9095DC045 /* PBXTargetDependency */,
 			);
-			name = "Pods-NearspeakDemo";
-			productName = "Pods-NearspeakDemo";
-			productReference = 915494EC1B8458CABA97EB77B07060D4 /* Pods_NearspeakDemo.framework */;
+			name = Pods;
+			productName = Pods;
+			productReference = B26FF3DE916F9AE131DA1247EB912331 /* Pods.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */ = {
@@ -277,24 +220,6 @@
 			name = SwiftyJSON;
 			productName = SwiftyJSON;
 			productReference = EB4CB50B42FA0112BD3CB968CB68AC93 /* SwiftyJSON.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C5511BF9DADA0E6B7692478B8B8C79F0 /* Pods-NearspeakKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8BD214CC02886A2EF0C58CAFF07EB368 /* Build configuration list for PBXNativeTarget "Pods-NearspeakKit" */;
-			buildPhases = (
-				FA1F174BFE338D1E10C3FF7493CB71C9 /* Sources */,
-				1156C3ADD6E4EE61277AD73EC811D1D7 /* Frameworks */,
-				5E21E88FEAE3721E5557C2BF8EDF2DB9 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7DBCB90D383B8B7913129C03ED755188 /* PBXTargetDependency */,
-			);
-			name = "Pods-NearspeakKit";
-			productName = "Pods-NearspeakKit";
-			productReference = C54F42944C89A9C8218A8325647BC88F /* Pods_NearspeakKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -318,22 +243,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9E4F4F8E6AD9C3CF2B5937E6D86A1466 /* Pods-NearspeakDemo */,
-				C5511BF9DADA0E6B7692478B8B8C79F0 /* Pods-NearspeakKit */,
+				47C038C5C760D96C7F0790B1AD01C216 /* Pods */,
 				B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		067F366F1A73A9289889112EF137C77D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F030B53A50201DC4D94AECB10086CBE6 /* Pods-NearspeakDemo-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		857F4306B6C6D8D06B3382A44BD3CD69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,28 +259,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA1F174BFE338D1E10C3FF7493CB71C9 /* Sources */ = {
+		E60806DF5478D86515496EDF95E0A8E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E37CB0390BE92BCD7C1B7C9F2E31B8B /* Pods-NearspeakKit-dummy.m in Sources */,
+				9115A811C9182CA28ACAB493075151F8 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		280D682AC2C8537D1584185774E91061 /* PBXTargetDependency */ = {
+		A1D9170F80EC8C23289ABDC9095DC045 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
 			target = B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */;
-			targetProxy = 91FEC922A1EC735AA3417B79DB04FDB6 /* PBXContainerItemProxy */;
-		};
-		7DBCB90D383B8B7913129C03ED755188 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftyJSON;
-			target = B9A04D3C9B208813656510FDA8ADAE02 /* SwiftyJSON */;
-			targetProxy = 1DBC6035D365A1CEAFB9BFE5C7A3F74D /* PBXContainerItemProxy */;
+			targetProxy = 6783A3D63CFF5BB607905E8253936F12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -396,36 +306,6 @@
 			};
 			name = Release;
 		};
-		5FD9D43C30F9740F38678D2E13E3FF73 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB78313E19498AA80772E29E0E102CB7 /* Pods-NearspeakKit.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NearspeakKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-NearspeakKit/Pods-NearspeakKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_NearspeakKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		72B31FB4A22E6D58FB51B2774BB71419 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BDFD6BDED1543DF5F7EBD546120C5980 /* SwiftyJSON-Private.xcconfig */;
@@ -454,9 +334,9 @@
 			};
 			name = Debug;
 		};
-		A3AEAFB37E91ECC1FD667D1C9484E741 /* Release */ = {
+		956CE4E27A3C146DC1D3990766815C87 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A442D259516AFE7287D42B7EBEBB9A0 /* Pods-NearspeakDemo.release.xcconfig */;
+			baseConfigurationReference = 7577F9FB20F55BC08D0792303F7338E4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -465,16 +345,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NearspeakDemo/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-NearspeakDemo/Pods-NearspeakDemo.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_NearspeakDemo;
+				PRODUCT_NAME = Pods;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -522,9 +402,9 @@
 			};
 			name = Debug;
 		};
-		B32B73F5F060C73C75625D4ACFA97737 /* Debug */ = {
+		FA71E021E4D1B09EB80182F783F22691 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CD8DE0AB9B59B92C6FEA0C4F5CFEFA8 /* Pods-NearspeakDemo.debug.xcconfig */;
+			baseConfigurationReference = 2214A39CB5E59F50C071EAD20D50AD3C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -533,16 +413,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NearspeakDemo/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-NearspeakDemo/Pods-NearspeakDemo.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_NearspeakDemo;
+				PRODUCT_NAME = Pods;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -586,38 +466,18 @@
 			};
 			name = Release;
 		};
-		FDE3D35A7B366F75930FEE6A77654836 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1EA796A892BA2EC84FF3A85D5E15CBE /* Pods-NearspeakKit.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-NearspeakKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-NearspeakKit/Pods-NearspeakKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_NearspeakKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		26B11D9604124339845F4EADA72FDEF5 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA71E021E4D1B09EB80182F783F22691 /* Debug */,
+				956CE4E27A3C146DC1D3990766815C87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -632,24 +492,6 @@
 			buildConfigurations = (
 				72B31FB4A22E6D58FB51B2774BB71419 /* Debug */,
 				0B467278A8D4094DE833171E10E6E12F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8BD214CC02886A2EF0C58CAFF07EB368 /* Build configuration list for PBXNativeTarget "Pods-NearspeakKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5FD9D43C30F9740F38678D2E13E3FF73 /* Debug */,
-				FDE3D35A7B366F75930FEE6A77654836 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE07BFE95BD0269A2C867F4A4124BF49 /* Build configuration list for PBXNativeTarget "Pods-NearspeakDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B32B73F5F060C73C75625D4ACFA97737 /* Debug */,
-				A3AEAFB37E91ECC1FD667D1C9484E741 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -69,9 +69,9 @@ class NSKApiParser: NSObject {
                 
                 if let linkedTagsArray = tagDict["linked_tags"].array {
                     for linkedTagDict in linkedTagsArray {                        
-                        var id : NSNumber = linkedTagDict["id"].numberValue
-                        var name : String = linkedTagDict["name"].stringValue
-                        var identifier : String = linkedTagDict["tag_identifier"].stringValue
+                        let id : NSNumber = linkedTagDict["id"].numberValue
+                        let name : String = linkedTagDict["name"].stringValue
+                        let identifier : String = linkedTagDict["tag_identifier"].stringValue
                         
                         let newLinkedTag = NSKLinkedTag(id: id, name: name, identifier: identifier)
                         
