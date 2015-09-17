@@ -23,13 +23,15 @@ struct NSKApiUtils {
     */
     static func apiURL(development: Bool, path: String, queryItems: [NSURLQueryItem]?) -> NSURLComponents {
         let baseURL = NSURLComponents()
-        baseURL.scheme = "http"
+        baseURL.scheme = "https"
         
         if development {
+            baseURL.scheme = "http"
             baseURL.host = "localhost"
             baseURL.port = 3000
         } else {
-            baseURL.host = "nearspeak.cloudapp.net"
+            baseURL.host = "api.nearspeak.net"
+            baseURL.port = 443
         }
         
         baseURL.path = "/api/v1/" + path
