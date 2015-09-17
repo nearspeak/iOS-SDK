@@ -45,7 +45,7 @@ class NSKApiParser: NSObject {
             var tags = [NSKTag]()
             
             for tagDict in dataArray {
-                var tag = NSKTag(id: tagDict["id"].numberValue)
+                let tag = NSKTag(id: tagDict["id"].numberValue)
                 
                 tag.tagDescription = tagDict["description"].stringValue
                 tag.tagCategoryId = tagDict["tag_category_id"].numberValue
@@ -65,7 +65,7 @@ class NSKApiParser: NSObject {
                 tag.parentIdentifier = tagDict["parent_tag"]["identifier"].stringValue
                 
                 // linked tags
-                var linkedTags: NSMutableArray = NSMutableArray()
+                let linkedTags: NSMutableArray = NSMutableArray()
                 
                 if let linkedTagsArray = tagDict["linked_tags"].array {
                     for linkedTagDict in linkedTagsArray {                        

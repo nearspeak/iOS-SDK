@@ -117,7 +117,7 @@ class DiscoveryTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) 
         
         // get the current NSKTag item
         let tag = nearbyTags[indexPath.row]

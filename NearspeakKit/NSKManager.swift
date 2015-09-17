@@ -15,7 +15,7 @@ private let _NSKManagerSharedInstance = NSKManager()
 /**
  Nearspeak Manager class.
 */
-public class NSKManager: NSObject, NSKBeaconManagerDelegate {
+public class NSKManager: NSObject {
     
     /**
      Get the singelton object of this class.
@@ -76,7 +76,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     /**
      Start the Nearspeak beacon discovery.
     
-     :param: showUnassingedBeacons True if unassinged Nearspeak beacons should also be shown.
+     - parameter showUnassingedBeacons: True if unassinged Nearspeak beacons should also be shown.
     */
     public func startBeaconDiscovery(showUnassingedBeacons: Bool) {
         if let bManager = beaconManager {
@@ -98,7 +98,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     /**
      Get a Nearspeak tag object from the nearby beacons array.
     
-     :param: index The index of the Nearspeak tag object.
+     - parameter index: The index of the Nearspeak tag object.
     */
     public func getTagAtIndex(index: Int) -> NSKTag? {
         return _nearbyTags[index]
@@ -107,7 +107,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     /**
      Show or hide unassigned Nearspeak tags.
     
-     :param: show True if unassinged Nearspeak beacons should als be show.
+     - parameter show: True if unassinged Nearspeak beacons should als be show.
     */
     public func showUnassingedBeacons(show: Bool) {
         if show != showUnassingedBeacons {
@@ -208,7 +208,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
     
     private func addUnknownTagWithBeacon(beacon: CLBeacon) {
         if showUnassingedBeacons {
-            var tag = NSKTag(id: 0)
+            let tag = NSKTag(id: 0)
             tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
             tag.hardwareBeacon = beacon
             
@@ -274,7 +274,7 @@ public class NSKManager: NSObject, NSKBeaconManagerDelegate {
         self.beacons = []
     }
     
-    private func beaconsAreTheSame(#beaconOne: CLBeacon, beaconTwo: CLBeacon) -> Bool {
+    private func beaconsAreTheSame(beaconOne beaconOne: CLBeacon, beaconTwo: CLBeacon) -> Bool {
         if beaconOne.proximityUUID.UUIDString == beaconTwo.proximityUUID.UUIDString {
             if beaconOne.major.longLongValue == beaconTwo.major.longLongValue {
                 if beaconOne.minor.longLongValue == beaconTwo.minor.longLongValue {

@@ -37,7 +37,7 @@ public class NSKApi: NSObject {
     /**
      Init the API object.
 
-     :param: devMode Connect to the staging oder production server.
+     - parameter devMode: Connect to the staging oder production server.
     */
     public init(devMode: Bool) {
         super.init()
@@ -89,10 +89,10 @@ public class NSKApi: NSObject {
     /**
      Make the api call to the server
 
-     :param: apiURL The URL of the api call.
-     :param: httpMethod The HTTP Method to use for the request.
-     :param: params The HTTP Header Parameters.
-     :param: requestCompleted The request completion block.
+     - parameter apiURL: The URL of the api call.
+     - parameter httpMethod: The HTTP Method to use for the request.
+     - parameter params: The HTTP Header Parameters.
+     - parameter requestCompleted: The request completion block.
     */
     private func apiCall(apiURL: NSURL, httpMethod: HTTPMethod, params: Dictionary<String, String>?, requestCompleted: (succeeded: Bool, data: NSData?) -> ()) {
         let request = NSMutableURLRequest(URL: apiURL)
@@ -103,8 +103,12 @@ public class NSKApi: NSObject {
             request.HTTPMethod = httpMethod.rawValue
             
             if let para = params {
-                var err : NSError?
-                request.HTTPBody = NSJSONSerialization.dataWithJSONObject(para, options: nil, error: &err)
+                do {
+                    request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(para, options: [])
+                } catch let error as NSError {
+                    request.HTTPBody = nil
+                    print("ERROR: \(error.localizedDescription)")
+                }
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
             }
@@ -113,12 +117,12 @@ public class NSKApi: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-            if let responseError = error {
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            if let _ = error {
                 requestCompleted(succeeded: false, data: nil)
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    var statusError = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
+                    _ = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
                     requestCompleted(succeeded: false, data: nil)
                 } else {
                     requestCompleted(succeeded: true, data: data)
@@ -132,11 +136,11 @@ public class NSKApi: NSObject {
     /**
      API call to get the authentication token from the API server.
 
-     :param: username: The username of the user.
-     :param: password: The password of the user.
-     :param: requestCompleted The request completion block.
+     - parameter username:: The username of the user.
+     - parameter password:: The password of the user.
+     - parameter requestCompleted: The request completion block.
     */
-    public func getAuthToken(#username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String?) -> ()) {
+    public func getAuthToken(username username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String?) -> ()) {
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "login/getAuthToken", queryItems: nil)
         
         if let apiURL = apiComponents.URL {
@@ -163,7 +167,7 @@ public class NSKApi: NSObject {
     /**
      API call to get all Nearspeak tag from the user.
 
-     :param: requestCompleted The request completion block.
+     - parameter requestCompleted: The request completion block.
     */
     public func getMyTags(requestCompleted: (succeeded: Bool, tags: [NSKTag]) ->()) {
         if let token = self.auth_token {
@@ -189,7 +193,7 @@ public class NSKApi: NSObject {
                     }
                 })
             } else {
-                println("ERROR: auth token not found")
+                print("ERROR: auth token not found")
             }
         }
     }
@@ -197,11 +201,11 @@ public class NSKApi: NSObject {
     /**
      API call to get a Nearspeak tag by its tag identifier.
 
-     :param: tagIdentifier The tag identifier of the tag.
-     :param: requestCompleted The request completion block.
+     - parameter tagIdentifier: The tag identifier of the tag.
+     - parameter requestCompleted: The request completion block.
     */
-    public func getTagById(#tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as! NSString
+    public func getTagById(tagIdentifier tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
         
         let idQueryItem = NSURLQueryItem(name: "id", value: tagIdentifier)
         let langQueryItem = NSURLQueryItem(name: "lang", value: (currentLocale as String))
@@ -237,13 +241,13 @@ public class NSKApi: NSObject {
     /**
     API call to get a Nearspeak tag by its hardware identifier.
     
-    :param: hardwareIdentifier The hardware identifier of the tag.
-    :param: beaconMajorId The iBeacon major id.
-    :param: beaconMinorId The iBeacon minor id.
-    :param: requestCompleted The request completion block.
+    - parameter hardwareIdentifier: The hardware identifier of the tag.
+    - parameter beaconMajorId: The iBeacon major id.
+    - parameter beaconMinorId: The iBeacon minor id.
+    - parameter requestCompleted: The request completion block.
     */
-    public func getTagByHardwareId(#hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: String = NSLocale.preferredLanguages().first as! String
+    public func getTagByHardwareId(hardwareIdentifier hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+        let currentLocale: String = NSLocale.preferredLanguages().first as String!
         
         let idQueryItem = NSURLQueryItem(name: "id", value: NSKApiUtils.formatHardwareId(hardwareIdentifier))
         let majorQueryItem = NSURLQueryItem(name: "major", value: beaconMajorId)
@@ -253,7 +257,7 @@ public class NSKApi: NSObject {
         let latitudeQueryItem = NSURLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)")
         let longitudeQueryItem = NSURLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)")
         
-        var queryItems = [idQueryItem, majorQueryItem, minorQueryItem, langQueryItem, typeQueryItem, latitudeQueryItem, longitudeQueryItem]
+        let queryItems = [idQueryItem, majorQueryItem, minorQueryItem, langQueryItem, typeQueryItem, latitudeQueryItem, longitudeQueryItem]
         
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/showByHardwareId", queryItems: queryItems)
         
@@ -284,7 +288,7 @@ public class NSKApi: NSObject {
     /**
      API call to get all supported iBeacon UUIDs.
 
-     :param: requestCompleted The request completion block.
+     - parameter requestCompleted: The request completion block.
     */
     public func getSupportedBeaconsUUIDs(requestCompleted: (succeeded: Bool, uuids: [String]) ->()) {
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/supportedBeaconUUIDs", queryItems: nil)

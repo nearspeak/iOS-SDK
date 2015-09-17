@@ -17,12 +17,12 @@ struct NSKApiUtils {
     
     /** The API base url.
     
-    :param: development Choose between production and development server.
-    :param: path The URL path.
-    :param: queryItems The query items array.
+    - parameter development: Choose between production and development server.
+    - parameter path: The URL path.
+    - parameter queryItems: The query items array.
     */
     static func apiURL(development: Bool, path: String, queryItems: [NSURLQueryItem]?) -> NSURLComponents {
-        var baseURL = NSURLComponents()
+        let baseURL = NSURLComponents()
         baseURL.scheme = "http"
         
         if development {
@@ -54,13 +54,13 @@ struct NSKApiUtils {
         // CEFCC021-E45F-4520-A3AB-9D1EA22873AD
         
         // check if the string is 36 chars long
-        if count(hardwareId) == 36 {
+        if hardwareId.characters.count == 36 {
             return NSUUID(UUIDString: hardwareId)
         }
         
         // if the string lang is 32 the - are missing
-        if count(hardwareId) == 32 {
-            var uuidString = NSMutableString(string: hardwareId)
+        if hardwareId.characters.count == 32 {
+            let uuidString = NSMutableString(string: hardwareId)
             
             uuidString.insertString("-", atIndex: 8)
             uuidString.insertString("-", atIndex: 13)

@@ -26,10 +26,10 @@ class FetchViewController: UIViewController {
     }
     
     @IBAction func fetchButtonPushed(sender: AnyObject) {
-        if !tagIdentifierLabel.text.isEmpty {
+        if !tagIdentifierLabel.text!.isEmpty {
             self.tagIdentifierLabel.resignFirstResponder()
             
-            queryNearspeak(tagIdentifier: tagIdentifierLabel.text)
+            queryNearspeak(tagIdentifier: tagIdentifierLabel.text!)
         }
     }
 
@@ -37,7 +37,7 @@ class FetchViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    private func queryNearspeak(#tagIdentifier: String) {
+    private func queryNearspeak(tagIdentifier tagIdentifier: String) {
         fetchingActivityIndicator.startAnimating()
         
         // query for a nearspeak tag with a given tag identifier
@@ -51,7 +51,7 @@ class FetchViewController: UIViewController {
                     }
                 }
             } else {
-                var alertController = UIAlertController(title: "ERROR", message: "Error while fetching tag", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: "ERROR", message: "Error while fetching tag", preferredStyle: .Alert)
                 
                 alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                 
@@ -63,7 +63,7 @@ class FetchViewController: UIViewController {
     }
     
     private func fetchImageFromURL(imageURL: NSURL) -> UIImage? {
-        var imageData = NSData(contentsOfURL: imageURL)
+        let imageData = NSData(contentsOfURL: imageURL)
         
         if let imageData = imageData {
             return UIImage(data: imageData)
