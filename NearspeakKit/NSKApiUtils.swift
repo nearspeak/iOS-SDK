@@ -30,8 +30,8 @@ struct NSKApiUtils {
             baseURL.host = "localhost"
             baseURL.port = 3000
         } else {
-            baseURL.host = "api.nearspeak.net"
-            baseURL.port = 443
+            baseURL.host = "api.nearspeak.at"
+            //baseURL.port = 443
         }
         
         baseURL.path = "/api/v1/" + path

@@ -98,6 +98,8 @@ public class NSKApi: NSObject {
         let request = NSMutableURLRequest(URL: apiURL)
         let session = NSURLSession.sharedSession()
         
+        //let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        
         switch httpMethod {
         case .POST:
             request.HTTPMethod = httpMethod.rawValue
@@ -113,11 +115,13 @@ public class NSKApi: NSObject {
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
             }
         default: // GET
-            request.HTTPMethod = httpMethod.rawValue
+            // GET is the default value
+            //request.HTTPMethod = httpMethod.rawValue
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let _ = error {
                 requestCompleted(succeeded: false, data: nil)
             } else if let httpResponse = response as? NSHTTPURLResponse {
@@ -128,7 +132,7 @@ public class NSKApi: NSObject {
                     requestCompleted(succeeded: true, data: data)
                 }
             }
-        })
+        }
         
         task.resume()
     }
