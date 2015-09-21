@@ -8,10 +8,11 @@ Pod::Spec.new do |s|
 
   
 
-  s.requires_arc          = true
-  s.ios.deployment_target = "8.0"
-  s.source                = { :git => "https://github.com/nearspeak/iOS-SDK.git", :tag => s.version }
-  s.source_files          = "NearspeakKit/*.swift"
+  s.requires_arc              = true
+  s.ios.deployment_target     = "8.0"
+  s.watchos.deployment_target = "2.0"
+  s.source                    = { :git => "https://github.com/nearspeak/iOS-SDK.git", :tag => s.version }
+  s.source_files              = "NearspeakKit/*.swift"
 
-  s.dependency "SwiftyJSON", ">= 2.2"
+  s.dependency "SwiftyJSON", ">= 2.3"
 end
