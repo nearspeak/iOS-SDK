@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 /**
  This class parses the API response objects.

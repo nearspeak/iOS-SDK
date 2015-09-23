@@ -1,19 +1,10 @@
 PODS:
-  - SwiftyJSON (2.3.1)
+  - Argo (2.0.0)
 
 DEPENDENCIES:
-  - SwiftyJSON (from `https://github.com/patricks/SwiftyJSON.git`)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :git: https://github.com/patricks/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 0164284a750a31b5668efd3506ec09f728d4c7e3
-    :git: https://github.com/patricks/SwiftyJSON.git
+  - Argo
 
 SPEC CHECKSUMS:
-  SwiftyJSON: e6e6fe6ed4de7a91e88240b0eb723b192bde6a29
+  Argo: 43133aa1612b249bbadd24aca94605aa0f13690d
 
 COCOAPODS: 0.38.2
