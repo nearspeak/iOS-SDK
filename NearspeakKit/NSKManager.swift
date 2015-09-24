@@ -42,8 +42,8 @@ public class NSKManager: NSObject {
     }
     
     public var unassignedTags: [NSKTag] {
-        var nearbyTagsCopy: [NSKTag]!
-        var unassingedTags: [NSKTag]!
+        var nearbyTagsCopy: [NSKTag] = []
+        var unassingedTags: [NSKTag] = []
         
         dispatch_sync(tagQueue) {
             nearbyTagsCopy = self._nearbyTags
