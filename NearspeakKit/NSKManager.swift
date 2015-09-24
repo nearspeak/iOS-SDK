@@ -41,6 +41,24 @@ public class NSKManager: NSObject {
         return nearbyTagsCopy
     }
     
+    public var unassignedTags: [NSKTag] {
+        var nearbyTagsCopy: [NSKTag]!
+        var unassingedTags: [NSKTag]!
+        
+        dispatch_sync(tagQueue) {
+            nearbyTagsCopy = self._nearbyTags
+        }
+        
+        // remove assigend tags
+        for tag in nearbyTagsCopy {
+            if tag.tagIdentifier == nil {
+                unassingedTags.append(tag)
+            }
+        }
+        
+        return unassingedTags
+    }
+    
     private var api = NSKApi(devMode: false)
     private var beaconManager: NSKBeaconManager?
     
