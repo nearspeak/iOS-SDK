@@ -32,13 +32,25 @@ public class NSKManager: NSObject {
      Array of all currently nearby Nearspeak tags.
     */
     public var nearbyTags: [NSKTag] {
-        var nearbyTagsCopy: [NSKTag]!
+        var nearbyTagsCopy: [NSKTag] = []
+        var tags: [NSKTag] = []
         
         dispatch_sync(tagQueue) {
             nearbyTagsCopy = self._nearbyTags
         }
         
-        return nearbyTagsCopy
+        
+        if showUnassingedBeacons {
+            return nearbyTagsCopy
+        } else {
+            for tag in nearbyTagsCopy {
+                if let _ = tag.tagIdentifier {
+                    tags.append(tag)
+                }
+            }
+        }
+        
+        return tags
     }
     
     public var unassignedTags: [NSKTag] {
@@ -225,13 +237,11 @@ public class NSKManager: NSObject {
     }
     
     private func addUnknownTagWithBeacon(beacon: CLBeacon) {
-        if showUnassingedBeacons {
-            let tag = NSKTag(id: 0)
-            tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
-            tag.hardwareBeacon = beacon
-            
-            self.addTag(tag)
-        }
+        let tag = NSKTag(id: 0)
+        tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
+        tag.hardwareBeacon = beacon
+        
+        self.addTag(tag)
     }
     
     private func addTag(tag: NSKTag) {
