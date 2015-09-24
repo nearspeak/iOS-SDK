@@ -272,7 +272,7 @@ public class NSKApi: NSObject {
                         self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
                             if succeeded {
                                 if tags.count > 0 {
-                                    requestCompleted(succeeded: true, tag: tags[0])
+                                    requestCompleted(succeeded: true, tag: tags.first)
                                 } else {
                                     requestCompleted(succeeded: false, tag: nil)
                                 }
@@ -316,6 +316,78 @@ public class NSKApi: NSObject {
                     requestCompleted(succeeded: false, uuids: [])
                 }
             }
+        }
+    }
+    
+    /**
+    API call to add a Nearspeak tag.
+    
+    - parameter tag: The Nearspeak tag which should be added.
+    */
+    public func addTag(tag tag: NSKTag, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
+        let currentLocale: String = NSLocale.preferredLanguages().first as String!
+        
+        var queryItems = [NSURLQueryItem]()
+        
+        queryItems.append(NSURLQueryItem(name: "lang", value: currentLocale))
+        queryItems.append(NSURLQueryItem(name: "purchase_id", value: "4ea93515-5a84-4add-bf81-293b306b968f")) // default
+        
+        // translation
+        if let translation = tag.translation {
+            queryItems.append(NSURLQueryItem(name: "text", value: translation))
+        }
+        
+        // auth token
+        if let token = self.auth_token {
+            queryItems.append(NSURLQueryItem(name: "auth_token", value: token))
+        }
+        
+        // name
+        if let name = tag.name {
+            queryItems.append(NSURLQueryItem(name: "name", value: name))
+        }
+        
+        // hardware infos
+        if let hardwareID = tag.tagIdentifier, major = tag.hardwareBeacon?.major, minor = tag.hardwareBeacon?.minor {
+            queryItems.append(NSURLQueryItem(name: "hardware_id", value: hardwareID))
+            queryItems.append(NSURLQueryItem(name: "major", value: "\(major)"))
+            queryItems.append(NSURLQueryItem(name: "minor", value: "\(minor)"))
+            queryItems.append(NSURLQueryItem(name: "hardware_type", value: NSKTagHardwareType.BLE.rawValue))
+        }
+        
+        // location
+        let latitude = locationManager.currentLocation.coordinate.latitude
+        let longitude = locationManager.currentLocation.coordinate.longitude
+        
+        if latitude != 0 && longitude != 0 {
+            queryItems.append(NSURLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)"))
+            queryItems.append(NSURLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)"))
+        }
+        
+        let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/create", queryItems: queryItems)
+        
+        if let apiURL = apiComponents.URL {
+            apiCall(apiURL, httpMethod: .POST, params: nil, requestCompleted: { (succeeded, data) -> () in
+                if succeeded {
+                    if let jsonData = data {
+                        self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
+                            if succeeded {
+                                if tags.count > 0 {
+                                    requestCompleted(succeeded: true, tag: tags.first)
+                                } else {
+                                    requestCompleted(succeeded: false, tag: nil)
+                                }
+                            } else {
+                                requestCompleted(succeeded: false, tag: nil)
+                            }
+                        })
+                    } else {
+                        requestCompleted(succeeded: false, tag: nil)
+                    }
+                } else {
+                    requestCompleted(succeeded: false, tag: nil)
+                }
+            })
         }
     }
 }

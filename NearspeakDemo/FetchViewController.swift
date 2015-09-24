@@ -25,6 +25,39 @@ class FetchViewController: UIViewController {
         tagDescriptionLabel.text = ""
     }
     
+    // MARK: - Testing
+    
+    private var authToken: String?
+    
+    private func login() {
+        api.getAuthToken(username: "username", password: "password") { (succeeded, auth_token) -> () in
+            if succeeded {
+                self.authToken = auth_token
+                
+                self.addTag()
+            }
+        }
+    }
+    
+    private func addTag() {
+        let tag = NSKTag(id: -1)
+        tag.translation = "Hello World"
+        
+        if api.isLoggedIn() {
+            api.addTag(tag: tag, requestCompleted: { (succeeded, tag) -> () in
+                if succeeded {
+                    print("DBG: Tag successfully created")
+                } else {
+                    print("ERROR: Tag can't be created")
+                }
+            })
+        } else {
+            print("ERROR: Please login first")
+        }
+    }
+    
+    // MARK - UI
+    
     @IBAction func fetchButtonPushed(sender: AnyObject) {
         if !tagIdentifierLabel.text!.isEmpty {
             self.tagIdentifierLabel.resignFirstResponder()
