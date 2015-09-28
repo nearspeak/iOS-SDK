@@ -348,8 +348,8 @@ public class NSKApi: NSObject {
         }
         
         // hardware infos
-        if let hardwareID = tag.tagIdentifier, major = tag.hardwareBeacon?.major, minor = tag.hardwareBeacon?.minor {
-            queryItems.append(NSURLQueryItem(name: "hardware_id", value: hardwareID))
+        if let hardwareID = tag.hardwareBeacon?.proximityUUID.UUIDString, major = tag.hardwareBeacon?.major, minor = tag.hardwareBeacon?.minor {
+            queryItems.append(NSURLQueryItem(name: "hardware_id", value: NSKApiUtils.formatHardwareId(hardwareID)))
             queryItems.append(NSURLQueryItem(name: "major", value: "\(major)"))
             queryItems.append(NSURLQueryItem(name: "minor", value: "\(minor)"))
             queryItems.append(NSURLQueryItem(name: "hardware_type", value: NSKTagHardwareType.BLE.rawValue))
