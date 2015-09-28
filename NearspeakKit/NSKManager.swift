@@ -142,10 +142,10 @@ public class NSKManager: NSObject {
     public func showUnassingedBeacons(show: Bool) {
         if show != showUnassingedBeacons {
             showUnassingedBeacons = show
-            self.removeAllTags()
-            self.removeAllBeacons()
+            self.reset()
         }
     }
+    
     /**
      Add a demo tag for the simualtor.
     */
@@ -157,6 +157,14 @@ public class NSKManager: NSObject {
                 }
             }
         }
+    }
+    
+    /**
+     Reset the NSKManager.
+    */
+    public func reset() {
+        self.removeAllTags()
+        self.removeAllBeacons()
     }
     
     // MARK: - private
