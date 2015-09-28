@@ -122,14 +122,7 @@ class DiscoveryTableViewController: UITableViewController {
         // get the current NSKTag item
         let tag = nearbyTags[indexPath.row]
         
-        if let identifier = tag.tagIdentifier { // tag has data assigned
-            cell.textLabel?.text = "Tag identifier: \(identifier)"
-        } else { // tag has no data assigned
-            if let hwBeacon = tag.hardwareBeacon {
-                cell.textLabel?.text = "Tag major: \(hwBeacon.major) minor: \(hwBeacon.minor)"
-                
-            }
-        }
+        cell.textLabel?.text = tag.titleString()
         
         return cell
     }

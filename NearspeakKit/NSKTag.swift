@@ -144,6 +144,31 @@ public class NSKTag: NSObject, NSCoding {
         aCoder.encodeBool(self.favorite, forKey: keyNSKTagFavorite)
     }
     
+    /**
+     Get a formatted title string.
+
+     - returns: An formatted title string or nil.
+    */
+    public func titleString() -> String {
+        if let name = name {
+            if name.characters.count > 0 {
+                return name
+            }
+        }
+        
+        if let translation = translation {
+            if translation.characters.count > 0 {
+                return translation
+            }
+        }
+        
+        if let hardwareBeacon = hardwareBeacon {
+            return "Beacon Major ID: \(hardwareBeacon.major) Minor ID: \(hardwareBeacon.minor)"
+        }
+        
+        return NSLocalizedString("No Name", comment: "NSKTag - No Name")
+    }
+    
     // MARK: - Helper methods
     
     /**
