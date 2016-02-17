@@ -109,7 +109,7 @@ public class NSKApi: NSObject {
                     request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(para, options: [])
                 } catch let error as NSError {
                     request.HTTPBody = nil
-                    print("ERROR: \(error.localizedDescription)")
+                    Log.error("Api call failed", error)
                 }
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -197,7 +197,7 @@ public class NSKApi: NSObject {
                     }
                 })
             } else {
-                print("ERROR: auth token not found")
+                Log.error("Auth token not found")
             }
         }
     }

@@ -84,9 +84,7 @@ public class NSKBeaconManager: NSObject {
     Start monitoring for Nearspeak beacons.
     */
     public func startMonitoringForNearspeakBeacons() {
-        #if DEBUG
-            print("DBG: start monitoring for beacons")
-        #endif
+        Log.debug("Start monitoring for beacons")
         
         for beaconRegion in self.nearspeakRegions {
             locationManager.startMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
@@ -97,9 +95,7 @@ public class NSKBeaconManager: NSObject {
     Stop monitoring for Nearspeak beacons.
     */
     public func stopMonitoringForNearspeakBeacons() {
-        #if DEBUG
-            print("DBG: stop monitoring for beacons")
-        #endif
+        Log.debug("Stop monitoring for beacons")
         
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopMonitoringForRegion(beaconRegion.key as! CLBeaconRegion)
@@ -110,9 +106,7 @@ public class NSKBeaconManager: NSObject {
     Start ranging for Nearspeak beacons.
     */
     public func startRangingForNearspeakBeacons() {
-        #if DEBUG
-            print("DBG: start ranging for beacons")
-        #endif
+        Log.debug("Start ranging for beacons")
         
         for beaconRegion in self.nearspeakRegions {
             locationManager.startRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
@@ -123,9 +117,7 @@ public class NSKBeaconManager: NSObject {
     Stop ranging for Nearspeak beacons.
     */
     public func stopRangingForNearspeakBeacons() {
-        #if DEBUG
-            print("DBG: stop ranging for beacons")
-        #endif
+        Log.debug("Stop ranging for beacons")
         
         for beaconRegion in self.nearspeakRegions {
             locationManager.stopRangingBeaconsInRegion(beaconRegion.key as! CLBeaconRegion)
@@ -139,23 +131,21 @@ public class NSKBeaconManager: NSObject {
     */
     public func checkForBeaconSupport() -> Bool {
         if CLLocationManager.isRangingAvailable() {
-            #if DEBUG
-                print("Beacon ranging support available")
-            #endif
+            Log.debug("Beacon ranging support available")
         } else {
-            print("ERROR: Beacon ranging support not available")
+            Log.error("Beacon ranging support not available")
             
             return false
         }
         
         if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedAlways {
-            print("ERROR: Can't always get the location")
+            Log.error("Can't always get the location")
             
             return false
         }
         
         if centralManager.state == CBCentralManagerState.PoweredOff {
-            print("ERROR: Problems with bluetooth")
+            Log.error("Problems with bluetooth")
             
             return false
         }
@@ -165,6 +155,7 @@ public class NSKBeaconManager: NSObject {
 }
 
 // MARK: - CLLocationManagerDelegate
+
 extension NSKBeaconManager: CLLocationManagerDelegate {
     /**
     Delegate method, which gets called if you access a new beacon region.
@@ -190,11 +181,11 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
         #if DEBUG
             switch status {
             case .AuthorizedAlways:
-                print("DBG: CoreLocation - Location including background support.")
+                Log.debug("CoreLocation - Location including background support.")
             case .AuthorizedWhenInUse:
-                print("DBG: CoreLocation - Location without background support.")
+                Log.debug("CoreLocation - Location without background support.")
             case .Denied, .NotDetermined, .Restricted:
-                print("DBG: CoreLocation - No Location support.")
+                Log.debug("CoreLocation - No Location support.")
             }
         #endif
         
@@ -207,34 +198,28 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     Delegate method, which gets called if core location manager fails.
     */
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("DBG: CoreLocation: didFailWithError: \(error.localizedDescription)")
+        Lod.error("CoreLocation: didFailWithError", error)
     }
     
     /**
     * Delegate method, which gets called if you enter a defined region.
     */
     public func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        #if DEBUG
-            print("DBG: didEnterRegion")
-        #endif
+        Log.debug("\(__FUNCTION__)")
     }
     
     /**
     * Delegate method, which gets called if you exit a defined region.
     */
     public func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        #if DEBUG
-            print("DBG: didExitRegion")
-        #endif
+        Log.debug("\(__FUNCTION__)")
     }
     
     /**
     * Delegate method, which gets called if monitoring failed for a region.
     */
     public func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
-        #if DEBUG
-            print("DBG: monitoring failed for region")
-        #endif
+        Log.error("Monitoring failed for region")
     }
 }
 
@@ -247,17 +232,17 @@ extension NSKBeaconManager: CBCentralManagerDelegate {
         #if DEBUG
             switch central.state {
             case .PoweredOff:
-                print("DBG: Bluetooth - Powered off")
+                Log.debug("Bluetooth - Powered off")
             case .PoweredOn:
-                print("DBG: Bluetooth - Powered on")
+                Log.debug("Bluetooth - Powered on")
             case .Resetting:
-                print("DBG: Bluetooth - Resetting")
+                Log.debug("Bluetooth - Resetting")
             case .Unauthorized:
-                print("DBG: Bluetooth - Unauthorized")
+                Log.debug("Bluetooth - Unauthorized")
             case .Unknown:
-                print("DBG: Bluetooth - Unknown")
+                Log.debug("Bluetooth - Unknown")
             case .Unsupported:
-                print("DBG: Bluetooth - Unsupported")
+                Log.debug("Bluetooth - Unsupported")
             }
         #endif
         

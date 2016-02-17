@@ -46,13 +46,13 @@ class FetchViewController: UIViewController {
         if api.isLoggedIn() {
             api.addTag(tag: tag, requestCompleted: { (succeeded, tag) -> () in
                 if succeeded {
-                    print("DBG: Tag successfully created")
+                    Log.debug("Tag successfully created")
                 } else {
-                    print("ERROR: Tag can't be created")
+                    Log.error("Tag can't be created")
                 }
             })
         } else {
-            print("ERROR: Please login first")
+            Log.error("Login first")
         }
     }
     

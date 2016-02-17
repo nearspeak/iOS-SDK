@@ -40,13 +40,12 @@ public class NSKLocationManager: NSObject {
 extension NSKLocationManager: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first as CLLocation! {
-            //println("DBG: currentLocation \(location.coordinate.latitude) - \(location.coordinate.latitude)")
             currentLocation = location
         }
     }
     
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("ERROR: \(error.localizedDescription)")
+        Log.error("\(__FUNCTION__)", error)
     }
 }
 
