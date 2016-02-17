@@ -198,7 +198,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     Delegate method, which gets called if core location manager fails.
     */
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        Lod.error("CoreLocation: didFailWithError", error)
+        Log.error("CoreLocation: didFailWithError", error)
     }
     
     /**
