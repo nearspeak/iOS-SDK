@@ -37,6 +37,7 @@ public class NSKLocationManager: NSObject {
 }
 
 // MARK: - CLLocationManagerDelegate
+
 extension NSKLocationManager: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first as CLLocation! {
