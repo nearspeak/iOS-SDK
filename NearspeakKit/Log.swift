@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Log {
     private static let Tag = "[NearspeakKit]"
     
