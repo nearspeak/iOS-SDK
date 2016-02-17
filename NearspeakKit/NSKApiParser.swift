@@ -87,4 +87,14 @@ class NSKApiParser: NSObject {
             parsingCompleted(succeeded: true, tags: tags)
         }
     }
+    
+    func parseDeleteReponse(data: NSData, parsingCompleted: (succeeded: Bool) -> ()) {
+        let json = JSON(data: data)
+        
+        if json["code"] != nil {
+            parsingCompleted(succeeded: false)
+        }
+        
+        parsingCompleted(succeeded: true)
+    }
 }

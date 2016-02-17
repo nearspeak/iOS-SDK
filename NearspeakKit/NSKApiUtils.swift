@@ -43,7 +43,7 @@ struct NSKApiUtils {
         return baseURL
     }
     
-    //MARK: Helper methods
+    // MARK: Helper methods
     
     /** Helper method to format the hardware id, which is in the most cases the iBeacon UUID, into the correct format. */
     static func formatHardwareId(hardwareId: String) -> String {

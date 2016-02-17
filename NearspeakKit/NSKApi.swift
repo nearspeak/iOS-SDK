@@ -390,4 +390,39 @@ public class NSKApi: NSObject {
             })
         }
     }
+    
+    /**
+     API call to remove a Nearspeak tag.
+     
+     - parameter tag: The Nearspeak tag which should be added.
+     */
+    public func removeTag(tag tag: NSKTag, requestCompleted: (succeeded: Bool) -> ()) {
+        if let tagIdentifier = tag.tagIdentifier, token = auth_token {
+            let idQueryItem = NSURLQueryItem(name: "id", value: tagIdentifier)
+            let tokenQueryItem = NSURLQueryItem(name: "auth_token", value: token)
+            let queryItems = [idQueryItem, tokenQueryItem]
+            
+            let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/delete", queryItems: queryItems)
+            
+            if let apiURL = apiComponents.URL {
+                apiCall(apiURL, httpMethod: .POST, params: nil, requestCompleted: { (succeeded, data) -> () in
+                    if succeeded {
+                        if let jsonData = data {
+                            self.apiParser.parseDeleteReponse(jsonData, parsingCompleted: { (succeeded) -> () in
+                                if succeeded {
+                                    requestCompleted(succeeded: true)
+                                } else {
+                                    requestCompleted(succeeded: false)
+                                }
+                            })
+                        } else {
+                            requestCompleted(succeeded: false)
+                        }
+                    } else {
+                        requestCompleted(succeeded: false)
+                    }
+                })
+            }
+        }
+    }
 }
