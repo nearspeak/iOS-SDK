@@ -23,6 +23,7 @@
 		CD61DBD21BA852890008A0E5 /* NSKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD61DBD11BA852890008A0E5 /* NSKLocationManager.swift */; };
 		CD6592CF1C74B1C500238E56 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6592CE1C74B1C500238E56 /* Log.swift */; };
 		CD6592D01C74B20600238E56 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6592CE1C74B1C500238E56 /* Log.swift */; };
+		CD9C92F71C88369E00B7E963 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9C92F61C88369E00B7E963 /* SwiftyJSON.framework */; };
 		CDCB0BCD1AE8C77E0006906E /* NearspeakKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CDCB0BCC1AE8C77E0006906E /* NearspeakKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDEA46401AE9152A00A8034A /* NSKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA463F1AE9152A00A8034A /* NSKManager.swift */; };
 		CDEA46421AE9163300A8034A /* DiscoveryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA46411AE9163300A8034A /* DiscoveryTableViewController.swift */; };
@@ -72,6 +73,7 @@
 		CD4CFE9E1AE8EB3A00328C95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CD61DBD11BA852890008A0E5 /* NSKLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSKLocationManager.swift; sourceTree = "<group>"; };
 		CD6592CE1C74B1C500238E56 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		CD9C92F61C88369E00B7E963 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		CDB05E9B1AE800DA008DA398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB05E9C1AE800DA008DA398 /* NearspeakKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearspeakKitTests.swift; sourceTree = "<group>"; };
 		CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NearspeakKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD9C92F71C88369E00B7E963 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +123,7 @@
 		89BF80DA84ED9F3D96E61460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD9C92F61C88369E00B7E963 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -608,7 +612,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = NearspeakKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -629,7 +636,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NearspeakKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
