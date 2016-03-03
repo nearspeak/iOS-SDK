@@ -147,7 +147,7 @@ public class NSKManager: NSObject {
     }
     
     /**
-     Add a demo tag for the simualtor.
+     Add a demo tag for the simulator.
     */
     public func addDemoTag(hardwareIdentifier: String, majorId: String, minorId: String) {
         self.api.getTagByHardwareId(hardwareIdentifier: hardwareIdentifier, beaconMajorId: majorId, beaconMinorId: minorId) { (succeeded, tag) -> () in
