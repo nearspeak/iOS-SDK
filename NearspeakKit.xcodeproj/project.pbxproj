@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66DB10563881354219E57EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CD4CFE101AE8CF5D00328C95 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA01AE801ED0041ACA7 /* DateParser.swift */; };
 		CD4CFE111AE8CF5D00328C95 /* NSKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA11AE801ED0041ACA7 /* NSKApi.swift */; };
 		CD4CFE121AE8CF5D00328C95 /* NSKApiParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA21AE801ED0041ACA7 /* NSKApiParser.swift */; };
@@ -16,7 +15,6 @@
 		CD4CFE151AE8CF5D00328C95 /* NSKTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA51AE801EE0041ACA7 /* NSKTag.swift */; };
 		CD4CFE161AE8CF5D00328C95 /* NSKTagHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2AA61AE801EE0041ACA7 /* NSKTagHardware.swift */; };
 		CD4CFE171AE8CF6100328C95 /* NSKBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2A9D1AE801B00041ACA7 /* NSKBeaconManager.swift */; };
-		CD4CFE1A1AE8D1AC00328C95 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; };
 		CD4CFE951AE8EB3A00328C95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4CFE941AE8EB3A00328C95 /* AppDelegate.swift */; };
 		CD4CFE971AE8EB3A00328C95 /* FetchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4CFE961AE8EB3A00328C95 /* FetchViewController.swift */; };
 		CD4CFE9A1AE8EB3A00328C95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4CFE981AE8EB3A00328C95 /* Main.storyboard */; };
@@ -30,7 +28,6 @@
 		CDEA46421AE9163300A8034A /* DiscoveryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA46411AE9163300A8034A /* DiscoveryTableViewController.swift */; };
 		CDEA46451AE91E9B00A8034A /* NearspeakKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; };
 		CDEA46461AE91E9B00A8034A /* NearspeakKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDCB0BC81AE8C77E0006906E /* NearspeakKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CDEA464B1AE91F0900A8034A /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6068AE75F1276042CA108068 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDEA464D1AE93C2200A8034A /* NSKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA464C1AE93C2200A8034A /* NSKConstants.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +55,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CDEA464B1AE91F0900A8034A /* Pods.framework in Embed Frameworks */,
 				CDEA46461AE91E9B00A8034A /* NearspeakKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -67,9 +63,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6068AE75F1276042CA108068 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD4CFE901AE8EB3A00328C95 /* NearspeakDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearspeakDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4CFE931AE8EB3A00328C95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD4CFE941AE8EB3A00328C95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66DB10563881354219E57EC4 /* Pods.framework in Frameworks */,
 				CDEA46451AE91E9B00A8034A /* NearspeakKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,7 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4CFE1A1AE8D1AC00328C95 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,18 +120,8 @@
 		89BF80DA84ED9F3D96E61460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6068AE75F1276042CA108068 /* Pods.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B5113F3402A220C2A01B04C0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */,
-				A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		CD4CFE911AE8EB3A00328C95 /* NearspeakDemo */ = {
@@ -172,7 +153,6 @@
 				CDB05E991AE800DA008DA398 /* NearspeakKitTests */,
 				CD4CFE911AE8EB3A00328C95 /* NearspeakDemo */,
 				CDB05E821AE800DA008DA398 /* Products */,
-				B5113F3402A220C2A01B04C0 /* Pods */,
 				89BF80DA84ED9F3D96E61460 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -289,12 +269,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDCB0BDB1AE8C77E0006906E /* Build configuration list for PBXNativeTarget "NearspeakKit" */;
 			buildPhases = (
-				F749077B89CDC26032222908 /* Check Pods Manifest.lock */,
 				CDCB0BC31AE8C77E0006906E /* Sources */,
 				CDCB0BC41AE8C77E0006906E /* Frameworks */,
 				CDCB0BC51AE8C77E0006906E /* Headers */,
-				CDCB0BC61AE8C77E0006906E /* Resources */,
-				B3E5C7B7CC9B5CFD0F82B3F7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,13 +358,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDCB0BC61AE8C77E0006906E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CDCB0BD01AE8C77E0006906E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,36 +399,6 @@
 			showEnvVarsInLog = 0;
 		};
 		9758919771B4C200E4E47582 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B3E5C7B7CC9B5CFD0F82B3F7 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F749077B89CDC26032222908 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -550,7 +490,6 @@
 /* Begin XCBuildConfiguration section */
 		CD4CFEAC1AE8EB3A00328C95 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -564,7 +503,6 @@
 		};
 		CD4CFEAD1AE8EB3A00328C95 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NearspeakDemo/Info.plist;
@@ -664,7 +602,6 @@
 		};
 		CDCB0BDC1AE8C77E0006906E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4EB124D609E558D955342B4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -686,7 +623,6 @@
 		};
 		CDCB0BDD1AE8C77E0006906E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6FFB5A45BEE825E85E553CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
