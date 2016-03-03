@@ -251,13 +251,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD4CFEB01AE8EB3A00328C95 /* Build configuration list for PBXNativeTarget "NearspeakDemo" */;
 			buildPhases = (
-				9758919771B4C200E4E47582 /* Check Pods Manifest.lock */,
 				CD4CFE8C1AE8EB3A00328C95 /* Sources */,
 				CD4CFE8D1AE8EB3A00328C95 /* Frameworks */,
 				CD4CFE8E1AE8EB3A00328C95 /* Resources */,
-				00B69B7BBDD0EE5395E1F062 /* Embed Pods Frameworks */,
-				138D95945AA4DED45EE7788D /* Copy Pods Resources */,
 				CDEA46491AE91E9C00A8034A /* Embed Frameworks */,
+				CD9C92F81C88397500B7E963 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -372,50 +370,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00B69B7BBDD0EE5395E1F062 /* Embed Pods Frameworks */ = {
+		CD9C92F81C88397500B7E963 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
-			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		138D95945AA4DED45EE7788D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9758919771B4C200E4E47582 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 

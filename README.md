@@ -25,6 +25,12 @@ Note that CocoaPods version >= 36 is required and iOS deployment target >= 8.0
 [sudo] gem install cocoapods -v ">=0.36"
 ```
 
+#### Carthage
+You can use [Carthage](https://github.com/Carthage/Carthage) to install `NearspeakKit` by adding it to your `Cartfile`:
+```swift
+github "nearspeak/iOS-SDK" ~> 0.9
+```
+
 ## Usage
 
 To discover iBeacon Nearspeak tags your app requires the following keys setup in your `Info.plist`:
