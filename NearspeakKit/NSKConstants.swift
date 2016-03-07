@@ -17,6 +17,12 @@ public struct NSKConstants {
     /** Nearby iBeacon Tag found notification key. */
     public static let managerNotificationNearbyTagsUpdatedKey = "at.nearspeak.manager.nearbytags.updated"
     
+    /** Did enter region notification key. */
+    public static let managerNotificationRegionEnterKey = "at.nearspeak.manager.region.enter"
+    
+    /** Did exit region notification key. */
+    public static let managerNotificationRegionExitKey = "at.nearspeak.manager.region.exit"
+    
     /** Bluetooth ok key. */
     public static let managerNotificationBluetoothOkKey = "at.nearspeak.manager.bluetooth.ok"
     

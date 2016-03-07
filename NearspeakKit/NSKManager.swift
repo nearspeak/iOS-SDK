@@ -104,7 +104,7 @@ public class NSKManager: NSObject {
     }
     
     /**
-     Start the Nearspeak beacon discovery.
+     Start the Nearspeak beacon discovery / ranging.
     
      - parameter showUnassingedBeacons: True if unassinged Nearspeak beacons should also be shown.
     */
@@ -184,21 +184,24 @@ public class NSKManager: NSObject {
             activeUUIDs.insert(uuid)
         }
         
+        self.beaconManager = NSKBeaconManager(uuids: activeUUIDs)
+        self.setupBeaconManager()
+        
         api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
             if succeeded {
+                var newUUIDS = Set<NSUUID>()
                 for uuid in uuids {
-                    if activeUUIDs.count < NSKApiUtils.maximalBeaconUUIDs {
+                    if newUUIDS.count < NSKApiUtils.maximalBeaconUUIDs {
                         if let id = NSKApiUtils.hardwareIdToUUID(uuid) {
-                            activeUUIDs.insert(id)
+                            newUUIDS.insert(id)
                         }
                     }
                 }
+                
+                if let beaconManager = self.beaconManager {
+                    beaconManager.addUUIDs(newUUIDS)
+                }
             }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.beaconManager = NSKBeaconManager(uuids: activeUUIDs)
-                self.setupBeaconManager()
-            })
         }
     }
     
@@ -210,7 +213,7 @@ public class NSKManager: NSObject {
             bManager.startMonitoringForNearspeakBeacons()
             
             // start beacon ranging
-            bManager.startRangingForNearspeakBeacons()
+            //bManager.startRangingForNearspeakBeacons()
         }
     }
     
@@ -373,6 +376,7 @@ public class NSKManager: NSObject {
 }
 
 // MARK: - NSKBeaconManagerDelegate
+
 extension NSKManager: NSKBeaconManagerDelegate {
     /**
     Delegate method which gets called, when new beacons are found.
@@ -405,5 +409,19 @@ extension NSKManager: NSKBeaconManagerDelegate {
         default:
             NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationErrorKey, object: nil)
         }
+    }
+    
+    /**
+     Delegate method which gets called, when a region is entered.
+     */
+    public func beaconManager(manager: NSKBeaconManager, didEnterRegion region: CLRegion) {
+        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationRegionEnterKey, object: region, userInfo: ["region" : region])
+    }
+    
+    /**
+     Delegate method which gets called, when a region is exited.
+     */
+    public func beaconManager(manager: NSKBeaconManager, didExitRegion region: CLRegion) {
+        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationRegionExitKey, object: nil, userInfo: ["region" : region])
     }
 }

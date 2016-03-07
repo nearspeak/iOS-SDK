@@ -42,6 +42,22 @@ public protocol NSKBeaconManagerDelegate {
     - parameter locationState: The CoreLocation CLAuthorizationStatus object.
     */
     func beaconManager(manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus)
+    
+    /**
+     This method informs, if a region is entered.
+     
+     - parameter manager: The Nearspeak beacon manager object.
+     - parameter region: The CLRegion object.
+     */
+    func beaconManager(manager: NSKBeaconManager, didEnterRegion region: CLRegion)
+    
+    /**
+     This method informs, if a region is exited.
+     
+     - parameter manager: The Nearspeak beacon manager object.
+     - parameter region: The CLRegion object.
+     */
+    func beaconManager(manager: NSKBeaconManager, didExitRegion region: CLRegion)
 }
 
 /**
@@ -65,19 +81,23 @@ public class NSKBeaconManager: NSObject {
         // init the bluetooth stuff
         centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
         
+        addUUIDs(uuids)
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    public func addUUIDs(uuids: Set<NSUUID>) {
         for uuid in uuids {
             let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: uuid.UUIDString)
             
             // notify only if the display is on
             beaconRegion.notifyEntryStateOnDisplay = true
-            beaconRegion.notifyOnEntry = false
+            beaconRegion.notifyOnEntry = true
             beaconRegion.notifyOnExit = true
             
             self.nearspeakRegions[beaconRegion] = NSArray()
         }
-        
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
     }
     
     /**
@@ -206,6 +226,10 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     */
     public func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         Log.debug("\(__FUNCTION__)")
+        
+        if let _ = delegate {
+            delegate!.beaconManager(self, didEnterRegion: region)
+        }
     }
     
     /**
@@ -213,6 +237,10 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     */
     public func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         Log.debug("\(__FUNCTION__)")
+        
+        if let _ = delegate {
+            delegate!.beaconManager(self, didExitRegion: region)
+        }
     }
     
     /**
@@ -220,6 +248,17 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     */
     public func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
         Log.error("Monitoring failed for region")
+    }
+    
+    /**
+    * Delegate method, which gets called if a region monitoring is started.
+    */
+    public func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
+        Log.debug("Start Monitoring region: \(region.identifier)")
+    }
+    
+    public func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
+        Log.debug("State: \(state.rawValue) for region: \(region.identifier)")
     }
 }
 

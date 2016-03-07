@@ -65,6 +65,9 @@ class DiscoveryTableViewController: UITableViewController {
     
     private func removeNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
+        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationBluetoothErrorKey)
+        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationErrorKey)
+        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationWhenInUseOnKey)
     }
     
     func onNearbyTagsUpdatedNotification(notification: NSNotification) {

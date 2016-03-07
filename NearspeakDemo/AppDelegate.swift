@@ -7,14 +7,30 @@
 //
 
 import UIKit
+import CoreLocation
+import NearspeakKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let api = NSKApi(devMode: false)
+    var pushedTags = Set<String>()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert, categories: nil))
+        
+        setupNotifications()
+        
+        if NSKManager.sharedInstance.checkForBeaconSupport() {
+            Log.debug("iBeacons supported")
+        } else {
+            Log.error("iBeacons not suppoted")
+        }
+        
         return true
     }
 
@@ -38,6 +54,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    // MARK: - Notifications
+    
+    private func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onEnterRegionNotification:",
+            name: NSKConstants.managerNotificationRegionEnterKey,
+            object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onExitRegionNotification:",
+            name: NSKConstants.managerNotificationRegionExitKey,
+            object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "onNearbyTagsUpdatedNotification:",
+            name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
+            object: nil)
+    }
+    
+    func onNearbyTagsUpdatedNotification(notification: NSNotification) {
+        // copy the nearbyTags from the shared instance
+        let nearbyTags = NSKManager.sharedInstance.nearbyTags
+        
+        for tag in nearbyTags {
+            if let identifier = tag.tagIdentifier {
+                api.getTagById(tagIdentifier: identifier, requestCompleted: { (succeeded, tag) -> () in
+                    if succeeded {
+                        if let tag = tag {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                if !self.pushedTags.contains(identifier) {
+                                    self.pushedTags.insert(identifier)
+
+                                    if let bodyText = tag.translation {
+                                        self.showLocalPushNotification(title: tag.titleString(), body: bodyText)
+                                    } else {
+                                        self.showLocalPushNotification(title: tag.titleString(), body: "Default Body")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        }
+    }
+    
+    func onEnterRegionNotification(notification: NSNotification) {
+        // start discovery to get more infos about the beacon
+        NSKManager.sharedInstance.startBeaconDiscovery(false)
+    }
+    
+    func onExitRegionNotification(notification: NSNotification) {
+        // stop discovery
+        NSKManager.sharedInstance.stopBeaconDiscovery()
+        
+        // reset already pushed tags
+        pushedTags.removeAll()
+    }
+    
+    private func showLocalPushNotification(title notificationTitle: String, body notificationText: String) {
+        let notification = UILocalNotification()
+        
+        notification.alertTitle = notificationTitle
+        
+        if notificationText.isEmpty {
+            notification.alertBody = "Default Body Text"
+        } else {
+            notification.alertBody = notificationText
+        }
+        
+        
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
 }
 
