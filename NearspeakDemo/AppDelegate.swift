@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if NSKManager.sharedInstance.checkForBeaconSupport() {
             Log.debug("iBeacons supported")
         } else {
-            Log.error("iBeacons not suppoted")
+            Log.error("iBeacons not supported")
         }
         
         return true
@@ -125,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             notification.alertBody = notificationText
         }
-        
         
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
