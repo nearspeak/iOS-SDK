@@ -1,4 +1,6 @@
 # NearspeakKit for iOS
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nearspeak/ios-sdk)](http://clayallsopp.github.io/readme-score?url=https://github.com/nearspeak/ios-sdk)
 
 The iOS SDK for Nearspeak.
 
