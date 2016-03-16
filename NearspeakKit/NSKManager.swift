@@ -117,7 +117,7 @@ public class NSKManager: NSObject {
      */
     public func stopBeaconMonitoring() {
         if let beaconManager = beaconManager {
-            beaconManager.startMonitoringForNearspeakBeacons()
+            beaconManager.stopMonitoringForNearspeakBeacons()
         }
     }
     

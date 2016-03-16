@@ -17,6 +17,10 @@ class DiscoveryTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Discovery"
+        
+        let stopMonitoringButton = UIBarButtonItem(title: "Stop Monitoring", style: .Plain, target: self, action: "stopMonitoring")
+        
+        self.navigationItem.rightBarButtonItem = stopMonitoringButton
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -109,8 +113,16 @@ class DiscoveryTableViewController: UITableViewController {
         })
     }
     
-    // MARK: - Table view data source
+    // MARK: - Beacon Monitoring
+    
+    func stopMonitoring() {
+        NSKManager.sharedInstance.stopBeaconMonitoring()
+    }
+}
 
+// MARK: - Table view data source
+
+extension DiscoveryTableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
