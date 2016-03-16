@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if NSKManager.sharedInstance.checkForBeaconSupport() {
             Log.debug("iBeacons supported")
+            NSKManager.sharedInstance.startBeaconMonitoring()
         } else {
             Log.error("iBeacons not supported")
         }

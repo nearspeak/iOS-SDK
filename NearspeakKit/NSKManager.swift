@@ -27,6 +27,7 @@ public class NSKManager: NSObject {
     private let tagQueue = dispatch_queue_create("at.nearspeak.manager.tagQueue", DISPATCH_QUEUE_CONCURRENT)
     
     private var _nearbyTags: [NSKTag] = []
+    private var activeUUIDs = Set<NSUUID>()
     
     /**
      Array of all currently nearby Nearspeak tags.
@@ -38,7 +39,6 @@ public class NSKManager: NSObject {
         dispatch_sync(tagQueue) {
             nearbyTagsCopy = self._nearbyTags
         }
-        
         
         if showUnassingedBeacons {
             return nearbyTagsCopy
@@ -101,6 +101,24 @@ public class NSKManager: NSObject {
         }
         
         return false
+    }
+    
+    /**
+     Start monitoring for iBeacons.
+     */
+    public func startBeaconMonitoring() {
+        if let beaconManager = beaconManager {
+            beaconManager.startMonitoringForNearspeakBeacons()
+        }
+    }
+    
+    /**
+     Stop monitoring for iBeacons.
+     */
+    public func stopBeaconMonitoring() {
+        if let beaconManager = beaconManager {
+            beaconManager.startMonitoringForNearspeakBeacons()
+        }
     }
     
     /**
@@ -169,8 +187,6 @@ public class NSKManager: NSObject {
     
     // MARK: - private
     private func getActiveUUIDs() {
-        var activeUUIDs = Set<NSUUID>()
-        
         // add the standard UUIDS
         // nearspeak iBeacon UUID
         // Nearspeak:   CEFCC021-E45F-4520-A3AB-9D1EA22873AD
@@ -184,8 +200,7 @@ public class NSKManager: NSObject {
             activeUUIDs.insert(uuid)
         }
         
-        self.beaconManager = NSKBeaconManager(uuids: activeUUIDs)
-        self.setupBeaconManager()
+        setupBeaconManager()
         
         api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
             if succeeded {
@@ -206,15 +221,9 @@ public class NSKManager: NSObject {
     }
     
     private func setupBeaconManager() {
-        if let bManager = beaconManager {
-            bManager.delegate = self
-            
-            // start the beacon monitoring
-            bManager.startMonitoringForNearspeakBeacons()
-            
-            // start beacon ranging
-            //bManager.startRangingForNearspeakBeacons()
-        }
+        beaconManager = NSKBeaconManager(uuids: activeUUIDs)
+        
+        beaconManager!.delegate = self
     }
     
     // MARK: - NearbyBeacons - private

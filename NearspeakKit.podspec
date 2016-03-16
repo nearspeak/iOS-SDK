@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NearspeakKit"
-  s.version      = "0.9.19"
+  s.version      = "0.9.20"
   s.summary      = "The iOS SDK for Nearspeak."
   s.homepage     = "https://www.nearspeak.at"
   s.license      = { :type => "LGPL", :file => "LICENSE" }
