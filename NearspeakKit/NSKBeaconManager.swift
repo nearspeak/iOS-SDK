@@ -106,7 +106,7 @@ public class NSKBeaconManager: NSObject {
             self.nearspeakRegions[beaconRegion] = NSArray()
         }
         
-        delegate!.newRegionsAdded(self)
+        delegate?.newRegionsAdded(self)
     }
     
     /**
@@ -198,9 +198,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
             allBeacons.addObjectsFromArray(beaconsArray as! NSArray as [AnyObject])
         }
         
-        if let myDelegate = delegate {
-            myDelegate.beaconManager(self, foundBeacons: allBeacons as NSArray as! [CLBeacon])
-        }
+        delegate?.beaconManager(self, foundBeacons: allBeacons as NSArray as! [CLBeacon])
     }
     
     /**
@@ -218,9 +216,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
             }
         #endif
         
-        if let myDelegate = delegate {
-            myDelegate.beaconManager(self, locationStateDidChange: status)
-        }
+        delegate?.beaconManager(self, locationStateDidChange: status)
     }
     
     /**
@@ -236,9 +232,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         Log.debug("\(#function)")
         
-        if let _ = delegate {
-            delegate!.beaconManager(self, didEnterRegion: region)
-        }
+        delegate?.beaconManager(self, didEnterRegion: region)
     }
     
     /**
@@ -247,9 +241,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         Log.debug("\(#function)")
         
-        if let _ = delegate {
-            delegate!.beaconManager(self, didExitRegion: region)
-        }
+        delegate?.beaconManager(self, didExitRegion: region)
     }
     
     /**
@@ -294,8 +286,6 @@ extension NSKBeaconManager: CBCentralManagerDelegate {
             }
         #endif
         
-        if let myDelegate = delegate {
-            myDelegate.beaconManager(self, bluetoothStateDidChange: central.state)
-        }
+        delegate?.beaconManager(self, bluetoothStateDidChange: central.state)
     }
 }
