@@ -46,7 +46,7 @@ extension NSKLocationManager: CLLocationManagerDelegate {
     }
     
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        Log.error("\(__FUNCTION__)", error)
+        Log.error("\(#function)", error)
     }
 }
 

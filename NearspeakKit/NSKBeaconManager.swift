@@ -58,13 +58,20 @@ public protocol NSKBeaconManagerDelegate {
      - parameter region: The CLRegion object.
      */
     func beaconManager(manager: NSKBeaconManager, didExitRegion region: CLRegion)
+    
+    /**
+     This method informs, if new beacons regions are added. So you can restart the region monitoring.
+ 
+     - parameter manager: The Nearspeak beacon manager object.
+    */
+    func newRegionsAdded(manager: NSKBeaconManager)
 }
 
 /**
 The Nearspeak beacon manager class.
 */
 public class NSKBeaconManager: NSObject {
-    private var nearspeakRegions: NSMutableDictionary = NSMutableDictionary()
+    private var nearspeakRegions = NSMutableDictionary()
     
     private let locationManager = CLLocationManager()
     private var centralManager = CBCentralManager()
@@ -98,6 +105,8 @@ public class NSKBeaconManager: NSObject {
             
             self.nearspeakRegions[beaconRegion] = NSArray()
         }
+        
+        delegate!.newRegionsAdded(self)
     }
     
     /**
@@ -225,7 +234,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     * Delegate method, which gets called if you enter a defined region.
     */
     public func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        Log.debug("\(__FUNCTION__)")
+        Log.debug("\(#function)")
         
         if let _ = delegate {
             delegate!.beaconManager(self, didEnterRegion: region)
@@ -236,7 +245,7 @@ extension NSKBeaconManager: CLLocationManagerDelegate {
     * Delegate method, which gets called if you exit a defined region.
     */
     public func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        Log.debug("\(__FUNCTION__)")
+        Log.debug("\(#function)")
         
         if let _ = delegate {
             delegate!.beaconManager(self, didExitRegion: region)

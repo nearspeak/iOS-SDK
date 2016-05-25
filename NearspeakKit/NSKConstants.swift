@@ -23,6 +23,9 @@ public struct NSKConstants {
     /** Did exit region notification key. */
     public static let managerNotificationRegionExitKey = "at.nearspeak.manager.region.exit"
     
+    /** New region added from the server. */
+    public static let managerNotificationNewRegionAddedKey = "at.nearspeak.manager.region.added"
+    
     /** Bluetooth ok key. */
     public static let managerNotificationBluetoothOkKey = "at.nearspeak.manager.bluetooth.ok"
     

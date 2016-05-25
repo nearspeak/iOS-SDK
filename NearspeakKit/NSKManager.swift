@@ -186,6 +186,7 @@ public class NSKManager: NSObject {
     }
     
     // MARK: - private
+    
     private func getActiveUUIDs() {
         // add the standard UUIDS
         // nearspeak iBeacon UUID
@@ -292,7 +293,7 @@ public class NSKManager: NSObject {
                 }
             }
             
-            index++
+            index += 1
         }
     }
     
@@ -304,7 +305,7 @@ public class NSKManager: NSObject {
                 self.beacons.removeAtIndex(index)
             }
             
-            index++
+            index += 1
         }
     }
     
@@ -432,5 +433,12 @@ extension NSKManager: NSKBeaconManagerDelegate {
      */
     public func beaconManager(manager: NSKBeaconManager, didExitRegion region: CLRegion) {
         NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationRegionExitKey, object: nil, userInfo: ["region" : region])
+    }
+    
+    /**
+     Delegate method which gets called, when new regions are added from the Nearspeak server.
+    */
+    public func newRegionsAdded(manager: NSKBeaconManager) {
+        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationNewRegionAddedKey, object: nil)
     }
 }
