@@ -18,7 +18,7 @@ class DiscoveryTableViewController: UITableViewController {
         
         self.navigationItem.title = "Discovery"
         
-        let stopMonitoringButton = UIBarButtonItem(title: "Stop Monitoring", style: .Plain, target: self, action: "stopMonitoring")
+        let stopMonitoringButton = UIBarButtonItem(title: "Stop Monitoring", style: .Plain, target: self, action: #selector(DiscoveryTableViewController.stopMonitoring))
         
         self.navigationItem.rightBarButtonItem = stopMonitoringButton
     }
@@ -45,24 +45,24 @@ class DiscoveryTableViewController: UITableViewController {
     private func setupNotifications() {
         // get notifications for if beacons updates appear
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onNearbyTagsUpdatedNotification:",
+            selector: #selector(DiscoveryTableViewController.onNearbyTagsUpdatedNotification(_:)),
             name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
         
         // get notification if bluetooth state changes
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onBluetoothErrorNotification:",
+            selector: #selector(DiscoveryTableViewController.onBluetoothErrorNotification(_:)),
             name: NSKConstants.managerNotificationBluetoothErrorKey,
             object: nil)
         
         // get notifications if location state changes
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onLocationErrorNotification:",
+            selector: #selector(DiscoveryTableViewController.onLocationErrorNotification(_:)),
             name: NSKConstants.managerNotificationLocationErrorKey,
             object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onLocationOnlyWhenInUseNotification:",
+            selector: #selector(DiscoveryTableViewController.onLocationOnlyWhenInUseNotification(_:)),
             name: NSKConstants.managerNotificationLocationWhenInUseOnKey,
             object: nil)
     }

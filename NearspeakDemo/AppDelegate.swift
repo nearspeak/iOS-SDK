@@ -61,17 +61,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onEnterRegionNotification:",
+            selector: #selector(AppDelegate.onEnterRegionNotification(_:)),
             name: NSKConstants.managerNotificationRegionEnterKey,
             object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onExitRegionNotification:",
+            selector: #selector(AppDelegate.onExitRegionNotification(_:)),
             name: NSKConstants.managerNotificationRegionExitKey,
             object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "onNearbyTagsUpdatedNotification:",
+            selector: #selector(AppDelegate.onNearbyTagsUpdatedNotification(_:)),
             name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
     }
