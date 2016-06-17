@@ -295,7 +295,6 @@ public class NSKManager: NSObject {
             
             if tag.id.integerValue == id {
                 dispatch_barrier_sync(tagQueue, { () -> Void in
-                    Log.debug("REMOVING from index: \(index) size: \(self._nearbyTags.count)")
                     self._nearbyTags.removeAtIndex(index)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.postContentUpdateNotification()
