@@ -30,8 +30,6 @@ public class NSKManager: NSObject {
     private var activeUUIDs = Set<NSUUID>()
     private var unkownTagID = -1
     
-    public var useNearspeakUUID = true
-    
     /**
      Array of all currently nearby Nearspeak tags.
     */

@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if NSKManager.sharedInstance.checkForBeaconSupport() {
             Log.debug("iBeacons supported")
             
-            NSKManager.sharedInstance.useNearspeakUUID = false
             NSKManager.sharedInstance.addCustomUUID("CEFCC021-E45F-4520-A3AB-9D1EA22873AD") // Nearspeak UUID
             
             NSKManager.sharedInstance.startBeaconMonitoring()
