@@ -26,15 +26,18 @@ public class NSKManager: NSObject {
     
     private let tagQueue = dispatch_queue_create("at.nearspeak.manager.tagQueue", DISPATCH_QUEUE_CONCURRENT)
     
-    private var _nearbyTags: [NSKTag] = []
+    private var _nearbyTags = [NSKTag]()
     private var activeUUIDs = Set<NSUUID>()
+    private var unkownTagID = -1
+    
+    public var useNearspeakUUID = true
     
     /**
      Array of all currently nearby Nearspeak tags.
     */
     public var nearbyTags: [NSKTag] {
-        var nearbyTagsCopy: [NSKTag] = []
-        var tags: [NSKTag] = []
+        var nearbyTagsCopy = [NSKTag]()
+        var tags = [NSKTag]()
         
         dispatch_sync(tagQueue) {
             nearbyTagsCopy = self._nearbyTags
@@ -54,8 +57,8 @@ public class NSKManager: NSObject {
     }
     
     public var unassignedTags: [NSKTag] {
-        var nearbyTagsCopy: [NSKTag] = []
-        var unassingedTags: [NSKTag] = []
+        var nearbyTagsCopy  = [NSKTag]()
+        var unassingedTags = [NSKTag]()
         
         dispatch_sync(tagQueue) {
             nearbyTagsCopy = self._nearbyTags
@@ -77,7 +80,7 @@ public class NSKManager: NSObject {
     private var showUnassingedBeacons = false
     
     // Current beacons
-    private var beacons: [CLBeacon] = []
+    private var beacons = [CLBeacon]()
     
     /**
      The standard constructor.
@@ -85,7 +88,7 @@ public class NSKManager: NSObject {
     public override init() {
         super.init()
         
-        getActiveUUIDs()
+        setupBeaconManager()
     }
     
     // MARK: - NearbyBeacons - public
@@ -101,6 +104,27 @@ public class NSKManager: NSObject {
         }
         
         return false
+    }
+    
+    /**
+     Add a custom UUID for monitoring.
+    */
+    public func addCustomUUID(uuid: String) {
+        if let uuid = NSUUID(UUIDString: uuid) {
+            
+            var uuids = Set<NSUUID>()
+            uuids.insert(uuid)
+            beaconManager?.addUUIDs(uuids)
+            
+            activeUUIDs.insert(uuid)
+        }
+    }
+    
+    /**
+     Add the UUIDs from the Nearspeak server.
+    */
+    public func addServerUUIDs() {
+        getActiveUUIDs()
     }
     
     /**
@@ -188,21 +212,6 @@ public class NSKManager: NSObject {
     // MARK: - private
     
     private func getActiveUUIDs() {
-        // add the standard UUIDS
-        // nearspeak iBeacon UUID
-        // Nearspeak:   CEFCC021-E45F-4520-A3AB-9D1EA22873AD
-        // Starnberger: 699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012
-        
-        if let uuid = NSUUID(UUIDString: "CEFCC021-E45F-4520-A3AB-9D1EA22873AD") {
-            activeUUIDs.insert(uuid)
-        }
-        
-        if let uuid = NSUUID(UUIDString: "699EBC80-E1F3-11E3-9A0F-0CF3EE3BC012") {
-            activeUUIDs.insert(uuid)
-        }
-        
-        setupBeaconManager()
-        
         api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
             if succeeded {
                 var newUUIDS = Set<NSUUID>()
@@ -210,6 +219,7 @@ public class NSKManager: NSObject {
                     if newUUIDS.count < NSKApiUtils.maximalBeaconUUIDs {
                         if let id = NSKApiUtils.hardwareIdToUUID(uuid) {
                             newUUIDS.insert(id)
+                            self.activeUUIDs.insert(id)
                         }
                     }
                 }
@@ -238,6 +248,7 @@ public class NSKManager: NSObject {
                 return
             }
         }
+        
         // add the new beacon to the waiting array
         beacons.append(beacon)
         
@@ -258,11 +269,13 @@ public class NSKManager: NSObject {
     }
     
     private func addUnknownTagWithBeacon(beacon: CLBeacon) {
-        let tag = NSKTag(id: 0)
+        let tag = NSKTag(id: unkownTagID)
         tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
         tag.hardwareBeacon = beacon
         
         self.addTag(tag)
+        
+        unkownTagID -= 1
     }
     
     private func addTag(tag: NSKTag) {
@@ -278,9 +291,11 @@ public class NSKManager: NSObject {
     private func removeTagWithId(id: Int) {
         var index = 0
         
-        for tag in self._nearbyTags {
+        for tag in _nearbyTags {
+            
             if tag.id.integerValue == id {
                 dispatch_barrier_sync(tagQueue, { () -> Void in
+                    Log.debug("REMOVING from index: \(index) size: \(self._nearbyTags.count)")
                     self._nearbyTags.removeAtIndex(index)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.postContentUpdateNotification()
@@ -358,11 +373,13 @@ public class NSKManager: NSObject {
     private func processFoundBeacons(beacons: [CLBeacon]) {
         // add or update tags
         for beacon in beacons {
-            self.addTagWithBeacon(beacon)
+            addTagWithBeacon(beacon)
         }
         
+        var tagsToRemove = Set<Int>()
+        
         // remove old tags
-        for tag in self._nearbyTags {
+        for tag in _nearbyTags {
             var isNewBeacon = false
             
             if let hwBeacon = tag.hardwareBeacon {
@@ -375,8 +392,12 @@ public class NSKManager: NSObject {
             }
             
             if !isNewBeacon {
-                removeTagWithId(tag.id.integerValue)
+                tagsToRemove.insert(tag.id.integerValue)
             }
+        }
+        
+        for tagId in tagsToRemove {
+            removeTagWithId(tagId)
         }
     }
     

@@ -139,6 +139,10 @@ extension DiscoveryTableViewController {
         
         cell.textLabel?.text = tag.titleString()
         
+        if let uuidString = tag.hardwareBeacon?.proximityUUID.UUIDString {
+            cell.detailTextLabel?.text = "UUID: " + uuidString
+        }
+        
         return cell
     }
 }

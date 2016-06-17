@@ -65,10 +65,6 @@ class FetchViewController: UIViewController {
             queryNearspeak(tagIdentifier: tagIdentifierLabel.text!)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     private func queryNearspeak(tagIdentifier tagIdentifier: String) {
         fetchingActivityIndicator.startAnimating()
