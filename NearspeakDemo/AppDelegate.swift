@@ -77,6 +77,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             selector: #selector(AppDelegate.onNearbyTagsUpdatedNotification(_:)),
             name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: #selector(AppDelegate.onBluetoothOkNotification(_:)),
+            name: NSKConstants.managerNotificationBluetoothOkKey,
+            object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: #selector(AppDelegate.onBluetoothErrorNotification(_:)),
+            name: NSKConstants.managerNotificationBluetoothErrorKey,
+            object: nil)
+    }
+    
+    func onBluetoothOkNotification(notification: NSNotification) {
+        Log.debug("Bluetooth OK")
+    }
+    
+    func onBluetoothErrorNotification(notification: NSNotification) {
+        Log.debug("Bluetooth ERROR")
     }
     
     func onNearbyTagsUpdatedNotification(notification: NSNotification) {
