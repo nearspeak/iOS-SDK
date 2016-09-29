@@ -230,7 +230,7 @@ open class NSKManager: NSObject {
     }
     
     fileprivate func setupBeaconManager() {
-        beaconManager = NSKBeaconManager(uuids: activeUUIDs as Set<NSUUID>)
+        beaconManager = NSKBeaconManager(uuids: activeUUIDs as Set<UUID>)
         
         beaconManager!.delegate = self
     }
@@ -267,7 +267,7 @@ open class NSKManager: NSObject {
     }
     
     fileprivate func addUnknownTagWithBeacon(_ beacon: CLBeacon) {
-        let tag = NSKTag(id: NSNumber(unkownTagID))
+        let tag = NSKTag(id: NSNumber(value: unkownTagID))
         tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
         tag.hardwareBeacon = beacon
         

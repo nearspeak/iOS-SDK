@@ -21,6 +21,6 @@ extension Date {
         
         let d = dateStringFormatter.date(from: dateString)
         
-        (self as NSDate).init(timeInterval: 0, since: d!)
+        self.init(timeInterval: 0, since: d!)
     }
 }

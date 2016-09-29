@@ -121,19 +121,19 @@ open class NSKApi: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             if let _ = error {
-                requestCompleted(succeeded: false, data: nil)
+                requestCompleted(false, nil)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     //_ = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
-                    requestCompleted(succeeded: false, data: nil)
+                    requestCompleted(false, nil)
                 } else {
-                    requestCompleted(succeeded: true, data: data)
+                    requestCompleted(true, data)
                 }
             }
-        }) 
-        
+        }
+ 
         task.resume()
     }
     

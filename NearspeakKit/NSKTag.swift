@@ -96,7 +96,7 @@ open class NSKTag: NSObject, NSCoding {
      - parameter aDecoder: The NScoder decoder object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        self.id = NSNumber(aDecoder.decodeInteger(forKey: keyNSKTagId))
+        self.id = NSNumber(value: aDecoder.decodeInteger(forKey: keyNSKTagId))
         self.tagDescription = aDecoder.decodeObject(forKey: keyNSKTagTagDescription) as? String
         self.tagCategoryId = aDecoder.decodeInteger(forKey: keyNSKTagTagCategoryId) as NSNumber?
         self.translation = aDecoder.decodeObject(forKey: keyNSKTagTranslation) as? String

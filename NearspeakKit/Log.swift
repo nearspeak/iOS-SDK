@@ -16,21 +16,21 @@ struct Log {
         case Error = "[ERROR]"
     }
     
-    fileprivate static func log(_ level: Level, _ message: @autoclosure () -> String, _ error: NSError? = nil) {
+    fileprivate static func log(_ level: Level, _ message: @autoclosure () -> String, _ error: Error? = nil) {
         if let error = error {
-            NSLog("%@%@ %@ with error %@", Tag, level.rawValue, message(), error)
+            NSLog("%@%@ %@ with error %@", Tag, level.rawValue, message(), error as NSError)
         } else {
             NSLog("%@%@ %@", Tag, level.rawValue, message())
         }
     }
     
-    static func debug(_ message: @autoclosure () -> String, _ error: NSError? = nil) {
+    static func debug(_ message: @autoclosure () -> String, _ error: Error? = nil) {
         #if DEBUG
             log(.Debug, message, error)
         #endif
     }
     
-    static func error(_ message: @autoclosure () -> String, _ error: NSError? = nil) {
+    static func error(_ message: @autoclosure () -> String, _ error: Error? = nil) {
         log(.Error, message, error)
     }
 }

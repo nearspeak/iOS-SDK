@@ -173,7 +173,7 @@ open class NSKBeaconManager: NSObject {
             return false
         }
         
-        if centralManager.state == CBCentralManagerState.poweredOff {
+        if centralManager.centralManagerState == CBCentralManagerState.poweredOff {
             Log.error("Problems with bluetooth")
             
             return false
@@ -270,22 +270,22 @@ extension NSKBeaconManager: CBCentralManagerDelegate {
     */
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         #if DEBUG
-            switch central.state {
-            case .PoweredOff:
+            switch central.centralManagerState {
+            case .poweredOff:
                 Log.debug("Bluetooth - Powered off")
-            case .PoweredOn:
+            case .poweredOn:
                 Log.debug("Bluetooth - Powered on")
-            case .Resetting:
+            case .resetting:
                 Log.debug("Bluetooth - Resetting")
-            case .Unauthorized:
+            case .unauthorized:
                 Log.debug("Bluetooth - Unauthorized")
-            case .Unknown:
+            case .unknown:
                 Log.debug("Bluetooth - Unknown")
-            case .Unsupported:
+            case .unsupported:
                 Log.debug("Bluetooth - Unsupported")
             }
         #endif
         
-        delegate?.beaconManager(self, bluetoothStateDidChange: central.state)
+        delegate?.beaconManager(self, bluetoothStateDidChange: central.centralManagerState)
     }
 }

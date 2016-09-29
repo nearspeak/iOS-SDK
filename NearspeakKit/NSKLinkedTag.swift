@@ -56,7 +56,7 @@ open class NSKLinkedTag: NSObject, NSCoding {
      - parameter aDecoder: The NScoder decoder object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        self.id = NSNumber(aDecoder.decodeInteger(forKey: keyNSKLinkedTagId))
+        self.id = NSNumber(value: aDecoder.decodeInteger(forKey: keyNSKLinkedTagId))
         self.name = aDecoder.decodeObject(forKey: keyNSKLinkedTagName) as? String
         self.identifier = aDecoder.decodeObject(forKey: keyNSKLinkedTagIdentifier) as? String
     }
