@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NearspeakKit"
-  s.version      = "0.9.24"
+  s.version      = "0.9.25"
   s.summary      = "The iOS SDK for Nearspeak."
   s.homepage     = "https://www.nearspeak.at"
   s.license      = { :type => "LGPL", :file => "LICENSE" }
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.source                    = { :git => "https://github.com/nearspeak/iOS-SDK.git", :tag => s.version }
   s.source_files              = "NearspeakKit/*.swift"
 
-  s.dependency "SwiftyJSON", ">= 2.3"
+  s.dependency "SwiftyJSON"
 end
