@@ -29,54 +29,54 @@ let keyNSKTagFavorite = "tag_favorite"
 /**
  The NSKTag is the tag object model.
 */
-public class NSKTag: NSObject, NSCoding {
+open class NSKTag: NSObject, NSCoding {
     /** The id of the tag. */
-    public var id: NSNumber = 0
+    open var id: NSNumber = 0
     
     /** The tag description. */
-    public var tagDescription: String?
+    open var tagDescription: String?
     
     /** The tag category id. */
-    public var tagCategoryId: NSNumber?
+    open var tagCategoryId: NSNumber?
     
     /** The tag translation. */
-    public var translation: String?
+    open var translation: String?
     
     /** The tag identifier. */
-    public var tagIdentifier: String?
+    open var tagIdentifier: String?
     
     /** The tag image URL. */
-    public var imageURL: NSURL?
+    open var imageURL: URL?
     
     /** The tag button text. */
-    public var buttonText: String?
+    open var buttonText: String?
     
     /** Array of linked tags. */
-    public var linkedTags: NSMutableArray = NSMutableArray()
+    open var linkedTags: NSMutableArray = NSMutableArray()
     
     /** The id of the parent tag. */
-    public var parentId: NSNumber?
+    open var parentId: NSNumber?
     
     /** The name of the parent tag. */
-    public var parentName: String?
+    open var parentName: String?
     
     /** The tag identifier of the parent tag. */
-    public var parentIdentifier: String?
+    open var parentIdentifier: String?
     
     /** The tag text URL. */
-    public var textURL: NSURL?
+    open var textURL: URL?
     
     /** The tag gender. */
-    public var gender: String?
+    open var gender: String?
     
     /** The tag name. */
-    public var name: String?
+    open var name: String?
     
     /** The hardware beacon object of the tag. */
-    public var hardwareBeacon: CLBeacon?
+    open var hardwareBeacon: CLBeacon?
     
     /** True if the tag is a favorite tag. */
-    public var favorite: Bool = false
+    open var favorite: Bool = false
 
     /**
      Init the tag with an id.
@@ -96,21 +96,21 @@ public class NSKTag: NSObject, NSCoding {
      - parameter aDecoder: The NScoder decoder object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        self.id = aDecoder.decodeIntegerForKey(keyNSKTagId)
-        self.tagDescription = aDecoder.decodeObjectForKey(keyNSKTagTagDescription) as? String
-        self.tagCategoryId = aDecoder.decodeIntegerForKey(keyNSKTagTagCategoryId)
-        self.translation = aDecoder.decodeObjectForKey(keyNSKTagTranslation) as? String
-        self.tagIdentifier = aDecoder.decodeObjectForKey(keyNSKTagTagIdentifier) as? String
-        self.imageURL = aDecoder.decodeObjectForKey(keyNSKTagImageURL) as? NSURL
-        self.buttonText = aDecoder.decodeObjectForKey(keyNSKTagButtonText) as? String
-        self.linkedTags = aDecoder.decodeObjectForKey(keyNSKTagLinkedTags) as! NSMutableArray
-        self.parentId = aDecoder.decodeIntegerForKey(keyNSKTagParentId)
-        self.parentName = aDecoder.decodeObjectForKey(keyNSKTagParentName) as? String
-        self.parentIdentifier = aDecoder.decodeObjectForKey(keyNSKTagParentIdentifier) as? String
-        self.textURL = aDecoder.decodeObjectForKey(keyNSKTagTextURL) as? NSURL
-        self.gender = aDecoder.decodeObjectForKey(keyNSKTagGender) as? String
-        self.name = aDecoder.decodeObjectForKey(keyNSKTagName) as? String
-        self.favorite = aDecoder.decodeBoolForKey(keyNSKTagFavorite)
+        self.id = NSNumber(aDecoder.decodeInteger(forKey: keyNSKTagId))
+        self.tagDescription = aDecoder.decodeObject(forKey: keyNSKTagTagDescription) as? String
+        self.tagCategoryId = aDecoder.decodeInteger(forKey: keyNSKTagTagCategoryId) as NSNumber?
+        self.translation = aDecoder.decodeObject(forKey: keyNSKTagTranslation) as? String
+        self.tagIdentifier = aDecoder.decodeObject(forKey: keyNSKTagTagIdentifier) as? String
+        self.imageURL = aDecoder.decodeObject(forKey: keyNSKTagImageURL) as? URL
+        self.buttonText = aDecoder.decodeObject(forKey: keyNSKTagButtonText) as? String
+        self.linkedTags = aDecoder.decodeObject(forKey: keyNSKTagLinkedTags) as! NSMutableArray
+        self.parentId = aDecoder.decodeInteger(forKey: keyNSKTagParentId) as NSNumber?
+        self.parentName = aDecoder.decodeObject(forKey: keyNSKTagParentName) as? String
+        self.parentIdentifier = aDecoder.decodeObject(forKey: keyNSKTagParentIdentifier) as? String
+        self.textURL = aDecoder.decodeObject(forKey: keyNSKTagTextURL) as? URL
+        self.gender = aDecoder.decodeObject(forKey: keyNSKTagGender) as? String
+        self.name = aDecoder.decodeObject(forKey: keyNSKTagName) as? String
+        self.favorite = aDecoder.decodeBool(forKey: keyNSKTagFavorite)
     }
     
     /**
@@ -118,30 +118,30 @@ public class NSKTag: NSObject, NSCoding {
 
      - parameter aCoder: The NSCoder encoder object.
     **/
-    public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInt(self.id.intValue, forKey: keyNSKTagId)
-        aCoder.encodeObject(self.tagDescription, forKey: keyNSKTagTagDescription)
+    open func encode(with aCoder: NSCoder) {
+        aCoder.encodeCInt(self.id.int32Value, forKey: keyNSKTagId)
+        aCoder.encode(self.tagDescription, forKey: keyNSKTagTagDescription)
         
         if let catId = self.tagCategoryId {
-            aCoder.encodeInt(catId.intValue, forKey: keyNSKTagTagCategoryId)
+            aCoder.encodeCInt(catId.int32Value, forKey: keyNSKTagTagCategoryId)
         }
         
-        aCoder.encodeObject(self.translation, forKey: keyNSKTagTranslation)
-        aCoder.encodeObject(self.tagIdentifier, forKey: keyNSKTagTagIdentifier)
-        aCoder.encodeObject(self.imageURL, forKey: keyNSKTagImageURL)
-        aCoder.encodeObject(self.buttonText, forKey: keyNSKTagButtonText)
-        aCoder.encodeObject(self.linkedTags, forKey: keyNSKTagLinkedTags)
+        aCoder.encode(self.translation, forKey: keyNSKTagTranslation)
+        aCoder.encode(self.tagIdentifier, forKey: keyNSKTagTagIdentifier)
+        aCoder.encode(self.imageURL, forKey: keyNSKTagImageURL)
+        aCoder.encode(self.buttonText, forKey: keyNSKTagButtonText)
+        aCoder.encode(self.linkedTags, forKey: keyNSKTagLinkedTags)
         
         if let pId = self.parentId {
-            aCoder.encodeInt(pId.intValue, forKey: keyNSKTagParentId)
+            aCoder.encodeCInt(pId.int32Value, forKey: keyNSKTagParentId)
         }
         
-        aCoder.encodeObject(self.parentName, forKey: keyNSKTagParentName)
-        aCoder.encodeObject(self.parentIdentifier, forKey: keyNSKTagParentIdentifier)
-        aCoder.encodeObject(self.textURL, forKey: keyNSKTagTextURL)
-        aCoder.encodeObject(self.gender, forKey: keyNSKTagGender)
-        aCoder.encodeObject(self.name, forKey:keyNSKTagName)
-        aCoder.encodeBool(self.favorite, forKey: keyNSKTagFavorite)
+        aCoder.encode(self.parentName, forKey: keyNSKTagParentName)
+        aCoder.encode(self.parentIdentifier, forKey: keyNSKTagParentIdentifier)
+        aCoder.encode(self.textURL, forKey: keyNSKTagTextURL)
+        aCoder.encode(self.gender, forKey: keyNSKTagGender)
+        aCoder.encode(self.name, forKey:keyNSKTagName)
+        aCoder.encode(self.favorite, forKey: keyNSKTagFavorite)
     }
     
     /**
@@ -149,7 +149,7 @@ public class NSKTag: NSObject, NSCoding {
 
      - returns: An formatted title string or nil.
     */
-    public func titleString() -> String {
+    open func titleString() -> String {
         if let name = name {
             if name.characters.count > 0 {
                 return name
@@ -179,9 +179,9 @@ public class NSKTag: NSObject, NSCoding {
     
      - returns: An array of ancestries.
     */
-    public class func parseAncestry(jsoninput: String?) -> [String] {
+    open class func parseAncestry(_ jsoninput: String?) -> [String] {
         if let input = jsoninput {
-            return input.componentsSeparatedByString("/")
+            return input.components(separatedBy: "/")
         }
         
         return []

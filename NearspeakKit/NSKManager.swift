@@ -15,29 +15,29 @@ private let _NSKManagerSharedInstance = NSKManager()
 /**
  Nearspeak Manager class.
 */
-public class NSKManager: NSObject {
+open class NSKManager: NSObject {
     
     /**
      Get the singelton object of this class.
     */
-    public class var sharedInstance: NSKManager {
+    open class var sharedInstance: NSKManager {
         return _NSKManagerSharedInstance
     }
     
-    private let tagQueue = dispatch_queue_create("at.nearspeak.manager.tagQueue", DISPATCH_QUEUE_CONCURRENT)
+    fileprivate let tagQueue = DispatchQueue(label: "at.nearspeak.manager.tagQueue", attributes: DispatchQueue.Attributes.concurrent)
     
-    private var _nearbyTags = [NSKTag]()
-    private var activeUUIDs = Set<NSUUID>()
-    private var unkownTagID = -1
+    fileprivate var _nearbyTags = [NSKTag]()
+    fileprivate var activeUUIDs = Set<UUID>()
+    fileprivate var unkownTagID = -1
     
     /**
      Array of all currently nearby Nearspeak tags.
     */
-    public var nearbyTags: [NSKTag] {
+    open var nearbyTags: [NSKTag] {
         var nearbyTagsCopy = [NSKTag]()
         var tags = [NSKTag]()
         
-        dispatch_sync(tagQueue) {
+        tagQueue.sync {
             nearbyTagsCopy = self._nearbyTags
         }
         
@@ -54,11 +54,11 @@ public class NSKManager: NSObject {
         return tags
     }
     
-    public var unassignedTags: [NSKTag] {
+    open var unassignedTags: [NSKTag] {
         var nearbyTagsCopy  = [NSKTag]()
         var unassingedTags = [NSKTag]()
         
-        dispatch_sync(tagQueue) {
+        tagQueue.sync {
             nearbyTagsCopy = self._nearbyTags
         }
         
@@ -72,13 +72,13 @@ public class NSKManager: NSObject {
         return unassingedTags
     }
     
-    private var api = NSKApi(devMode: false)
-    private var beaconManager: NSKBeaconManager?
+    fileprivate var api = NSKApi(devMode: false)
+    fileprivate var beaconManager: NSKBeaconManager?
     
-    private var showUnassingedBeacons = false
+    fileprivate var showUnassingedBeacons = false
     
     // Current beacons
-    private var beacons = [CLBeacon]()
+    fileprivate var beacons = [CLBeacon]()
     
     /**
      The standard constructor.
@@ -96,7 +96,7 @@ public class NSKManager: NSObject {
     
     :return: True if all necessary features are enabled, else false.
     */
-    public func checkForBeaconSupport() -> Bool {
+    open func checkForBeaconSupport() -> Bool {
         if let bManager = beaconManager {
             return bManager.checkForBeaconSupport()
         }
@@ -107,10 +107,10 @@ public class NSKManager: NSObject {
     /**
      Add a custom UUID for monitoring.
     */
-    public func addCustomUUID(uuid: String) {
-        if let uuid = NSUUID(UUIDString: uuid) {
+    open func addCustomUUID(_ uuid: String) {
+        if let uuid = UUID(uuidString: uuid) {
             
-            var uuids = Set<NSUUID>()
+            var uuids = Set<UUID>()
             uuids.insert(uuid)
             beaconManager?.addUUIDs(uuids)
             
@@ -121,14 +121,14 @@ public class NSKManager: NSObject {
     /**
      Add the UUIDs from the Nearspeak server.
     */
-    public func addServerUUIDs() {
+    open func addServerUUIDs() {
         getActiveUUIDs()
     }
     
     /**
      Start monitoring for iBeacons.
      */
-    public func startBeaconMonitoring() {
+    open func startBeaconMonitoring() {
         if let beaconManager = beaconManager {
             beaconManager.startMonitoringForNearspeakBeacons()
         }
@@ -137,7 +137,7 @@ public class NSKManager: NSObject {
     /**
      Stop monitoring for iBeacons.
      */
-    public func stopBeaconMonitoring() {
+    open func stopBeaconMonitoring() {
         if let beaconManager = beaconManager {
             beaconManager.stopMonitoringForNearspeakBeacons()
         }
@@ -148,7 +148,7 @@ public class NSKManager: NSObject {
     
      - parameter showUnassingedBeacons: True if unassinged Nearspeak beacons should also be shown.
     */
-    public func startBeaconDiscovery(showUnassingedBeacons: Bool) {
+    open func startBeaconDiscovery(_ showUnassingedBeacons: Bool) {
         if let bManager = beaconManager {
             bManager.startRangingForNearspeakBeacons()
         }
@@ -159,7 +159,7 @@ public class NSKManager: NSObject {
     /**
      Stop the Nearspeak beacon discovery.
     */
-    public func stopBeaconDiscovery() {
+    open func stopBeaconDiscovery() {
         if let bManager = beaconManager {
             bManager.stopRangingForNearspeakBeacons()
         }
@@ -170,7 +170,7 @@ public class NSKManager: NSObject {
     
      - parameter index: The index of the Nearspeak tag object.
     */
-    public func getTagAtIndex(index: Int) -> NSKTag? {
+    open func getTagAtIndex(_ index: Int) -> NSKTag? {
         return _nearbyTags[index]
     }
     
@@ -179,7 +179,7 @@ public class NSKManager: NSObject {
     
      - parameter show: True if unassinged Nearspeak beacons should als be show.
     */
-    public func showUnassingedBeacons(show: Bool) {
+    open func showUnassingedBeacons(_ show: Bool) {
         if show != showUnassingedBeacons {
             showUnassingedBeacons = show
             self.reset()
@@ -189,7 +189,7 @@ public class NSKManager: NSObject {
     /**
      Add a demo tag for the simulator.
     */
-    public func addDemoTag(hardwareIdentifier: String, majorId: String, minorId: String) {
+    open func addDemoTag(_ hardwareIdentifier: String, majorId: String, minorId: String) {
         self.api.getTagByHardwareId(hardwareIdentifier: hardwareIdentifier, beaconMajorId: majorId, beaconMinorId: minorId) { (succeeded, tag) -> () in
             if succeeded {
                 if let tag = tag {
@@ -202,17 +202,17 @@ public class NSKManager: NSObject {
     /**
      Reset the NSKManager.
     */
-    public func reset() {
+    open func reset() {
         self.removeAllTags()
         self.removeAllBeacons()
     }
     
     // MARK: - private
     
-    private func getActiveUUIDs() {
+    fileprivate func getActiveUUIDs() {
         api.getSupportedBeaconsUUIDs { (succeeded, uuids) -> () in
             if succeeded {
-                var newUUIDS = Set<NSUUID>()
+                var newUUIDS = Set<UUID>()
                 for uuid in uuids {
                     if newUUIDS.count < NSKApiUtils.maximalBeaconUUIDs {
                         if let id = NSKApiUtils.hardwareIdToUUID(uuid) {
@@ -229,15 +229,15 @@ public class NSKManager: NSObject {
         }
     }
     
-    private func setupBeaconManager() {
-        beaconManager = NSKBeaconManager(uuids: activeUUIDs)
+    fileprivate func setupBeaconManager() {
+        beaconManager = NSKBeaconManager(uuids: activeUUIDs as Set<NSUUID>)
         
         beaconManager!.delegate = self
     }
     
     // MARK: - NearbyBeacons - private
     
-    private func addTagWithBeacon(beacon: CLBeacon) {
+    fileprivate func addTagWithBeacon(_ beacon: CLBeacon) {
         // check if this beacon currently gets added
         for addedBeacon in beacons {
             if beaconsAreTheSame(beaconOne: addedBeacon, beaconTwo: beacon) {
@@ -250,7 +250,7 @@ public class NSKManager: NSObject {
         // add the new beacon to the waiting array
         beacons.append(beacon)
         
-        self.api.getTagByHardwareId(hardwareIdentifier: beacon.proximityUUID.UUIDString, beaconMajorId: beacon.major.stringValue, beaconMinorId: beacon.minor.stringValue) { (succeeded, tag) -> () in
+        self.api.getTagByHardwareId(hardwareIdentifier: beacon.proximityUUID.uuidString, beaconMajorId: beacon.major.stringValue, beaconMinorId: beacon.minor.stringValue) { (succeeded, tag) -> () in
             if succeeded {
                 if let currentTag = tag {
                     // set the discovered beacon as hardware beacon on the new tag
@@ -266,8 +266,8 @@ public class NSKManager: NSObject {
         }
     }
     
-    private func addUnknownTagWithBeacon(beacon: CLBeacon) {
-        let tag = NSKTag(id: unkownTagID)
+    fileprivate func addUnknownTagWithBeacon(_ beacon: CLBeacon) {
+        let tag = NSKTag(id: NSNumber(unkownTagID))
         tag.name = "Unassigned Tag: \(beacon.major) - \(beacon.minor)"
         tag.hardwareBeacon = beacon
         
@@ -276,25 +276,25 @@ public class NSKManager: NSObject {
         unkownTagID -= 1
     }
     
-    private func addTag(tag: NSKTag) {
-        dispatch_barrier_async(tagQueue, { () -> Void in
+    fileprivate func addTag(_ tag: NSKTag) {
+        tagQueue.async(flags: .barrier, execute: { () -> Void in
             self._nearbyTags.append(tag)
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.postContentUpdateNotification()
             })
         })
     }
     
-    private func removeTagWithId(id: Int) {
+    fileprivate func removeTagWithId(_ id: Int) {
         var index = 0
         
         for tag in _nearbyTags {
             
-            if tag.id.integerValue == id {
-                dispatch_barrier_sync(tagQueue, { () -> Void in
-                    self._nearbyTags.removeAtIndex(index)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if tag.id.intValue == id {
+                tagQueue.sync(flags: .barrier, execute: { () -> Void in
+                    self._nearbyTags.remove(at: index)
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self.postContentUpdateNotification()
                     })
                 })
@@ -309,36 +309,36 @@ public class NSKManager: NSObject {
         }
     }
     
-    private func removeBeacon(beacon: CLBeacon) {
+    fileprivate func removeBeacon(_ beacon: CLBeacon) {
         var index = 0
         
         for currentBeacon in beacons {
             if beaconsAreTheSame(beaconOne: beacon, beaconTwo: currentBeacon) {
-                self.beacons.removeAtIndex(index)
+                self.beacons.remove(at: index)
             }
             
             index += 1
         }
     }
     
-    private func removeAllTags() {
-        dispatch_barrier_async(tagQueue, { () -> Void in
+    fileprivate func removeAllTags() {
+        tagQueue.async(flags: .barrier, execute: { () -> Void in
             self._nearbyTags = []
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.postContentUpdateNotification()
             })
         })
     }
     
-    private func removeAllBeacons() {
+    fileprivate func removeAllBeacons() {
         self.beacons = []
     }
     
-    private func beaconsAreTheSame(beaconOne beaconOne: CLBeacon, beaconTwo: CLBeacon) -> Bool {
-        if beaconOne.proximityUUID.UUIDString == beaconTwo.proximityUUID.UUIDString {
-            if beaconOne.major.longLongValue == beaconTwo.major.longLongValue {
-                if beaconOne.minor.longLongValue == beaconTwo.minor.longLongValue {
+    fileprivate func beaconsAreTheSame(beaconOne: CLBeacon, beaconTwo: CLBeacon) -> Bool {
+        if beaconOne.proximityUUID.uuidString == beaconTwo.proximityUUID.uuidString {
+            if beaconOne.major.int64Value == beaconTwo.major.int64Value {
+                if beaconOne.minor.int64Value == beaconTwo.minor.int64Value {
                     return true
                 }
             }
@@ -347,7 +347,7 @@ public class NSKManager: NSObject {
         return false
     }
     
-    private func getTagByBeacon(beacon: CLBeacon) -> NSKTag? {
+    fileprivate func getTagByBeacon(_ beacon: CLBeacon) -> NSKTag? {
         for tag in self._nearbyTags {
             if let hwBeacon = tag.hardwareBeacon {
                 if beaconsAreTheSame(beaconOne: hwBeacon, beaconTwo: beacon) {
@@ -359,7 +359,7 @@ public class NSKManager: NSObject {
         return nil
     }
     
-    private func updateTagWithBeacon(beacon: CLBeacon) {
+    fileprivate func updateTagWithBeacon(_ beacon: CLBeacon) {
         if let tag = getTagByBeacon(beacon) {
             tag.hardwareBeacon = beacon
             
@@ -367,7 +367,7 @@ public class NSKManager: NSObject {
         }
     }
     
-    private func processFoundBeacons(beacons: [CLBeacon]) {
+    fileprivate func processFoundBeacons(_ beacons: [CLBeacon]) {
         // add or update tags
         for beacon in beacons {
             addTagWithBeacon(beacon)
@@ -389,7 +389,7 @@ public class NSKManager: NSObject {
             }
             
             if !isNewBeacon {
-                tagsToRemove.insert(tag.id.integerValue)
+                tagsToRemove.insert(tag.id.intValue)
             }
         }
         
@@ -398,8 +398,8 @@ public class NSKManager: NSObject {
         }
     }
     
-    private func postContentUpdateNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationNearbyTagsUpdatedKey, object: nil)
+    fileprivate func postContentUpdateNotification() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationNearbyTagsUpdatedKey), object: nil)
     }
 }
 
@@ -409,54 +409,54 @@ extension NSKManager: NSKBeaconManagerDelegate {
     /**
     Delegate method which gets called, when new beacons are found.
     */
-    public func beaconManager(manager: NSKBeaconManager!, foundBeacons: [CLBeacon]) {
+    public func beaconManager(_ manager: NSKBeaconManager!, foundBeacons: [CLBeacon]) {
         self.processFoundBeacons(foundBeacons)
     }
     
     /**
     Delegate method which gets called, when the bluetooth state changed.
     */
-    public func beaconManager(manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState) {
+    public func beaconManager(_ manager: NSKBeaconManager!, bluetoothStateDidChange bluetoothState: CBCentralManagerState) {
         switch bluetoothState {
-        case .PoweredOn:
-            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationBluetoothOkKey, object: nil)
+        case .poweredOn:
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationBluetoothOkKey), object: nil)
         default:
-            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationBluetoothErrorKey, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationBluetoothErrorKey), object: nil)
         }
     }
     
     /**
     Delegate method which gets called, when the location state changed.
     */
-    public func beaconManager(manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus) {
+    public func beaconManager(_ manager: NSKBeaconManager!, locationStateDidChange locationState: CLAuthorizationStatus) {
         switch locationState {
-        case .AuthorizedAlways:
-            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationAlwaysOnKey, object: nil)
-        case .AuthorizedWhenInUse:
-            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationWhenInUseOnKey, object: nil)
+        case .authorizedAlways:
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationLocationAlwaysOnKey), object: nil)
+        case .authorizedWhenInUse:
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationLocationWhenInUseOnKey), object: nil)
         default:
-            NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationLocationErrorKey, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationLocationErrorKey), object: nil)
         }
     }
     
     /**
      Delegate method which gets called, when a region is entered.
      */
-    public func beaconManager(manager: NSKBeaconManager, didEnterRegion region: CLRegion) {
-        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationRegionEnterKey, object: region, userInfo: ["region" : region])
+    public func beaconManager(_ manager: NSKBeaconManager, didEnterRegion region: CLRegion) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationRegionEnterKey), object: region, userInfo: ["region" : region])
     }
     
     /**
      Delegate method which gets called, when a region is exited.
      */
-    public func beaconManager(manager: NSKBeaconManager, didExitRegion region: CLRegion) {
-        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationRegionExitKey, object: nil, userInfo: ["region" : region])
+    public func beaconManager(_ manager: NSKBeaconManager, didExitRegion region: CLRegion) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationRegionExitKey), object: nil, userInfo: ["region" : region])
     }
     
     /**
      Delegate method which gets called, when new regions are added from the Nearspeak server.
     */
-    public func newRegionsAdded(manager: NSKBeaconManager) {
-        NSNotificationCenter.defaultCenter().postNotificationName(NSKConstants.managerNotificationNewRegionAddedKey, object: nil)
+    public func newRegionsAdded(_ manager: NSKBeaconManager) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NSKConstants.managerNotificationNewRegionAddedKey), object: nil)
     }
 }

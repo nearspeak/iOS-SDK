@@ -18,12 +18,12 @@ class DiscoveryTableViewController: UITableViewController {
         
         self.navigationItem.title = "Discovery"
         
-        let stopMonitoringButton = UIBarButtonItem(title: "Stop Monitoring", style: .Plain, target: self, action: #selector(DiscoveryTableViewController.stopMonitoring))
+        let stopMonitoringButton = UIBarButtonItem(title: "Stop Monitoring", style: .plain, target: self, action: #selector(DiscoveryTableViewController.stopMonitoring))
         
         self.navigationItem.rightBarButtonItem = stopMonitoringButton
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupNotifications()
@@ -32,7 +32,7 @@ class DiscoveryTableViewController: UITableViewController {
         NSKManager.sharedInstance.startBeaconDiscovery(true)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         NSKManager.sharedInstance.stopBeaconDiscovery()
@@ -42,74 +42,74 @@ class DiscoveryTableViewController: UITableViewController {
     
     // MARK: - Notifications
     
-    private func setupNotifications() {
+    fileprivate func setupNotifications() {
         // get notifications for if beacons updates appear
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(DiscoveryTableViewController.onNearbyTagsUpdatedNotification(_:)),
             name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
             object: nil)
         
         // get notification if bluetooth state changes
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(DiscoveryTableViewController.onBluetoothErrorNotification(_:)),
             name: NSKConstants.managerNotificationBluetoothErrorKey,
             object: nil)
         
         // get notifications if location state changes
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(DiscoveryTableViewController.onLocationErrorNotification(_:)),
             name: NSKConstants.managerNotificationLocationErrorKey,
             object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(DiscoveryTableViewController.onLocationOnlyWhenInUseNotification(_:)),
             name: NSKConstants.managerNotificationLocationWhenInUseOnKey,
             object: nil)
     }
     
-    private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
-        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationBluetoothErrorKey)
-        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationErrorKey)
-        NSNotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationWhenInUseOnKey)
+    fileprivate func removeNotifications() {
+        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
+        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationBluetoothErrorKey)
+        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationErrorKey)
+        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationWhenInUseOnKey)
     }
     
-    func onNearbyTagsUpdatedNotification(notification: NSNotification) {
+    func onNearbyTagsUpdatedNotification(_ notification: Notification) {
         // refresh the table view
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             // copy the nearbyTags from the shared instance
             self.nearbyTags = NSKManager.sharedInstance.nearbyTags
             self.tableView.reloadData()
         })
     }
     
-    func onBluetoothErrorNotification(notification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let alertController = UIAlertController(title: "Bluetooth Error", message: "Turn on bluetooth", preferredStyle: .Alert)
+    func onBluetoothErrorNotification(_ notification: Notification) {
+        DispatchQueue.main.async(execute: { () -> Void in
+            let alertController = UIAlertController(title: "Bluetooth Error", message: "Turn on bluetooth", preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         })
     }
     
-    func onLocationErrorNotification(notification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let alertController = UIAlertController(title: "Location Error", message: "Turn on location for this app.", preferredStyle: .Alert)
+    func onLocationErrorNotification(_ notification: Notification) {
+        DispatchQueue.main.async(execute: { () -> Void in
+            let alertController = UIAlertController(title: "Location Error", message: "Turn on location for this app.", preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         })
     }
     
-    func onLocationOnlyWhenInUseNotification(notification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let alertController = UIAlertController(title: "Location Error", message: "Background scanning disabled.", preferredStyle: .Alert)
+    func onLocationOnlyWhenInUseNotification(_ notification: Notification) {
+        DispatchQueue.main.async(execute: { () -> Void in
+            let alertController = UIAlertController(title: "Location Error", message: "Background scanning disabled.", preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -123,16 +123,16 @@ class DiscoveryTableViewController: UITableViewController {
 // MARK: - Table view data source
 
 extension DiscoveryTableViewController {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nearbyTags.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) 
         
         // get the current NSKTag item
         let tag = nearbyTags[indexPath.row]

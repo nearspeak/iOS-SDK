@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-public class NSKLocationManager: NSObject {
+open class NSKLocationManager: NSObject {
     
-    private let locationManager = CLLocationManager()
-    public var currentLocation = CLLocation()
+    fileprivate let locationManager = CLLocationManager()
+    open var currentLocation = CLLocation()
     
     /**
     Initializer for this class.
@@ -27,11 +27,11 @@ public class NSKLocationManager: NSObject {
         startLocationUpdates()
     }
     
-    public func startLocationUpdates() {
+    open func startLocationUpdates() {
         locationManager.startUpdatingLocation()
     }
     
-    public func stopLocationUpdates() {
+    open func stopLocationUpdates() {
         locationManager.stopUpdatingLocation()
     }
 }
@@ -39,13 +39,13 @@ public class NSKLocationManager: NSObject {
 // MARK: - CLLocationManagerDelegate
 
 extension NSKLocationManager: CLLocationManagerDelegate {
-    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first as CLLocation! {
             currentLocation = location
         }
     }
     
-    public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         Log.error("\(#function)", error)
     }
 }

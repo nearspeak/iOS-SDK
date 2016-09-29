@@ -16,15 +16,15 @@ let keyNSKLinkedTagIdentifier = "linkedTag_identifier"
 /**
  Linked nearspeak tags class.
 */
-public class NSKLinkedTag: NSObject, NSCoding {
+open class NSKLinkedTag: NSObject, NSCoding {
     /** The id of the linked Nearspeak tag. */
-    public var id: NSNumber = 0
+    open var id: NSNumber = 0
     
     /** The name of the linked Nearspeak tag. */
-    public var name: String?
+    open var name: String?
     
     /** The identifier of the linked Nearspeak tag. */
-    public var identifier: String?
+    open var identifier: String?
     
     /**
      Constructor where you have to set the id of the linked Nearspeak tag.
@@ -56,9 +56,9 @@ public class NSKLinkedTag: NSObject, NSCoding {
      - parameter aDecoder: The NScoder decoder object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        self.id = aDecoder.decodeIntegerForKey(keyNSKLinkedTagId)
-        self.name = aDecoder.decodeObjectForKey(keyNSKLinkedTagName) as? String
-        self.identifier = aDecoder.decodeObjectForKey(keyNSKLinkedTagIdentifier) as? String
+        self.id = NSNumber(aDecoder.decodeInteger(forKey: keyNSKLinkedTagId))
+        self.name = aDecoder.decodeObject(forKey: keyNSKLinkedTagName) as? String
+        self.identifier = aDecoder.decodeObject(forKey: keyNSKLinkedTagIdentifier) as? String
     }
     
     /**
@@ -66,9 +66,9 @@ public class NSKLinkedTag: NSObject, NSCoding {
     
      - parameter aCoder: The NSCoder encoder object.
     **/
-    public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInt(self.id.intValue, forKey: keyNSKLinkedTagId)
-        aCoder.encodeObject(self.name, forKey: keyNSKLinkedTagName)
-        aCoder.encodeObject(self.identifier, forKey: keyNSKLinkedTagIdentifier)
+    open func encode(with aCoder: NSCoder) {
+        aCoder.encodeCInt(self.id.int32Value, forKey: keyNSKLinkedTagId)
+        aCoder.encode(self.name, forKey: keyNSKLinkedTagName)
+        aCoder.encode(self.identifier, forKey: keyNSKLinkedTagIdentifier)
     }
 }

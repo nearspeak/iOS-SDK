@@ -16,23 +16,23 @@ enum HTTPMethod: String {
 /**
  The NearspeakKit API communication class. 
  */
-public class NSKApi: NSObject {
+open class NSKApi: NSObject {
     
     /** Set to true if you want to connect to the staging server. */
-    private var developmentMode: Bool = false
+    fileprivate var developmentMode: Bool = false
     
     /** The staging authentication token NSDefaults key. */
-    private let kAuthTokenStagingKey = "nsk_auth_token_staging"
+    fileprivate let kAuthTokenStagingKey = "nsk_auth_token_staging"
     
     /** The production authentication token NSDefaults key. */
-    private let kAuthTokenKey = "nsk_auth_token"
+    fileprivate let kAuthTokenKey = "nsk_auth_token"
     
     /** The api authentication token. */
-    public var auth_token: String?
+    open var auth_token: String?
     
-    private var apiParser = NSKApiParser()
+    fileprivate var apiParser = NSKApiParser()
     
-    private var locationManager = NSKLocationManager()
+    fileprivate var locationManager = NSKLocationManager()
     
     /**
      Init the API object.
@@ -49,33 +49,33 @@ public class NSKApi: NSObject {
     }
     
     /** Remove the server credentials from the local device. */
-    public func logout() {
+    open func logout() {
         auth_token = nil
         saveCredentials()
     }
     
     /** Save the server credentials to the local device. */
-    public func saveCredentials() {
+    open func saveCredentials() {
         if (developmentMode) {
-            NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: kAuthTokenStagingKey)
+            UserDefaults.standard.set(auth_token, forKey: kAuthTokenStagingKey)
         } else {
-            NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: kAuthTokenKey)
+            UserDefaults.standard.set(auth_token, forKey: kAuthTokenKey)
         }
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.synchronize()
     }
     
     /** Load the server credentials from the local device. */
-    public func loadCredentials() {
+    open func loadCredentials() {
         if (developmentMode) {
-            auth_token = NSUserDefaults.standardUserDefaults().stringForKey(kAuthTokenStagingKey)
+            auth_token = UserDefaults.standard.string(forKey: kAuthTokenStagingKey)
         } else {
-            auth_token = NSUserDefaults.standardUserDefaults().stringForKey(kAuthTokenKey)
+            auth_token = UserDefaults.standard.string(forKey: kAuthTokenKey)
         }
     }
     
     /** Check if the current user is logged in. */
-    public func isLoggedIn() -> Bool {
+    open func isLoggedIn() -> Bool {
         if auth_token != nil {
             // TODO: implemented a better check
             return true
@@ -94,21 +94,21 @@ public class NSKApi: NSObject {
      - parameter params: The HTTP Header Parameters.
      - parameter requestCompleted: The request completion block.
     */
-    private func apiCall(apiURL: NSURL, httpMethod: HTTPMethod, params: Dictionary<String, String>?, requestCompleted: (succeeded: Bool, data: NSData?) -> ()) {
-        let request = NSMutableURLRequest(URL: apiURL)
-        let session = NSURLSession.sharedSession()
+    fileprivate func apiCall(_ apiURL: URL, httpMethod: HTTPMethod, params: Dictionary<String, String>?, requestCompleted: @escaping (_ succeeded: Bool, _ data: Data?) -> ()) {
+        let request = NSMutableURLRequest(url: apiURL)
+        let session = URLSession.shared
         
         //let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
         
         switch httpMethod {
         case .POST:
-            request.HTTPMethod = httpMethod.rawValue
+            request.httpMethod = httpMethod.rawValue
             
             if let para = params {
                 do {
-                    request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(para, options: [])
+                    request.httpBody = try JSONSerialization.data(withJSONObject: para, options: [])
                 } catch let error as NSError {
-                    request.HTTPBody = nil
+                    request.httpBody = nil
                     Log.error("Api call failed", error)
                 }
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -121,10 +121,10 @@ public class NSKApi: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
             if let _ = error {
                 requestCompleted(succeeded: false, data: nil)
-            } else if let httpResponse = response as? NSHTTPURLResponse {
+            } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     //_ = NSError(domain: "at.nearspeak", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
                     requestCompleted(succeeded: false, data: nil)
@@ -132,7 +132,7 @@ public class NSKApi: NSObject {
                     requestCompleted(succeeded: true, data: data)
                 }
             }
-        }
+        }) 
         
         task.resume()
     }
@@ -144,10 +144,10 @@ public class NSKApi: NSObject {
      - parameter password:: The password of the user.
      - parameter requestCompleted: The request completion block.
     */
-    public func getAuthToken(username username: String, password : String, requestCompleted: (succeeded: Bool, auth_token: String?) -> ()) {
+    open func getAuthToken(username: String, password : String, requestCompleted: @escaping (_ succeeded: Bool, _ auth_token: String?) -> ()) {
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "login/getAuthToken", queryItems: nil)
         
-        if let apiURL = apiComponents.URL {
+        if let apiURL = apiComponents.url {
             let params = ["email" : username, "password" : password] as Dictionary<String, String>
             
             apiCall(apiURL, httpMethod: .POST, params: params, requestCompleted: { (succeeded, data) -> () in
@@ -156,13 +156,13 @@ public class NSKApi: NSObject {
                         if succeeded {
                             self.auth_token = authToken
                             self.saveCredentials()
-                            requestCompleted(succeeded: true, auth_token: authToken)
+                            requestCompleted(true, authToken)
                         } else {
-                            requestCompleted(succeeded: false, auth_token: nil)
+                            requestCompleted(false, nil)
                         }
                     })
                 } else {
-                    requestCompleted(succeeded: false, auth_token: nil)
+                    requestCompleted(false, nil)
                 }
             })
         }
@@ -173,27 +173,27 @@ public class NSKApi: NSObject {
 
      - parameter requestCompleted: The request completion block.
     */
-    public func getMyTags(requestCompleted: (succeeded: Bool, tags: [NSKTag]) ->()) {
+    open func getMyTags(_ requestCompleted: @escaping (_ succeeded: Bool, _ tags: [NSKTag]) ->()) {
         if let token = self.auth_token {
-            let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/showMyTags", queryItems: [NSURLQueryItem(name: "auth_token", value: token)])
+            let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/showMyTags", queryItems: [URLQueryItem(name: "auth_token", value: token)])
             
-            if let apiURL = apiComponents.URL {
+            if let apiURL = apiComponents.url {
                 apiCall(apiURL, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
                     if succeeded {
                         if let jsonData = data {
                             self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
                                 if succeeded {
-                                    requestCompleted(succeeded: true, tags: tags)
+                                    requestCompleted(true, tags)
                                 } else {
-                                    requestCompleted(succeeded: false, tags: [])
+                                    requestCompleted(false, [])
                                 }
-                                requestCompleted(succeeded: false, tags: [])
+                                requestCompleted(false, [])
                             })
                         } else {
-                            requestCompleted(succeeded: false, tags: [])
+                            requestCompleted(false, [])
                         }
                     } else {
-                        requestCompleted(succeeded: false, tags: [])
+                        requestCompleted(false, [])
                     }
                 })
             } else {
@@ -208,35 +208,35 @@ public class NSKApi: NSObject {
      - parameter tagIdentifier: The tag identifier of the tag.
      - parameter requestCompleted: The request completion block.
     */
-    public func getTagById(tagIdentifier tagIdentifier: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: NSString = NSLocale.preferredLanguages()[0] as NSString
+    open func getTagById(tagIdentifier: String, requestCompleted: @escaping (_ succeeded: Bool, _ tag: NSKTag?) -> ()) {
+        let currentLocale: NSString = Locale.preferredLanguages[0] as NSString
         
-        let idQueryItem = NSURLQueryItem(name: "id", value: tagIdentifier)
-        let langQueryItem = NSURLQueryItem(name: "lang", value: (currentLocale as String))
+        let idQueryItem = URLQueryItem(name: "id", value: tagIdentifier)
+        let langQueryItem = URLQueryItem(name: "lang", value: (currentLocale as String))
         let queryItems = [idQueryItem, langQueryItem]
         
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/show", queryItems: queryItems)
         
-        if let apiURL = apiComponents.URL {
+        if let apiURL = apiComponents.url {
             apiCall(apiURL, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
                 if succeeded {
                     if let jsonData = data {
                         self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
                             if succeeded {
                                 if tags.count > 0 {
-                                    requestCompleted(succeeded: true, tag: tags[0])
+                                    requestCompleted(true, tags[0])
                                 } else {
-                                    requestCompleted(succeeded: false, tag: nil)
+                                    requestCompleted(false, nil)
                                 }
                             } else {
-                                requestCompleted(succeeded: false, tag: nil)
+                                requestCompleted(false, nil)
                             }
                         })
                     } else {
-                        requestCompleted(succeeded: false, tag: nil)
+                        requestCompleted(false, nil)
                     }
                 } else {
-                    requestCompleted(succeeded: false, tag: nil)
+                    requestCompleted(false, nil)
                 }
             })
         }
@@ -250,41 +250,41 @@ public class NSKApi: NSObject {
     - parameter beaconMinorId: The iBeacon minor id.
     - parameter requestCompleted: The request completion block.
     */
-    public func getTagByHardwareId(hardwareIdentifier hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: String = NSLocale.preferredLanguages().first as String!
+    open func getTagByHardwareId(hardwareIdentifier: String, beaconMajorId: String, beaconMinorId: String, requestCompleted: @escaping (_ succeeded: Bool, _ tag: NSKTag?) -> ()) {
+        let currentLocale: String = Locale.preferredLanguages.first as String!
         
-        let idQueryItem = NSURLQueryItem(name: "id", value: NSKApiUtils.formatHardwareId(hardwareIdentifier))
-        let majorQueryItem = NSURLQueryItem(name: "major", value: beaconMajorId)
-        let minorQueryItem = NSURLQueryItem(name: "minor", value: beaconMinorId)
-        let langQueryItem = NSURLQueryItem(name: "lang", value: currentLocale)
-        let typeQueryItem = NSURLQueryItem(name: "type", value: NSKTagHardwareType.BLE.rawValue)
-        let latitudeQueryItem = NSURLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)")
-        let longitudeQueryItem = NSURLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)")
+        let idQueryItem = URLQueryItem(name: "id", value: NSKApiUtils.formatHardwareId(hardwareIdentifier))
+        let majorQueryItem = URLQueryItem(name: "major", value: beaconMajorId)
+        let minorQueryItem = URLQueryItem(name: "minor", value: beaconMinorId)
+        let langQueryItem = URLQueryItem(name: "lang", value: currentLocale)
+        let typeQueryItem = URLQueryItem(name: "type", value: NSKTagHardwareType.BLE.rawValue)
+        let latitudeQueryItem = URLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)")
+        let longitudeQueryItem = URLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)")
         
         let queryItems = [idQueryItem, majorQueryItem, minorQueryItem, langQueryItem, typeQueryItem, latitudeQueryItem, longitudeQueryItem]
         
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/showByHardwareId", queryItems: queryItems)
         
-        if let apiURL = apiComponents.URL {
+        if let apiURL = apiComponents.url {
             apiCall(apiURL, httpMethod: .GET, params: nil, requestCompleted: { (succeeded, data) -> () in
                 if succeeded {
                     if let jsonData = data {
                         self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
                             if succeeded {
                                 if tags.count > 0 {
-                                    requestCompleted(succeeded: true, tag: tags.first)
+                                    requestCompleted(true, tags.first)
                                 } else {
-                                    requestCompleted(succeeded: false, tag: nil)
+                                    requestCompleted(false, nil)
                                 }
                             } else {
-                                requestCompleted(succeeded: false, tag: nil)
+                                requestCompleted(false, nil)
                             }
                         })
                     } else {
-                        requestCompleted(succeeded: false, tag: nil)
+                        requestCompleted(false, nil)
                     }
                 } else {
-                    requestCompleted(succeeded: false, tag: nil)
+                    requestCompleted(false, nil)
                 }
             })
         }
@@ -294,26 +294,26 @@ public class NSKApi: NSObject {
 
      - parameter requestCompleted: The request completion block.
     */
-    public func getSupportedBeaconsUUIDs(requestCompleted: (succeeded: Bool, uuids: [String]) ->()) {
+    open func getSupportedBeaconsUUIDs(_ requestCompleted: @escaping (_ succeeded: Bool, _ uuids: [String]) ->()) {
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/supportedBeaconUUIDs", queryItems: nil)
         
-        if let apiURL = apiComponents.URL {
+        if let apiURL = apiComponents.url {
             apiCall(apiURL, httpMethod: .GET, params: nil) { (succeeded, data) -> () in
                 if succeeded {
                     if let jsonData = data {
                         self.apiParser.parseUUIDsArray(jsonData, parsingCompleted: { (succeeded, uuids) -> () in
                             if succeeded {
-                                requestCompleted(succeeded: true, uuids: uuids)
+                                requestCompleted(true, uuids)
                             } else {
-                                requestCompleted(succeeded: false, uuids: [])
+                                requestCompleted(false, [])
                             }
                         })
                     } else {
-                        requestCompleted(succeeded: false, uuids: [])
+                        requestCompleted(false, [])
                     }
                     
                 } else {
-                    requestCompleted(succeeded: false, uuids: [])
+                    requestCompleted(false, [])
                 }
             }
         }
@@ -324,35 +324,35 @@ public class NSKApi: NSObject {
     
     - parameter tag: The Nearspeak tag which should be added.
     */
-    public func addTag(tag tag: NSKTag, requestCompleted: (succeeded: Bool, tag: NSKTag?) -> ()) {
-        let currentLocale: String = NSLocale.preferredLanguages().first as String!
+    open func addTag(tag: NSKTag, requestCompleted: @escaping (_ succeeded: Bool, _ tag: NSKTag?) -> ()) {
+        let currentLocale: String = Locale.preferredLanguages.first as String!
         
-        var queryItems = [NSURLQueryItem]()
+        var queryItems = [URLQueryItem]()
         
-        queryItems.append(NSURLQueryItem(name: "lang", value: currentLocale))
-        queryItems.append(NSURLQueryItem(name: "purchase_id", value: "4ea93515-5a84-4add-bf81-293b306b968f")) // default
+        queryItems.append(URLQueryItem(name: "lang", value: currentLocale))
+        queryItems.append(URLQueryItem(name: "purchase_id", value: "4ea93515-5a84-4add-bf81-293b306b968f")) // default
         
         // translation
         if let translation = tag.translation {
-            queryItems.append(NSURLQueryItem(name: "text", value: translation))
+            queryItems.append(URLQueryItem(name: "text", value: translation))
         }
         
         // auth token
         if let token = self.auth_token {
-            queryItems.append(NSURLQueryItem(name: "auth_token", value: token))
+            queryItems.append(URLQueryItem(name: "auth_token", value: token))
         }
         
         // name
         if let name = tag.name {
-            queryItems.append(NSURLQueryItem(name: "name", value: name))
+            queryItems.append(URLQueryItem(name: "name", value: name))
         }
         
         // hardware infos
-        if let hardwareID = tag.hardwareBeacon?.proximityUUID.UUIDString, major = tag.hardwareBeacon?.major, minor = tag.hardwareBeacon?.minor {
-            queryItems.append(NSURLQueryItem(name: "hardware_id", value: NSKApiUtils.formatHardwareId(hardwareID)))
-            queryItems.append(NSURLQueryItem(name: "major", value: "\(major)"))
-            queryItems.append(NSURLQueryItem(name: "minor", value: "\(minor)"))
-            queryItems.append(NSURLQueryItem(name: "hardware_type", value: NSKTagHardwareType.BLE.rawValue))
+        if let hardwareID = tag.hardwareBeacon?.proximityUUID.uuidString, let major = tag.hardwareBeacon?.major, let minor = tag.hardwareBeacon?.minor {
+            queryItems.append(URLQueryItem(name: "hardware_id", value: NSKApiUtils.formatHardwareId(hardwareID)))
+            queryItems.append(URLQueryItem(name: "major", value: "\(major)"))
+            queryItems.append(URLQueryItem(name: "minor", value: "\(minor)"))
+            queryItems.append(URLQueryItem(name: "hardware_type", value: NSKTagHardwareType.BLE.rawValue))
         }
         
         // location
@@ -360,32 +360,32 @@ public class NSKApi: NSObject {
         let longitude = locationManager.currentLocation.coordinate.longitude
         
         if latitude != 0 && longitude != 0 {
-            queryItems.append(NSURLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)"))
-            queryItems.append(NSURLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)"))
+            queryItems.append(URLQueryItem(name: "lat", value: "\(locationManager.currentLocation.coordinate.latitude)"))
+            queryItems.append(URLQueryItem(name: "lon", value: "\(locationManager.currentLocation.coordinate.longitude)"))
         }
         
         let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/create", queryItems: queryItems)
         
-        if let apiURL = apiComponents.URL {
+        if let apiURL = apiComponents.url {
             apiCall(apiURL, httpMethod: .POST, params: nil, requestCompleted: { (succeeded, data) -> () in
                 if succeeded {
                     if let jsonData = data {
                         self.apiParser.parseTagsArray(jsonData, parsingCompleted: { (succeeded, tags) -> () in
                             if succeeded {
                                 if tags.count > 0 {
-                                    requestCompleted(succeeded: true, tag: tags.first)
+                                    requestCompleted(true, tags.first)
                                 } else {
-                                    requestCompleted(succeeded: false, tag: nil)
+                                    requestCompleted(false, nil)
                                 }
                             } else {
-                                requestCompleted(succeeded: false, tag: nil)
+                                requestCompleted(false, nil)
                             }
                         })
                     } else {
-                        requestCompleted(succeeded: false, tag: nil)
+                        requestCompleted(false, nil)
                     }
                 } else {
-                    requestCompleted(succeeded: false, tag: nil)
+                    requestCompleted(false, nil)
                 }
             })
         }
@@ -396,30 +396,30 @@ public class NSKApi: NSObject {
      
      - parameter tag: The Nearspeak tag which should be added.
      */
-    public func removeTag(tag tag: NSKTag, requestCompleted: (succeeded: Bool) -> ()) {
-        if let tagIdentifier = tag.tagIdentifier, token = auth_token {
-            let idQueryItem = NSURLQueryItem(name: "id", value: tagIdentifier)
-            let tokenQueryItem = NSURLQueryItem(name: "auth_token", value: token)
+    open func removeTag(tag: NSKTag, requestCompleted: @escaping (_ succeeded: Bool) -> ()) {
+        if let tagIdentifier = tag.tagIdentifier, let token = auth_token {
+            let idQueryItem = URLQueryItem(name: "id", value: tagIdentifier)
+            let tokenQueryItem = URLQueryItem(name: "auth_token", value: token)
             let queryItems = [idQueryItem, tokenQueryItem]
             
             let apiComponents = NSKApiUtils.apiURL(developmentMode, path: "tags/delete", queryItems: queryItems)
             
-            if let apiURL = apiComponents.URL {
+            if let apiURL = apiComponents.url {
                 apiCall(apiURL, httpMethod: .POST, params: nil, requestCompleted: { (succeeded, data) -> () in
                     if succeeded {
                         if let jsonData = data {
                             self.apiParser.parseDeleteReponse(jsonData, parsingCompleted: { (succeeded) -> () in
                                 if succeeded {
-                                    requestCompleted(succeeded: true)
+                                    requestCompleted(true)
                                 } else {
-                                    requestCompleted(succeeded: false)
+                                    requestCompleted(false)
                                 }
                             })
                         } else {
-                            requestCompleted(succeeded: false)
+                            requestCompleted(false)
                         }
                     } else {
-                        requestCompleted(succeeded: false)
+                        requestCompleted(false)
                     }
                 })
             }

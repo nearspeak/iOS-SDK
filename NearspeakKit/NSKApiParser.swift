@@ -14,17 +14,17 @@ import SwiftyJSON
 */
 class NSKApiParser: NSObject {
     
-    func parseGetAuthToken(data: NSData, parsingCompleted: (succeeded: Bool, authToken: String) -> ()) {
+    func parseGetAuthToken(_ data: Data, parsingCompleted: (_ succeeded: Bool, _ authToken: String) -> ()) {
         let json = JSON(data: data)
         
         if let auth_token = json["auth_token"].string {
-            parsingCompleted(succeeded: true, authToken: auth_token)
+            parsingCompleted(true, auth_token)
         } else {
-            parsingCompleted(succeeded: false, authToken: "ERROR")
+            parsingCompleted(false, "ERROR")
         }
     }
     
-    func parseUUIDsArray(data: NSData, parsingCompleted: (succeeded: Bool, uuids: [String]) -> ()) {
+    func parseUUIDsArray(_ data: Data, parsingCompleted: (_ succeeded: Bool, _ uuids: [String]) -> ()) {
         let json = JSON(data: data)
         
         if let uuidsData = json["uuids"].array {
@@ -32,13 +32,13 @@ class NSKApiParser: NSObject {
             let uuids = uuidsData.map { $0.stringValue }
             
             
-            parsingCompleted(succeeded: true, uuids: uuids)
+            parsingCompleted(true, uuids)
         } else {
-            parsingCompleted(succeeded: false, uuids: [])
+            parsingCompleted(false, [])
         }
     }
     
-    func parseTagsArray(data: NSData, parsingCompleted: (succeeded: Bool, tags: [NSKTag]) -> ()) {
+    func parseTagsArray(_ data: Data, parsingCompleted: (_ succeeded: Bool, _ tags: [NSKTag]) -> ()) {
         let json = JSON(data: data)
         
         if let dataArray = json["tags"].array {
@@ -56,8 +56,8 @@ class NSKApiParser: NSObject {
                 tag.name = tagDict["name"]["text"].stringValue
                 
                 // urls
-                tag.imageURL = NSURL(string: tagDict["image_url"].stringValue)
-                tag.textURL = NSURL(string: tagDict["text_url"].stringValue)
+                tag.imageURL = URL(string: tagDict["image_url"].stringValue)
+                tag.textURL = URL(string: tagDict["text_url"].stringValue)
                 
                 // parent
                 tag.parentId = tagDict["parent_tag"]["id"].numberValue
@@ -75,7 +75,7 @@ class NSKApiParser: NSObject {
                         
                         let newLinkedTag = NSKLinkedTag(id: id, name: name, identifier: identifier)
                         
-                        linkedTags.addObject(newLinkedTag)
+                        linkedTags.add(newLinkedTag)
                     }
                 }
                 
@@ -84,17 +84,17 @@ class NSKApiParser: NSObject {
                 tags.append(tag)
             }
             
-            parsingCompleted(succeeded: true, tags: tags)
+            parsingCompleted(true, tags)
         }
     }
     
-    func parseDeleteReponse(data: NSData, parsingCompleted: (succeeded: Bool) -> ()) {
+    func parseDeleteReponse(_ data: Data, parsingCompleted: (_ succeeded: Bool) -> ()) {
         let json = JSON(data: data)
         
         if json["code"] != nil {
-            parsingCompleted(succeeded: false)
+            parsingCompleted(false)
         }
         
-        parsingCompleted(succeeded: true)
+        parsingCompleted(true)
     }
 }

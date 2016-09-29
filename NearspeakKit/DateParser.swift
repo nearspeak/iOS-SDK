@@ -11,16 +11,16 @@ import Foundation
 /**
  Date parsing extension.
 */
-extension NSDate {
-    convenience
+extension Date {
+    
     init(dateString: String) {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         
         // see: http://unicode.org/reports/tr35/tr35-4.html#Date_Format_Patterns
         dateStringFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         
-        let d = dateStringFormatter.dateFromString(dateString)
+        let d = dateStringFormatter.date(from: dateString)
         
-        self.init(timeInterval: 0, sinceDate: d!)
+        (self as NSDate).init(timeInterval: 0, since: d!)
     }
 }

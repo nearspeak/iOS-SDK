@@ -17,7 +17,7 @@ class FetchViewController: UIViewController {
     @IBOutlet weak var tagDescriptionLabel: UILabel!
     
     // Create a nearspeak api object
-    private var api = NSKApi(devMode: false)
+    fileprivate var api = NSKApi(devMode: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,9 @@ class FetchViewController: UIViewController {
     
     // MARK: - Testing
     
-    private var authToken: String?
+    fileprivate var authToken: String?
     
-    private func login() {
+    fileprivate func login() {
         api.getAuthToken(username: "username", password: "password") { (succeeded, auth_token) -> () in
             if succeeded {
                 self.authToken = auth_token
@@ -39,7 +39,7 @@ class FetchViewController: UIViewController {
         }
     }
     
-    private func addTag() {
+    fileprivate func addTag() {
         let tag = NSKTag(id: -1)
         tag.translation = "Hello World"
         
@@ -58,7 +58,7 @@ class FetchViewController: UIViewController {
     
     // MARK - UI
     
-    @IBAction func fetchButtonPushed(sender: AnyObject) {
+    @IBAction func fetchButtonPushed(_ sender: AnyObject) {
         if !tagIdentifierLabel.text!.isEmpty {
             self.tagIdentifierLabel.resignFirstResponder()
             
@@ -66,7 +66,7 @@ class FetchViewController: UIViewController {
         }
     }
     
-    private func queryNearspeak(tagIdentifier tagIdentifier: String) {
+    fileprivate func queryNearspeak(tagIdentifier: String) {
         fetchingActivityIndicator.startAnimating()
         
         // query for a nearspeak tag with a given tag identifier
@@ -91,8 +91,8 @@ class FetchViewController: UIViewController {
         }
     }
     
-    private func fetchImageFromURL(imageURL: NSURL) -> UIImage? {
-        let imageData = NSData(contentsOfURL: imageURL)
+    fileprivate func fetchImageFromURL(_ imageURL: URL) -> UIImage? {
+        let imageData = try? Data(contentsOf: imageURL)
         
         if let imageData = imageData {
             return UIImage(data: imageData)
