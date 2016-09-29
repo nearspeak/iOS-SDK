@@ -80,11 +80,11 @@ class FetchViewController: UIViewController {
                     }
                 }
             } else {
-                let alertController = UIAlertController(title: "ERROR", message: "Error while fetching tag", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: "ERROR", message: "Error while fetching tag", preferredStyle: .alert)
                 
-                alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
             
             self.fetchingActivityIndicator.stopAnimating()

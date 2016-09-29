@@ -44,34 +44,34 @@ class DiscoveryTableViewController: UITableViewController {
     
     fileprivate func setupNotifications() {
         // get notifications for if beacons updates appear
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(DiscoveryTableViewController.onNearbyTagsUpdatedNotification(_:)),
-            name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationNearbyTagsUpdatedKey),
             object: nil)
         
         // get notification if bluetooth state changes
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(DiscoveryTableViewController.onBluetoothErrorNotification(_:)),
-            name: NSKConstants.managerNotificationBluetoothErrorKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationBluetoothErrorKey),
             object: nil)
         
         // get notifications if location state changes
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(DiscoveryTableViewController.onLocationErrorNotification(_:)),
-            name: NSKConstants.managerNotificationLocationErrorKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationLocationErrorKey),
             object: nil)
         
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(DiscoveryTableViewController.onLocationOnlyWhenInUseNotification(_:)),
-            name: NSKConstants.managerNotificationLocationWhenInUseOnKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationLocationWhenInUseOnKey),
             object: nil)
     }
     
     fileprivate func removeNotifications() {
-        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
-        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationBluetoothErrorKey)
-        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationErrorKey)
-        NotificationCenter.defaultCenter().removeObserver(NSKConstants.managerNotificationLocationWhenInUseOnKey)
+        NotificationCenter.default.removeObserver(NSKConstants.managerNotificationNearbyTagsUpdatedKey)
+        NotificationCenter.default.removeObserver(NSKConstants.managerNotificationBluetoothErrorKey)
+        NotificationCenter.default.removeObserver(NSKConstants.managerNotificationLocationErrorKey)
+        NotificationCenter.default.removeObserver(NSKConstants.managerNotificationLocationWhenInUseOnKey)
     }
     
     func onNearbyTagsUpdatedNotification(_ notification: Notification) {
@@ -139,7 +139,7 @@ extension DiscoveryTableViewController {
         
         cell.textLabel?.text = tag.titleString()
         
-        if let uuidString = tag.hardwareBeacon?.proximityUUID.UUIDString {
+        if let uuidString = tag.hardwareBeacon?.proximityUUID.uuidString {
             cell.detailTextLabel?.text = "UUID: " + uuidString
         }
         

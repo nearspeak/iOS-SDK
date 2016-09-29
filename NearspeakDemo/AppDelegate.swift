@@ -63,29 +63,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Notifications
     
     fileprivate func setupNotifications() {
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(AppDelegate.onEnterRegionNotification(_:)),
-            name: NSKConstants.managerNotificationRegionEnterKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationRegionEnterKey),
             object: nil)
         
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(AppDelegate.onExitRegionNotification(_:)),
-            name: NSKConstants.managerNotificationRegionExitKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationRegionExitKey),
             object: nil)
         
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(AppDelegate.onNearbyTagsUpdatedNotification(_:)),
-            name: NSKConstants.managerNotificationNearbyTagsUpdatedKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationNearbyTagsUpdatedKey),
             object: nil)
         
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(AppDelegate.onBluetoothOkNotification(_:)),
-            name: NSKConstants.managerNotificationBluetoothOkKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationBluetoothOkKey),
             object: nil)
         
-        NotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(AppDelegate.onBluetoothErrorNotification(_:)),
-            name: NSKConstants.managerNotificationBluetoothErrorKey,
+            name: NSNotification.Name(rawValue: NSKConstants.managerNotificationBluetoothErrorKey),
             object: nil)
     }
     
@@ -106,17 +106,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 api.getTagById(tagIdentifier: identifier, requestCompleted: { (succeeded, tag) -> () in
                     if succeeded {
                         if let tag = tag {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            DispatchQueue.main.async {
                                 if !self.pushedTags.contains(identifier) {
                                     self.pushedTags.insert(identifier)
-
+                                    
                                     if let bodyText = tag.translation {
                                         self.showLocalPushNotification(title: tag.titleString(), body: bodyText)
                                     } else {
                                         self.showLocalPushNotification(title: tag.titleString(), body: "Default Body")
                                     }
                                 }
-                            })
+                            }
                         }
                     }
                 })
